@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatisplus.mapper.ExaminationMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.mybatisplus.model.domain.Examination">
+        <id column="exam_id" property="examId" />
+        <result column="exam_subject" property="examSubject" />
+        <result column="exam_campus" property="examCampus" />
+        <result column="exam_classroom" property="examClassroom" />
+        <result column="exam_time" property="examTime" />
+        <result column="batch_batch_id" property="batchBatchId" />
+    </resultMap>
+
+</mapper>

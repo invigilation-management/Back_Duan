@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatisplus.mapper.StudentMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.mybatisplus.model.domain.Student">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="sn" property="sn" />
+        <result column="teacher_id" property="teacherId" />
+    </resultMap>
+
+
+
+    <resultMap id="WithinAdmin" type="com.example.mybatisplus.model.domain.Student">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="sn" property="sn" />
+        <result column="teacher_id" property="teacherId" />
+        <association property="admin" javaType="com.example.mybatisplus.model.domain.Admin">
+            <id column="teacher_id" property="id" />
+            <result column="loginName" property="loginName" />
+            <result column="password" property="password" />
+            <result column="lastLoginTime" property="lastLoginTime" />
+            <result column="remark" property="remark" />
+        </association>
+    </resultMap>
+
+
+    <select id="selectByIdWithAdmin" resultMap="WithinAdmin">
+        SELECT *
+        FROM student AS s
+        LEFT OUTER JOIN admin a ON s.teacher_id=a.id
+        WHERE s.id=#{id}
+    </select>
+
+</mapper>

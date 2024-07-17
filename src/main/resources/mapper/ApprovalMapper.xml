@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatisplus.mapper.ApprovalMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.mybatisplus.model.domain.Approval">
+        <id column="approval_id" property="approvalId" />
+        <result column="approval_date" property="approvalDate" />
+        <result column="approval_faculty_id" property="approvalFacultyId" />
+        <result column="approvalcol" property="approvalcol" />
+        <result column="approval_result" property="approvalResult" />
+        <result column="registration_registration_id" property="registrationRegistrationId" />
+    </resultMap>
+
+</mapper>
