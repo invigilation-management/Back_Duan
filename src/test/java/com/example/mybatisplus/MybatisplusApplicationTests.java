@@ -4,8 +4,10 @@ import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.mybatisplus.mapper.AdminMapper;
+import com.example.mybatisplus.mapper.CollegeMapper;
 import com.example.mybatisplus.mapper.StudentMapper;
 import com.example.mybatisplus.model.domain.Admin;
+import com.example.mybatisplus.model.domain.College;
 import com.example.mybatisplus.model.domain.Student;
 import com.example.mybatisplus.service.AdminService;
 import lombok.val;
@@ -31,17 +33,19 @@ class MybatisplusApplicationTests {
     private AdminMapper adminMapper;
     @Autowired
     private StudentMapper studentMapper;
+    @Autowired
+    private CollegeMapper collegeMapper;
 
 
     @Test
     void hh(){
         //内置api
-        Admin admin = adminMapper.selectById(1L);
+        College college = collegeMapper.selectById(1L);
 
-        for(int i=0;i<100;i++){
-            Admin admin1=new Admin();
-            admin1.setLoginName("user"+i).setPassword("123456");
-            int insert=adminMapper.insert(admin1);
+        for(int i=4;i<11;i++){
+            College college1= new College();
+            college1.setCollegeId(i).setCollegeName("user"+i);
+            int insert=collegeMapper.insert(college1);
         }
 
 
