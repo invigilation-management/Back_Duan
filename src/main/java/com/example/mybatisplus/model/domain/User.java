@@ -33,7 +33,7 @@ public class User extends Model<User> {
 
     private String password;
 
-    private Integer facultyFacultyId;
+    private Long facultyFacultyId;
 
     @TableField(exist = false)
     private Faculty faculty;

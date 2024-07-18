@@ -1,6 +1,7 @@
 package com.example.mybatisplus.web.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.mybatisplus.common.utls.SessionUtils;
 import com.example.mybatisplus.model.domain.Admin;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -89,7 +90,7 @@ public class UserController {
         //login有值表示数据库有这个人，没值表示没这个人
         User user = new User().setUserId(userId).setPassword(password);
         User login=userService.login(user);
-        session.setAttribute("userInfo", login);
+        SessionUtils.saveCurrentUserInfo(login);
         return JsonResponse.success(login);
     }
 
