@@ -13,6 +13,7 @@ import com.example.mybatisplus.common.JsonResponse;
 import com.example.mybatisplus.service.UserService;
 import com.example.mybatisplus.model.domain.User;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 
@@ -84,10 +85,11 @@ public class UserController {
 
     @GetMapping("login")
     @ResponseBody
-    public JsonResponse login(@Param("userId")Long userId, @Param("password")String password){
+    public JsonResponse login(HttpSession session, @Param("userId")Long userId, @Param("password")String password){
         //login有值表示数据库有这个人，没值表示没这个人
         User user = new User().setUserId(userId).setPassword(password);
         User login=userService.login(user);
+        session.setAttribute("userInfo", login);
         return JsonResponse.success(login);
     }
 
