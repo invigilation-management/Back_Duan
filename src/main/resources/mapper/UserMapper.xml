@@ -10,4 +10,5 @@
         <result column="faculty_faculty_id" property="facultyFacultyId" />
     </resultMap>
 
+
 </mapper>

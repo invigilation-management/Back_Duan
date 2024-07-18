@@ -1,5 +1,6 @@
 package com.example.mybatisplus.web.controller;
 
+import com.example.mybatisplus.model.domain.Admin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
 import org.slf4j.Logger;
@@ -73,6 +74,16 @@ public class UserController {
     public JsonResponse create(User  user) throws Exception {
         userService.save(user);
         return JsonResponse.success(null);
+    }
+
+
+
+    @GetMapping("Login")
+    @ResponseBody
+    public JsonResponse login(User user){
+        //login有值表示数据库有这个人，没值表示没这个人
+        User login=userService.login(user);
+        return JsonResponse.success(login);
     }
 }
 

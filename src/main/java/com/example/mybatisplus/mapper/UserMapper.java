@@ -1,5 +1,7 @@
 package com.example.mybatisplus.mapper;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.example.mybatisplus.model.domain.Admin;
 import com.example.mybatisplus.model.domain.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
@@ -12,5 +14,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @since 2024-07-17
  */
 public interface UserMapper extends BaseMapper<User> {
+
 
 }

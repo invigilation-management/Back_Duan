@@ -11,7 +11,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author lxp
@@ -33,11 +33,13 @@ public class User extends Model<User> {
     private String password;
 
     private Integer facultyFacultyId;
+    
 
 
     @Override
     protected Serializable pkVal() {
         return this.userId;
     }
+
 
 }
