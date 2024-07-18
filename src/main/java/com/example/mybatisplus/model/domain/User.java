@@ -1,5 +1,6 @@
 package com.example.mybatisplus.model.domain;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import java.io.Serializable;
@@ -26,14 +27,16 @@ public class User extends Model<User> {
     private static final long serialVersionUID = 1L;
 
     @TableId("user_id")
-    private Integer userId;
+    private Long userId;
 
     private String userName;
 
     private String password;
 
     private Integer facultyFacultyId;
-    
+
+    @TableField(exist = false)
+    private Faculty faculty;
 
 
     @Override

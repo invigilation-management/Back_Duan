@@ -6,10 +6,13 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.mybatisplus.mapper.AdminMapper;
 import com.example.mybatisplus.mapper.CollegeMapper;
 import com.example.mybatisplus.mapper.StudentMapper;
+import com.example.mybatisplus.mapper.UserMapper;
 import com.example.mybatisplus.model.domain.Admin;
 import com.example.mybatisplus.model.domain.College;
 import com.example.mybatisplus.model.domain.Student;
+import com.example.mybatisplus.model.domain.User;
 import com.example.mybatisplus.service.AdminService;
+import com.example.mybatisplus.service.UserService;
 import lombok.val;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +38,10 @@ class MybatisplusApplicationTests {
     private StudentMapper studentMapper;
     @Autowired
     private CollegeMapper collegeMapper;
-
+    @Autowired
+    private UserMapper userMapper;
+    @Autowired
+    private UserService userService;
 
     @Test
     void hh(){
@@ -49,8 +55,11 @@ class MybatisplusApplicationTests {
         }
 
 
-
-
+    }
+    @Test
+    void hh11(){
+        List<User> girls = userService.girlList();
+        System.out.println(girls);
     }
     @Test
     void qq(){

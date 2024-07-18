@@ -9,6 +9,33 @@
         <result column="password" property="password" />
         <result column="faculty_faculty_id" property="facultyFacultyId" />
     </resultMap>
+    <select id="selectBaby">
+        select * from USER where id = #{i};
+    </select>
+
+
+
+
+    <resultMap id="TestMap" type="com.example.mybatisplus.model.domain.User">
+        <id column="user_id" property="userId" />
+        <result column="user_name" property="userName" />
+        <result column="password" property="password" />
+        <result column="faculty_faculty_id" property="facultyFacultyId" />
+        <association property="faculty" javaType="com.example.mybatisplus.model.domain.Faculty">
+            <id column="faculty_id" property="facultyId" />
+            <result column="faculty_name" property="facultyName" />
+            <result column="tele" property="tele" />
+            <result column="level" property="level" />
+            <result column="college_college_id" property="collegeCollegeId" />
+        </association>
+    </resultMap>
+
+    <select id="selectLogin" resultMap="TestMap">
+        select user.*, faculty.* from user left join faculty on user.faculty_faculty_id = faculty.faculty_id
+        where user.user_id = #{userId} and user.password = #{password};
+    </select>
+
+
 
 
 </mapper>

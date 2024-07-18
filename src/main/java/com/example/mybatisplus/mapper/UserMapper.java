@@ -16,4 +16,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 public interface UserMapper extends BaseMapper<User> {
 
 
+    void selectBaby(int i);
+
+    User selectLogin(Long userId, String password);
 }

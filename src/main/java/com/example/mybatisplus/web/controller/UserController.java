@@ -1,6 +1,8 @@
 package com.example.mybatisplus.web.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.mybatisplus.model.domain.Admin;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
 import org.slf4j.Logger;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import com.example.mybatisplus.common.JsonResponse;
 import com.example.mybatisplus.service.UserService;
 import com.example.mybatisplus.model.domain.User;
+
+import java.util.List;
 
 
 /**
@@ -71,19 +75,35 @@ public class UserController {
     */
     @RequestMapping(value = "", method = RequestMethod.POST)
     @ResponseBody
-    public JsonResponse create(User  user) throws Exception {
+    public JsonResponse create(@RequestBody User  user) throws Exception {
         userService.save(user);
         return JsonResponse.success(null);
     }
 
 
 
-    @GetMapping("Login")
+    @GetMapping("login")
     @ResponseBody
-    public JsonResponse login(User user){
+    public JsonResponse login(@Param("userId")Long userId, @Param("password")String password){
         //login有值表示数据库有这个人，没值表示没这个人
+        User user = new User().setUserId(userId).setPassword(password);
         User login=userService.login(user);
         return JsonResponse.success(login);
     }
+
+    @RequestMapping(value = "/getAllGirl", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse getAllGirl(){
+        List<User> users = userService.girlList();
+        return JsonResponse.success(users);
+    }
+
+    @RequestMapping(value = "/getPage", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse getPage(@Param("pageNo")Long pageNo){
+        Page<User> userPage = userService.getPage(pageNo);
+        return JsonResponse.success(userPage);
+    }
+
 }
 
