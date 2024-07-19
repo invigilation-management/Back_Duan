@@ -22,4 +22,7 @@ public class SessionUtils {
     public static void saveCurrentUserInfo(User user) {
         session().setAttribute(USERKEY, user);
     }
+
+    public static void clearCurUser() {session().removeAttribute(USERKEY);
+    }
 }

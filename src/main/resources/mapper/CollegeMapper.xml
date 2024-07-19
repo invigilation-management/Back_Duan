@@ -6,6 +6,9 @@
     <resultMap id="BaseResultMap" type="com.example.mybatisplus.model.domain.College">
         <id column="college_id" property="collegeId" />
         <result column="college_name" property="collegeName" />
+        <result column="type" property="type" />
+        <result column="num_people" property="numPeople" />
+        <result column="create_time" property="createTime" />
     </resultMap>
 
 </mapper>

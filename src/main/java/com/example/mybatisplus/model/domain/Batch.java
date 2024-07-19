@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author lxp
- * @since 2024-07-17
+ * @since 2024-07-19
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -44,6 +44,12 @@ public class Batch extends Model<Batch> {
     private LocalDateTime batchCreatedTime;
 
     private Integer batchDuration;
+
+    private Integer expectNum;
+
+    private Integer alreadyPassedNum;
+
+    private Integer alreadyConfirmNum;
 
 
     @Override

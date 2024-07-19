@@ -22,4 +22,19 @@
         <result column="target_campus" property="targetCampus" />
     </resultMap>
 
+
+    <resultMap id="WaitingPage" type="com.example.mybatisplus.model.domain.Registration">
+        <id property="registrationId" column="registration_id"/>
+        <result property="trueFacultyName" column="true_faculty_name"/>
+        <result property="facultyFacultyId" column="faculty_faculty_id"/>
+        <result property="batchBatchId" column="batch_batch_id"/>
+        <result property="targetCampus" column="target_campus"/>
+    </resultMap>
+
+    <select id="selectWaitingPage" resultMap="BaseResultMap">
+
+            SELECT * FROM registration
+    </select>
+
+
 </mapper>

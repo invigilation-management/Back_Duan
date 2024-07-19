@@ -15,7 +15,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author lxp
- * @since 2024-07-17
+ * @since 2024-07-19
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -29,6 +29,12 @@ public class College extends Model<College> {
     private Integer collegeId;
 
     private String collegeName;
+
+    private String type;
+
+    private Integer numPeople;
+
+    private String createTime;
 
 
     @Override

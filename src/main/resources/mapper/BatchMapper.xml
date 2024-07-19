@@ -13,6 +13,9 @@
         <result column="batch_info" property="batchInfo" />
         <result column="batch_created_time" property="batchCreatedTime" />
         <result column="batch_duration" property="batchDuration" />
+        <result column="expect_num" property="expectNum" />
+        <result column="already_passed_num" property="alreadyPassedNum" />
+        <result column="already_confirm_num" property="alreadyConfirmNum" />
     </resultMap>
 
 </mapper>

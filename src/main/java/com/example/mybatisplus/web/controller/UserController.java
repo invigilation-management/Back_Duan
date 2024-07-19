@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.mybatisplus.common.utls.SessionUtils;
 import com.example.mybatisplus.model.domain.Admin;
 import org.apache.ibatis.annotations.Param;
+import org.apache.tomcat.Jar;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
 import org.slf4j.Logger;
@@ -93,6 +94,15 @@ public class UserController {
         SessionUtils.saveCurrentUserInfo(login);
         return JsonResponse.success(login);
     }
+
+    @GetMapping("logout")
+    @ResponseBody
+    public JsonResponse logout(){
+        SessionUtils.clearCurUser();
+        return JsonResponse.success(true);
+    }
+
+
 
     @RequestMapping(value = "/getAllGirl", method = RequestMethod.GET)
     @ResponseBody

@@ -1,5 +1,8 @@
 package com.example.mybatisplus.web.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.mybatisplus.model.domain.Registration;
+import com.example.mybatisplus.service.RegistrationService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
 import org.slf4j.Logger;
@@ -28,6 +31,9 @@ public class FacultyController {
 
     @Autowired
     private FacultyService facultyService;
+
+    @Autowired
+    private RegistrationService registrationService;
 
     /**
     * 描述：根据Id 查询
@@ -74,5 +80,12 @@ public class FacultyController {
         facultyService.save(faculty);
         return JsonResponse.success(null);
     }
+
+
+
+
+
+
+
 }
 

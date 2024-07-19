@@ -1,7 +1,9 @@
 package com.example.mybatisplus.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.mybatisplus.model.domain.Faculty;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.mybatisplus.model.domain.Registration;
 
 /**
  * <p>
@@ -12,5 +14,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2024-07-17
  */
 public interface FacultyService extends IService<Faculty> {
+
 
 }

@@ -1,5 +1,7 @@
 package com.example.mybatisplus.web.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.mybatisplus.model.dto.PageDTO;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
 import org.slf4j.Logger;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import com.example.mybatisplus.common.JsonResponse;
 import com.example.mybatisplus.service.RegistrationService;
 import com.example.mybatisplus.model.domain.Registration;
+
+import javax.servlet.http.HttpSession;
 
 
 /**
@@ -73,6 +77,19 @@ public class RegistrationController {
     public JsonResponse create(Registration  registration) throws Exception {
         registrationService.save(registration);
         return JsonResponse.success(null);
+    }
+
+
+
+    @RequestMapping(value = "getWaitingToBeApproval",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse getWaitingToBeApproval(Long userId){
+
+        System.out.println(userId);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<Registration> registrationPages=registrationService.getWaitingToBeApproval(userId,pageDTO);
+        return JsonResponse.success(registrationPages);
     }
 }
 
