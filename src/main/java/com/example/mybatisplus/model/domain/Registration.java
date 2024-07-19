@@ -59,6 +59,8 @@ public class Registration extends Model<Registration> {
     private String avatar;
 
     private String targetCampus;
+    @TableField(exist = false)
+    private Batch batch;
 
 
 
