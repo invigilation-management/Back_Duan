@@ -91,5 +91,104 @@ public class RegistrationController {
         Page<Registration> registrationPages=registrationService.getWaitingToBeApproval(userId,pageDTO);
         return JsonResponse.success(registrationPages);
     }
+
+
+    @RequestMapping(value = "getWaitingUnclearFindByWorkNum")
+    @ResponseBody
+    public JsonResponse getWaitingUnclearFindByWorkNum(Long userId,Long worknum){
+        System.out.println(userId);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<Registration> registrationFindPages=registrationService.getWaitingUnclearFindByWorkNum(userId,pageDTO,worknum);
+        return JsonResponse.success(registrationFindPages);
+    }
+
+    @RequestMapping(value = "getWaitingUnclearFindByName")
+    @ResponseBody
+    public JsonResponse getWaitingUnclearFindByName(Long userId,String name){
+        System.out.println(userId);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<Registration> registrationFindPages=registrationService.getWaitingUnclearFindByName(userId,pageDTO,name);
+        return JsonResponse.success(registrationFindPages);
+    }
+
+
+
+    @RequestMapping(value = "getAlreadyAgree",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse getAlreadyAgree(Long userId){
+
+        System.out.println(userId);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<Registration> registrationPages=registrationService.getAlreadyAgree(userId,pageDTO);
+        return JsonResponse.success(registrationPages);
+    }
+
+    @RequestMapping(value = "getAgreeUnclearFindByWorkNum")
+    @ResponseBody
+    public JsonResponse getAgreeUnclearFindByWorkNum(Long userId,Long worknum){
+        System.out.println(userId);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<Registration> registrationFindPages=registrationService.getAgreeUnclearFindByWorkNum(userId,pageDTO,worknum);
+        return JsonResponse.success(registrationFindPages);
+    }
+
+
+
+    @RequestMapping(value = "getAgreeUnclearFindByName")
+    @ResponseBody
+    public JsonResponse getAgreeUnclearFindByName(Long userId,String name){
+        System.out.println(userId);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<Registration> registrationFindPages=registrationService.getAgreeUnclearFindByName(userId,pageDTO,name);
+        return JsonResponse.success(registrationFindPages);
+    }
+
+
+
+    @RequestMapping(value = "getAlreadyDisagree",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse getAlreadyDisagree(Long userId){
+
+        System.out.println(userId);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<Registration> registrationPages=registrationService.getAlreadyDisagree(userId,pageDTO);
+        return JsonResponse.success(registrationPages);
+    }
+
+
+    @RequestMapping(value = "getDisagreeUnclearFindByWorkNum")
+    @ResponseBody
+    public JsonResponse getDisagreeUnclearFindByWorkNum(Long userId,Long worknum){
+        System.out.println(userId);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<Registration> registrationFindPages=registrationService.getDisagreeUnclearFindByWorkNum(userId,pageDTO,worknum);
+        return JsonResponse.success(registrationFindPages);
+    }
+
+    @RequestMapping(value = "getDisagreeUnclearFindByName")
+    @ResponseBody
+    public JsonResponse getDisagreeUnclearFindByName(Long userId,String name){
+        System.out.println(userId);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<Registration> registrationFindPages=registrationService.getDisagreeUnclearFindByName(userId,pageDTO,name);
+        return JsonResponse.success(registrationFindPages);
+    }
+
+
+
+
+
+
+
+
+
 }
 

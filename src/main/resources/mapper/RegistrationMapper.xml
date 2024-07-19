@@ -65,6 +65,45 @@
             )
 
     </select>
+    <select id="getWaitingUnclearFindByWorkNum" resultMap="WaitingPage">
+-- 在这个地方实现上面selectWaitingPage待审批中使用工号的模糊查询
+-- 传入参数为worknum（Long）
+    SELECT * FROM registration
+
+    </select>
+    <select id="getWaitingUnclearFindByName" resultMap="WaitingPage">
+        -- 在这个地方实现上面selectWaitingPage待审批中使用姓名的模糊查询
+        -- 传入参数为name（String）
+        SELECT * FROM registration
+    </select>
+    <select id="selectAgreePage" resultMap="WaitingPage">
+        -- 实现已同意审批查询
+        SELECT * FROM registration
+    </select>
+    <select id="selectDissgreePage" resultMap="WaitingPage">
+        -- 实现未同意审批查询
+        SELECT * FROM registration
+    </select>
+    <select id="getAgreeUnclearFindByWorkNum" resultType="com.example.mybatisplus.model.domain.Registration">
+        -- 在这个地方实现上面selectAgreePage中使用工号的模糊查询
+        -- 传入参数为worknum（Long）
+        SELECT * FROM registration
+    </select>
+    <select id="getAgreeUnclearFindByName" resultType="com.example.mybatisplus.model.domain.Registration">
+        -- 在这个地方实现上面selectAgreePage中使用姓名的模糊查询
+        -- 传入参数为name（String）
+        SELECT * FROM registration
+    </select>
+    <select id="getDisagreeUnclearFindByWorkNum" resultType="com.example.mybatisplus.model.domain.Registration">
+        -- 在这个地方实现上面selectDisagreePage中使用工号的模糊查询
+        -- 传入参数为worknum（Long）
+        SELECT * FROM registration
+    </select>
+    <select id="getDisagreeUnclearFindByName" resultType="com.example.mybatisplus.model.domain.Registration">
+        -- 在这个地方实现上面selectDisagreePage中使用姓名的模糊查询
+        -- 传入参数为name（String）
+        SELECT * FROM registration
+    </select>
 
 
 </mapper>

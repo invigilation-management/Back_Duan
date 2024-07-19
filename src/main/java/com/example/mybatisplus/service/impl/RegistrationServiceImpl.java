@@ -38,9 +38,64 @@ public class RegistrationServiceImpl extends ServiceImpl<RegistrationMapper, Reg
         // 创建分页对象
         Page<Registration> registrationPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
 
-        // 执行查询
-//        registrationMapper.selectWaitingPage(registrationPage, userId);
-
         return registrationMapper.selectWaitingPage(registrationPage, userId);
+    }
+
+    @Override
+    public Page<Registration> getWaitingUnclearFindByWorkNum(Long userId, PageDTO pageDTO,Long worknum) {
+        // 创建分页对象
+        Page<Registration> registrationFindPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+        return registrationMapper.getWaitingUnclearFindByWorkNum(registrationFindPage, userId,worknum);
+    }
+
+    @Override
+    public Page<Registration> getWaitingUnclearFindByName(Long userId, PageDTO pageDTO, String name) {
+        // 创建分页对象
+        Page<Registration> registrationFindPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+        return registrationMapper.getWaitingUnclearFindByName(registrationFindPage, userId,name);
+    }
+
+    @Override
+    public Page<Registration> getAlreadyAgree(Long userId, PageDTO pageDTO) {
+        // 创建分页对象
+        Page<Registration> registrationPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+
+        return registrationMapper.selectAgreePage(registrationPage, userId);
+    }
+
+    @Override
+    public Page<Registration> getAlreadyDisagree(Long userId, PageDTO pageDTO) {
+        // 创建分页对象
+        Page<Registration> registrationPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+
+        return registrationMapper.selectDissgreePage(registrationPage, userId);
+    }
+
+    @Override
+    public Page<Registration> getAgreeUnclearFindByWorkNum(Long userId, PageDTO pageDTO, Long worknum) {
+        // 创建分页对象
+        Page<Registration> registrationFindPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+        return registrationMapper.getAgreeUnclearFindByWorkNum(registrationFindPage, userId,worknum);
+    }
+
+    @Override
+    public Page<Registration> getAgreeUnclearFindByName(Long userId, PageDTO pageDTO, String name) {
+        // 创建分页对象
+        Page<Registration> registrationFindPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+        return registrationMapper.getAgreeUnclearFindByName(registrationFindPage, userId,name);
+    }
+
+    @Override
+    public Page<Registration> getDisagreeUnclearFindByWorkNum(Long userId, PageDTO pageDTO, Long worknum) {
+        // 创建分页对象
+        Page<Registration> registrationFindPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+        return registrationMapper.getDisagreeUnclearFindByWorkNum(registrationFindPage, userId,worknum);
+    }
+
+    @Override
+    public Page<Registration> getDisagreeUnclearFindByName(Long userId, PageDTO pageDTO, String name) {
+        // 创建分页对象
+        Page<Registration> registrationFindPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+        return registrationMapper.getDisagreeUnclearFindByName(registrationFindPage, userId,name);
     }
 }

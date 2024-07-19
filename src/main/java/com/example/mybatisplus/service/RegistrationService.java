@@ -16,4 +16,20 @@ import com.example.mybatisplus.model.dto.PageDTO;
 public interface RegistrationService extends IService<Registration> {
 
     Page<Registration> getWaitingToBeApproval(Long UserId, PageDTO pageDTO);
+
+    Page<Registration> getWaitingUnclearFindByWorkNum(Long userId, PageDTO pageDTO,Long worknum);
+
+    Page<Registration> getWaitingUnclearFindByName(Long userId, PageDTO pageDTO, String name);
+
+    Page<Registration> getAlreadyAgree(Long userId, PageDTO pageDTO);
+
+    Page<Registration> getAlreadyDisagree(Long userId, PageDTO pageDTO);
+
+    Page<Registration> getAgreeUnclearFindByWorkNum(Long userId, PageDTO pageDTO, Long worknum);
+
+    Page<Registration> getAgreeUnclearFindByName(Long userId, PageDTO pageDTO, String name);
+
+    Page<Registration> getDisagreeUnclearFindByWorkNum(Long userId, PageDTO pageDTO, Long worknum);
+
+    Page<Registration> getDisagreeUnclearFindByName(Long userId, PageDTO pageDTO, String name);
 }
