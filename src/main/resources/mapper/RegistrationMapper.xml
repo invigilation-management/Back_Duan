@@ -32,8 +32,36 @@
     </resultMap>
 
     <select id="selectWaitingPage" resultMap="BaseResultMap">
+        SELECT
+            r.registration_id AS registrationId,
+            r.true_faculty_name AS trueFacultyName,
+            u.faculty_faculty_id AS facultyFacultyId,
+            b.batch_info AS batchInfo,
+            r.target_campus AS targetCampus,
+            f.level AS level,
+            f.college_college_id AS collegeCollegeId
+        FROM
+            registration r
+                JOIN
+            user u
+                JOIN
+            batch b ON r.batch_batch_id = b.batch_id
+                JOIN
+            faculty f ON u.faculty_faculty_id = f.faculty_id
+        WHERE
+            u.user_id = #{userId}
+          AND r.pass_or_not IS NULL
+          AND f.college_college_id = (SELECT college_college_id FROM user WHERE user_id = #{userId})
+          AND (
+                        (SELECT level FROM faculty WHERE faculty_id = (SELECT faculty_faculty_id FROM user WHERE user_id = #{userId})) = 1 AND r.state = 1
+                OR
+                        (SELECT level FROM faculty WHERE faculty_id = (SELECT faculty_faculty_id FROM user WHERE user_id = #{userId})) = 4 AND r.state = 2
+                OR
+                        (SELECT level FROM faculty WHERE faculty_id = (SELECT faculty_faculty_id FROM user WHERE user_id = #{userId})) = 5 AND r.state = 3
+                OR
+                        (SELECT level FROM faculty WHERE faculty_id = (SELECT faculty_faculty_id FROM user WHERE user_id = #{userId})) = 2 AND r.state = 4
+            )
 
-            SELECT * FROM registration
     </select>
 
 
