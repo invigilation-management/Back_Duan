@@ -70,13 +70,13 @@
     --     SQL 和 MyBatis 框架不支持直接引用另一个查询 ID 作为数据源。要在 selectWaitingPage 的基础上进一步应用过滤或操作，
     --     你需要将其作为一个子查询嵌入到一个新的查询中。
         SELECT
-            sub.registration_id AS registration_id,
-            sub.true_faculty_name AS true_faculty_name,
-            sub.faculty_faculty_id AS faculty_faculty_id,
-            sub.batch_name AS batch_name,
-            sub.target_campus AS target_campus,
-            sub.level AS level,
-            sub.collegeCollegeId AS collegeCollegeId
+            registration.registration_id AS registration_id,
+            registration.true_faculty_name AS true_faculty_name,
+            registration.faculty_faculty_id AS faculty_faculty_id,
+            registration.batch_name AS batch_name,
+            registration.target_campus AS target_campus,
+            registration.level AS level,
+            registration.collegeCollegeId AS collegeCollegeId
         FROM
             (SELECT
                  r.registration_id AS registration_id,
@@ -106,21 +106,21 @@
                              (SELECT level FROM faculty WHERE faculty_id = (SELECT faculty_faculty_id FROM user WHERE user_id = #{userId})) = 4 AND r.state = 2
                      OR
                              (SELECT level FROM faculty WHERE faculty_id = (SELECT faculty_faculty_id FROM user WHERE user_id = #{userId})) = 5 AND r.state = 3
-                 )) AS sub
+                 )) AS registration
         WHERE
-            sub.true_faculty_id LIKE CONCAT('%', #{worknum}, '%')
+            registration.true_faculty_id LIKE CONCAT('%', #{worknum}, '%')
     </select>
     <select id="getWaitingUnclearFindByName" resultMap="WaitingPage">
         -- 在这个地方实现上面selectWaitingPage待审批中使用姓名的模糊查询
         -- 传入参数为name（String）
         SELECT
-            sub.registration_id AS registration_id,
-            sub.true_faculty_name AS true_faculty_name,
-            sub.faculty_faculty_id AS faculty_faculty_id,
-            sub.batch_name AS batch_name,
-            sub.target_campus AS target_campus,
-            sub.level AS level,
-            sub.collegeCollegeId AS collegeCollegeId
+            registration.registration_id AS registration_id,
+            registration.true_faculty_name AS true_faculty_name,
+            registration.faculty_faculty_id AS faculty_faculty_id,
+            registration.batch_name AS batch_name,
+            registration.target_campus AS target_campus,
+            registration.level AS level,
+            registration.collegeCollegeId AS collegeCollegeId
         FROM
             (SELECT
                  r.registration_id AS registration_id,
@@ -150,9 +150,9 @@
                              (SELECT level FROM faculty WHERE faculty_id = (SELECT faculty_faculty_id FROM user WHERE user_id = #{userId})) = 4 AND r.state = 2
                      OR
                              (SELECT level FROM faculty WHERE faculty_id = (SELECT faculty_faculty_id FROM user WHERE user_id = #{userId})) = 5 AND r.state = 3
-                 )) AS sub
+                 )) AS registration
         WHERE
-            sub.true_faculty_name LIKE CONCAT('%', #{name}, '%')
+            registration.true_faculty_name LIKE CONCAT('%', #{name}, '%')
     </select>
     <select id="selectAgreePage" resultMap="WaitingPage">
         -- 实现已同意审批查询
@@ -218,13 +218,13 @@
         -- 在这个地方实现上面selectAgreePage中使用工号的模糊查询
         -- 传入参数为worknum（Long）
         SELECT
-            sub.registration_id AS registration_id,
-            sub.true_faculty_name AS true_faculty_name,
-            sub.faculty_faculty_id AS faculty_faculty_id,
-            sub.batch_name AS batch_name,
-            sub.target_campus AS target_campus,
-            sub.level AS level,
-            sub.collegeCollegeId AS collegeCollegeId
+            registration.registration_id AS registration_id,
+            registration.true_faculty_name AS true_faculty_name,
+            registration.faculty_faculty_id AS faculty_faculty_id,
+            registration.batch_name AS batch_name,
+            registration.target_campus AS target_campus,
+            registration.level AS level,
+            registration.collegeCollegeId AS collegeCollegeId
         FROM
             (SELECT
                  r.registration_id AS registration_id,
@@ -253,21 +253,21 @@
                              (SELECT level FROM faculty WHERE faculty_id = (SELECT faculty_faculty_id FROM user WHERE user_id = #{userId})) = 4 AND r.state = 3
                      OR
                              (SELECT level FROM faculty WHERE faculty_id = (SELECT faculty_faculty_id FROM user WHERE user_id = #{userId})) = 5 AND r.state = 4
-                 )) AS sub
+                 )) AS registration
         WHERE
-            sub.true_faculty_id LIKE CONCAT('%', #{worknum}, '%')
+            registration.true_faculty_id LIKE CONCAT('%', #{worknum}, '%')
     </select>
     <select id="getAgreeUnclearFindByName" resultType="com.example.mybatisplus.model.domain.Registration">
         -- 在这个地方实现上面selectAgreePage中使用姓名的模糊查询
         -- 传入参数为name（String）
         SELECT
-            sub.registration_id AS registration_id,
-            sub.true_faculty_name AS true_faculty_name,
-            sub.faculty_faculty_id AS faculty_faculty_id,
-            sub.batch_name AS batch_name,
-            sub.target_campus AS target_campus,
-            sub.level AS level,
-            sub.collegeCollegeId AS collegeCollegeId
+            registration.registration_id AS registration_id,
+            registration.true_faculty_name AS true_faculty_name,
+            registration.faculty_faculty_id AS faculty_faculty_id,
+            registration.batch_name AS batch_name,
+            registration.target_campus AS target_campus,
+            registration.level AS level,
+            registration.collegeCollegeId AS collegeCollegeId
         FROM
             (SELECT
                  r.registration_id AS registration_id,
@@ -296,21 +296,21 @@
                              (SELECT level FROM faculty WHERE faculty_id = (SELECT faculty_faculty_id FROM user WHERE user_id = #{userId})) = 4 AND r.state = 3
                      OR
                              (SELECT level FROM faculty WHERE faculty_id = (SELECT faculty_faculty_id FROM user WHERE user_id = #{userId})) = 5 AND r.state = 4
-                 )) AS sub
+                 )) AS registration
         WHERE
-            sub.true_faculty_name LIKE CONCAT('%', #{name}, '%')
+            registration.true_faculty_name LIKE CONCAT('%', #{name}, '%')
     </select>
     <select id="getDisagreeUnclearFindByWorkNum" resultType="com.example.mybatisplus.model.domain.Registration">
         -- 在这个地方实现上面selectDisagreePage中使用工号的模糊查询
         -- 传入参数为worknum（Long）
         SELECT
-            sub.registration_id AS registration_id,
-            sub.true_faculty_name AS true_faculty_name,
-            sub.faculty_faculty_id AS faculty_faculty_id,
-            sub.batch_name AS batch_name,
-            sub.target_campus AS target_campus,
-            sub.level AS level,
-            sub.collegeCollegeId AS collegeCollegeId
+            registration.registration_id AS registration_id,
+            registration.true_faculty_name AS true_faculty_name,
+            registration.faculty_faculty_id AS faculty_faculty_id,
+            registration.batch_name AS batch_name,
+            registration.target_campus AS target_campus,
+            registration.level AS level,
+            registration.collegeCollegeId AS collegeCollegeId
         FROM
             (SELECT
                  r.registration_id AS registration_id,
@@ -339,21 +339,21 @@
                              (SELECT level FROM faculty WHERE faculty_id = (SELECT faculty_faculty_id FROM user WHERE user_id = #{userId})) = 4 AND r.state = 3
                      OR
                              (SELECT level FROM faculty WHERE faculty_id = (SELECT faculty_faculty_id FROM user WHERE user_id = #{userId})) = 5 AND r.state = 4
-                 )) AS sub
+                 )) AS registration
         WHERE
-            sub.true_faculty_id LIKE CONCAT('%', #{worknum}, '%')
+            registration.true_faculty_id LIKE CONCAT('%', #{worknum}, '%')
     </select>
     <select id="getDisagreeUnclearFindByName" resultType="com.example.mybatisplus.model.domain.Registration">
         -- 在这个地方实现上面selectDisagreePage中使用姓名的模糊查询
         -- 传入参数为name（String）
         SELECT
-            sub.registration_id AS registration_id,
-            sub.true_faculty_name AS true_faculty_name,
-            sub.faculty_faculty_id AS faculty_faculty_id,
-            sub.batch_name AS batch_name,
-            sub.target_campus AS target_campus,
-            sub.level AS level,
-            sub.collegeCollegeId AS collegeCollegeId
+            registration.registration_id AS registration_id,
+            registration.true_faculty_name AS true_faculty_name,
+            registration.faculty_faculty_id AS faculty_faculty_id,
+            registration.batch_name AS batch_name,
+            registration.target_campus AS target_campus,
+            registration.level AS level,
+            registration.collegeCollegeId AS collegeCollegeId
         FROM
             (SELECT
                  r.registration_id AS registration_id,
@@ -382,9 +382,9 @@
                              (SELECT level FROM faculty WHERE faculty_id = (SELECT faculty_faculty_id FROM user WHERE user_id = #{userId})) = 4 AND r.state = 3
                      OR
                              (SELECT level FROM faculty WHERE faculty_id = (SELECT faculty_faculty_id FROM user WHERE user_id = #{userId})) = 5 AND r.state = 4
-                 )) AS sub
+                 )) AS registration
         WHERE
-            sub.true_faculty_name LIKE CONCAT('%', #{name}, '%')
+            registration.true_faculty_name LIKE CONCAT('%', #{name}, '%')
     </select>
 
 
