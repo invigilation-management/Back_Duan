@@ -16,5 +16,6 @@ import com.example.mybatisplus.model.domain.Registration;
 public interface BatchMapper extends BaseMapper<Batch> {
 
     Page<Batch> selectAppointAndFeesPageALL(Page<Batch> registrationPage, Long userId);
+    Page<Batch> selectManagePageALL(Page<Batch> registrationPage, Long userId);
 
 }

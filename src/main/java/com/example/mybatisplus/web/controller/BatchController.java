@@ -92,6 +92,18 @@ public class BatchController {
     }
 
 
+    @RequestMapping(value = "getManagementPageALL",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse getManagementPage(Long userId){
+
+        System.out.println(userId);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<Batch> batchPages=batchService.getManagementPageALL(userId,pageDTO);
+        return JsonResponse.success(batchPages);
+    }
+
+
 
 
 }

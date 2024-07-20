@@ -31,4 +31,14 @@ public class BatchServiceImpl extends ServiceImpl<BatchMapper, Batch> implements
         return batchMapper.selectAppointAndFeesPageALL(batchPage, userId);
     }
 
+
+
+    @Override
+    public Page<Batch> getManagementPageALL(Long userId, PageDTO pageDTO) {
+        // 创建分页对象
+        Page<Batch> registrationPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+
+        return batchMapper.selectManagePageALL(registrationPage, userId);
+    }
+
 }

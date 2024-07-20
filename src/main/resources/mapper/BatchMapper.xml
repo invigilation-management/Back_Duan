@@ -24,4 +24,10 @@
         SELECT * FROM batch
     </select>
 
+
+
+    <select id="selectManagePageALL" resultMap="BaseResultMap">
+        SELECT * FROM batch
+    </select>
+
 </mapper>

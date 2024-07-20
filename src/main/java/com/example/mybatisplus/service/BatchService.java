@@ -17,4 +17,6 @@ import com.example.mybatisplus.model.dto.PageDTO;
 public interface BatchService extends IService<Batch> {
     Page<Batch> getAppointAndFeesPageALL(Long userId, PageDTO pageDTO);
 
+    Page<Batch> getManagementPageALL(Long userId, PageDTO pageDTO);
+
 }

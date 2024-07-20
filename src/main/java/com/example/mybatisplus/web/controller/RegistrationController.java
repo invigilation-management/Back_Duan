@@ -220,16 +220,7 @@ public class RegistrationController {
     }
 
 
-    @RequestMapping(value = "getManagementPageALL",method = RequestMethod.GET)
-    @ResponseBody
-    public JsonResponse getManagementPage(Long userId){
 
-        System.out.println(userId);
-
-        PageDTO pageDTO=new PageDTO();
-        Page<Registration> registrationPages=registrationService.getManagementPageALL(userId,pageDTO);
-        return JsonResponse.success(registrationPages);
-    }
 
 
 

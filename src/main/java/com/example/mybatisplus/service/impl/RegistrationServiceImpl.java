@@ -123,13 +123,7 @@ public class RegistrationServiceImpl extends ServiceImpl<RegistrationMapper, Reg
         return registrationMapper.selectDisagreePageALL(registrationPage, userId);
     }
 
-    @Override
-    public Page<Registration> getManagementPageALL(Long userId, PageDTO pageDTO) {
-        // 创建分页对象
-        Page<Registration> registrationPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
 
-        return registrationMapper.selectManagePageALL(registrationPage, userId);
-    }
 
 
 }
