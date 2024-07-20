@@ -40,4 +40,6 @@ public interface RegistrationService extends IService<Registration> {
     Page<Registration> getAlreadyDisagreeALL(Long userId, PageDTO pageDTO);
 
     Page<Registration> getManagementPageALL(Long userId, PageDTO pageDTO);
+
+
 }

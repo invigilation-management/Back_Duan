@@ -18,4 +18,10 @@
         <result column="already_confirm_num" property="alreadyConfirmNum" />
     </resultMap>
 
+
+
+    <select id="selectAppointAndFeesPageALL" resultMap="BaseResultMap">
+        SELECT * FROM batch
+    </select>
+
 </mapper>

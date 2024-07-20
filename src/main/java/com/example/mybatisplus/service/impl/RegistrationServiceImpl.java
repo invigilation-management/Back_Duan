@@ -130,4 +130,6 @@ public class RegistrationServiceImpl extends ServiceImpl<RegistrationMapper, Reg
 
         return registrationMapper.selectManagePageALL(registrationPage, userId);
     }
+
+
 }

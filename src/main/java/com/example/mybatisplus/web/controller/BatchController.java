@@ -1,5 +1,8 @@
 package com.example.mybatisplus.web.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.mybatisplus.model.domain.Registration;
+import com.example.mybatisplus.model.dto.PageDTO;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
 import org.slf4j.Logger;
@@ -25,6 +28,7 @@ import com.example.mybatisplus.model.domain.Batch;
 public class BatchController {
 
     private final Logger logger = LoggerFactory.getLogger( BatchController.class );
+
 
     @Autowired
     private BatchService batchService;
@@ -74,5 +78,21 @@ public class BatchController {
         batchService.save(batch);
         return JsonResponse.success(null);
     }
+
+
+    @RequestMapping(value = "getAppointAndFeesPageALL",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse getAppointAndFeesPageALL(Long userId){
+
+        System.out.println(userId);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<Batch> registrationPages=batchService.getAppointAndFeesPageALL(userId,pageDTO);
+        return JsonResponse.success(registrationPages);
+    }
+
+
+
+
 }
 

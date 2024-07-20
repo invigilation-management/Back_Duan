@@ -220,7 +220,7 @@ public class RegistrationController {
     }
 
 
-    @RequestMapping(value = "getManagementPage",method = RequestMethod.GET)
+    @RequestMapping(value = "getManagementPageALL",method = RequestMethod.GET)
     @ResponseBody
     public JsonResponse getManagementPage(Long userId){
 
@@ -230,6 +230,8 @@ public class RegistrationController {
         Page<Registration> registrationPages=registrationService.getManagementPageALL(userId,pageDTO);
         return JsonResponse.success(registrationPages);
     }
+
+
 
 
 
