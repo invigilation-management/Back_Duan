@@ -27,6 +27,7 @@
         <id property="registrationId" column="registration_id"/>
         <result property="trueFacultyName" column="true_faculty_name"/>
         <result property="facultyFacultyId" column="faculty_faculty_id"/>
+        <result property="trueFacultyId" column="true_faculty_id"/>
         <result property="targetCampus" column="target_campus"/>
         <association property="batch" javaType="com.example.mybatisplus.model.domain.Batch">
             <result property="batchName" column="batch_Name"/>
@@ -37,6 +38,7 @@
         SELECT
             r.registration_id AS registration_id,
             r.true_faculty_name AS true_faculty_name,
+            r.true_faculty_id AS true_faculty_id,
             u.faculty_faculty_id AS faculty_faculty_id,
             b.batch_name AS batch_Name,
             r.target_campus AS target_campus,
@@ -71,7 +73,7 @@
         SELECT
             registration.registration_id AS registration_id,
             registration.true_faculty_name AS true_faculty_name,
-            registration.faculty_faculty_id AS faculty_faculty_id,
+            registration.true_faculty_id AS true_faculty_id,
             registration.batch_name AS batch_name,
             registration.target_campus AS target_campus,
             registration.level AS level,
@@ -115,7 +117,7 @@
         SELECT
             registration.registration_id AS registration_id,
             registration.true_faculty_name AS true_faculty_name,
-            registration.faculty_faculty_id AS faculty_faculty_id,
+            registration.true_faculty_id AS true_faculty_id,
             registration.batch_name AS batch_name,
             registration.target_campus AS target_campus,
             registration.level AS level,
@@ -158,6 +160,7 @@
         SELECT
             r.registration_id AS registration_id,
             r.true_faculty_name AS true_faculty_name,
+            r.true_faculty_id AS true_faculty_id,
             u.faculty_faculty_id AS faculty_faculty_id,
             b.batch_name AS batch_Name,
             r.target_campus AS target_campus,
@@ -188,6 +191,7 @@
         SELECT
             r.registration_id AS registration_id,
             r.true_faculty_name AS true_faculty_name,
+            r.true_faculty_id AS true_faculty_id,
             u.faculty_faculty_id AS faculty_faculty_id,
             b.batch_name AS batch_Name,
             r.target_campus AS target_campus,
@@ -219,7 +223,7 @@
         SELECT
             registration.registration_id AS registration_id,
             registration.true_faculty_name AS true_faculty_name,
-            registration.faculty_faculty_id AS faculty_faculty_id,
+            registration.true_faculty_id AS true_faculty_id,
             registration.batch_name AS batch_name,
             registration.target_campus AS target_campus,
             registration.level AS level,
@@ -262,7 +266,7 @@
         SELECT
             registration.registration_id AS registration_id,
             registration.true_faculty_name AS true_faculty_name,
-            registration.faculty_faculty_id AS faculty_faculty_id,
+            registration.true_faculty_id AS true_faculty_id,
             registration.batch_name AS batch_name,
             registration.target_campus AS target_campus,
             registration.level AS level,
@@ -305,7 +309,7 @@
         SELECT
             registration.registration_id AS registration_id,
             registration.true_faculty_name AS true_faculty_name,
-            registration.faculty_faculty_id AS faculty_faculty_id,
+            registration.true_faculty_id AS true_faculty_id,
             registration.batch_name AS batch_name,
             registration.target_campus AS target_campus,
             registration.level AS level,
@@ -348,7 +352,7 @@
         SELECT
             registration.registration_id AS registration_id,
             registration.true_faculty_name AS true_faculty_name,
-            registration.faculty_faculty_id AS faculty_faculty_id,
+            registration.true_faculty_id AS true_faculty_id,
             registration.batch_name AS batch_name,
             registration.target_campus AS target_campus,
             registration.level AS level,
@@ -403,10 +407,38 @@
             u.user_id = #{userId} AND r.pass_or_not IS NULL AND  r.state = 4
     </select>
     <select id="selectAgreePageALL" resultMap="WaitingPage">
-        SELECT * FROM registration
+        SELECT
+            r.true_faculty_id AS true_faculty_id,
+            r.true_faculty_name AS true_faculty_name,
+            b.batch_name AS batch_Name,
+            r.target_campus AS target_campus
+        FROM
+            registration r
+                JOIN
+            batch b ON r.batch_batch_id = b.batch_id
+                JOIN
+            user u
+                JOIN
+            faculty f ON u.faculty_faculty_id = f.faculty_id
+        WHERE
+            u.user_id = #{userId} AND r.pass_or_not = 1 AND  r.state = 5
     </select>
-    <select id="selectDisagreePageALL" resultType="com.example.mybatisplus.model.domain.Registration">
-        SELECT * FROM registration
+    <select id="selectDisagreePageALL" resultMap="WaitingPage">
+        SELECT
+            r.true_faculty_id AS true_faculty_id,
+            r.true_faculty_name AS true_faculty_name,
+            b.batch_name AS batch_Name,
+            r.target_campus AS target_campus
+        FROM
+            registration r
+                JOIN
+            batch b ON r.batch_batch_id = b.batch_id
+                JOIN
+            user u
+                JOIN
+            faculty f ON u.faculty_faculty_id = f.faculty_id
+        WHERE
+            u.user_id = #{userId} AND r.pass_or_not = 0 AND  r.state = 5
     </select>
     <select id="selectManagePageALL" resultType="com.example.mybatisplus.model.domain.Registration">
         SELECT * FROM registration
