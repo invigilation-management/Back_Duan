@@ -36,4 +36,8 @@ public interface RegistrationService extends IService<Registration> {
     Page<Registration> getWaitingToBeApprovalALL(Long userId, PageDTO pageDTO);
 
     Page<Registration> getAlreadyAgreeALL(Long userId, PageDTO pageDTO);
+
+    Page<Registration> getAlreadyDisagreeALL(Long userId, PageDTO pageDTO);
+
+    Page<Registration> getManagementPageALL(Long userId, PageDTO pageDTO);
 }

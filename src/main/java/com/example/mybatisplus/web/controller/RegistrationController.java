@@ -208,6 +208,30 @@ public class RegistrationController {
     }
 
 
+    @RequestMapping(value = "getAlreadyDisagreeALL",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse getAlreadyDisagreeALL(Long userId){
+
+        System.out.println(userId);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<Registration> registrationPages=registrationService.getAlreadyDisagreeALL(userId,pageDTO);
+        return JsonResponse.success(registrationPages);
+    }
+
+
+    @RequestMapping(value = "getManagementPage",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse getManagementPage(Long userId){
+
+        System.out.println(userId);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<Registration> registrationPages=registrationService.getManagementPageALL(userId,pageDTO);
+        return JsonResponse.success(registrationPages);
+    }
+
+
 
 
 }

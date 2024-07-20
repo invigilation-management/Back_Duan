@@ -36,4 +36,8 @@ public interface RegistrationMapper extends BaseMapper<Registration> {
     Page<Registration> selectWaitingPageALL(Page<Registration> registrationPage, Long userId);
 
     Page<Registration> selectAgreePageALL(Page<Registration> registrationPage, Long userId);
+
+    Page<Registration> selectDisagreePageALL(Page<Registration> registrationPage, Long userId);
+
+    Page<Registration> selectManagePageALL(Page<Registration> registrationPage, Long userId);
 }

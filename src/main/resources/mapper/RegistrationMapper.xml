@@ -392,6 +392,12 @@
     <select id="selectAgreePageALL" resultMap="WaitingPage">
         SELECT * FROM registration
     </select>
+    <select id="selectDisagreePageALL" resultType="com.example.mybatisplus.model.domain.Registration">
+        SELECT * FROM registration
+    </select>
+    <select id="selectManagePageALL" resultType="com.example.mybatisplus.model.domain.Registration">
+        SELECT * FROM registration
+    </select>
 
 
 </mapper>
