@@ -1,7 +1,9 @@
 package com.example.mybatisplus.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.mybatisplus.model.domain.College;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.mybatisplus.model.dto.PageDTO;
 
 /**
  * <p>
@@ -13,4 +15,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface CollegeService extends IService<College> {
 
+    Page<College> getRoleAndCollegeALL(Long userId, PageDTO pageDTO);
 }

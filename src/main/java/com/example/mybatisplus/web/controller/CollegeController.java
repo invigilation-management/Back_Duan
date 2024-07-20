@@ -1,5 +1,8 @@
 package com.example.mybatisplus.web.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.mybatisplus.model.domain.Batch;
+import com.example.mybatisplus.model.dto.PageDTO;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
 import org.slf4j.Logger;
@@ -74,5 +77,22 @@ public class CollegeController {
         collegeService.save(college);
         return JsonResponse.success(null);
     }
+
+
+    @RequestMapping(value = "getRoleAndCollegeALL",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse getRoleAndCollegeALL(Long userId){
+
+        System.out.println(userId);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<College> registrationPages=collegeService.getRoleAndCollegeALL(userId,pageDTO);
+        return JsonResponse.success(registrationPages);
+    }
+
+
+
+
+
 }
 

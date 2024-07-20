@@ -10,5 +10,8 @@
         <result column="num_people" property="numPeople" />
         <result column="create_time" property="createTime" />
     </resultMap>
+    <select id="selectAppointAndFeesPageALL" resultType="com.example.mybatisplus.model.domain.College">
+        SELECT * FROM college
+    </select>
 
 </mapper>
