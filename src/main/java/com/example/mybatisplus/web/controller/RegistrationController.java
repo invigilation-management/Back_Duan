@@ -221,6 +221,23 @@ public class RegistrationController {
 
 
 
+    @RequestMapping(value = "getWaitingUnclearALLByString",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse getWaitingUnclearALLByString(Long userId,String trueFacultyName){
+
+        System.out.println(trueFacultyName);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<Registration> registrationPages=registrationService.getWaitingUnclearALLByString(userId,trueFacultyName,pageDTO);
+        return JsonResponse.success(registrationPages);
+    }
+
+
+
+
+
+
+
 
 
 

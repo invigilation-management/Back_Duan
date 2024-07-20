@@ -29,5 +29,17 @@
     <select id="selectManagePageALL" resultMap="BaseResultMap">
         SELECT * FROM batch
     </select>
+    <select id="selectConfirmPageALL" resultMap="BaseResultMap">
+        SELECT * FROM batch
+    </select>
+    <select id="selectBatchDetailsPageALL" resultMap="BaseResultMap">
+        SELECT * FROM batch
+    </select>
+    <select id="selectConfirmPageUnClearALL" resultMap="BaseResultMap">
+        SELECT * FROM  batch
+    </select>
+    <select id="selectManagementPageUnclearFindALL" resultMap="BaseResultMap">
+        SELECT * FROM  batch
+    </select>
 
 </mapper>

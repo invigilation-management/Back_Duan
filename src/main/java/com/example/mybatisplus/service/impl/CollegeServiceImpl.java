@@ -31,4 +31,12 @@ public class CollegeServiceImpl extends ServiceImpl<CollegeMapper, College> impl
 
         return collegeMapper.selectAppointAndFeesPageALL(collegePage, userId);
     }
+
+    @Override
+    public Page<College> getRoleAndCollegeALLUnclearFind(String collegeName, PageDTO pageDTO) {
+        // 创建分页对象
+        Page<College> collegeNamePage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+
+        return collegeMapper.selectRoleAndCollegeALLUnclearFind(collegeNamePage, collegeName);
+    }
 }

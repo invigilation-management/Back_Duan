@@ -15,4 +15,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 public interface CollegeMapper extends BaseMapper<College> {
 
     Page<College> selectAppointAndFeesPageALL(Page<College> collegePage, Long userId);
+
+    Page<College> selectRoleAndCollegeALLUnclearFind(Page<College> collegeNamePage, String collegeName);
 }

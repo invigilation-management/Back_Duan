@@ -440,9 +440,9 @@
         WHERE
             u.user_id = #{userId} AND r.pass_or_not = 0 AND  r.state = 5
     </select>
-
-
-
+    <select id="getWaitingUnclearALLByString" resultType="com.example.mybatisplus.model.domain.Registration">
+        SELECT * FROM registration
+    </select>
 
 
 </mapper>

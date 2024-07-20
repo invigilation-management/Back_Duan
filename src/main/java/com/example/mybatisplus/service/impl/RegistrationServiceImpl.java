@@ -1,20 +1,14 @@
 package com.example.mybatisplus.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.mybatisplus.mapper.UserMapper;
-import com.example.mybatisplus.model.domain.Faculty;
 import com.example.mybatisplus.model.domain.Registration;
 import com.example.mybatisplus.mapper.RegistrationMapper;
-import com.example.mybatisplus.model.domain.User;
 import com.example.mybatisplus.model.dto.PageDTO;
 import com.example.mybatisplus.service.RegistrationService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Map;
 
 /**
  * <p>
@@ -123,7 +117,12 @@ public class RegistrationServiceImpl extends ServiceImpl<RegistrationMapper, Reg
         return registrationMapper.selectDisagreePageALL(registrationPage, userId);
     }
 
-
+    @Override
+    public Page<Registration> getWaitingUnclearALLByString(Long userId, String trueFacultyName, PageDTO pageDTO) {
+        // 创建分页对象
+        Page<Registration> registrationFindPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+        return registrationMapper.getWaitingUnclearALLByString(registrationFindPage, userId,trueFacultyName);
+    }
 
 
 }

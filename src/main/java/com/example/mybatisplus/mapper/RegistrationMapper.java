@@ -40,5 +40,5 @@ public interface RegistrationMapper extends BaseMapper<Registration> {
     Page<Registration> selectDisagreePageALL(Page<Registration> registrationPage, Long userId);
 
 
-
+    Page<Registration> getWaitingUnclearALLByString(Page<Registration> registrationFindPage, Long userId, String trueFacultyName);
 }

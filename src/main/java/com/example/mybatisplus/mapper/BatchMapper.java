@@ -18,4 +18,11 @@ public interface BatchMapper extends BaseMapper<Batch> {
     Page<Batch> selectAppointAndFeesPageALL(Page<Batch> registrationPage, Long userId);
     Page<Batch> selectManagePageALL(Page<Batch> registrationPage, Long userId);
 
+    Page<Batch> selectConfirmPageALL(Page<Batch> registrationPage, Long userId);
+
+    Page<Batch> selectBatchDetailsPageALL(Page<Batch> registrationPage, String batchName);
+
+    Page<Batch> selectConfirmPageUnClearALL(Page<Batch> registrationPage, String batchName);
+
+    Page<Batch> selectManagementPageUnclearFindALL(Page<Batch> registrationPage, String batchName);
 }

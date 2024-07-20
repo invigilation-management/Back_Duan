@@ -103,6 +103,60 @@ public class BatchController {
         return JsonResponse.success(batchPages);
     }
 
+    @RequestMapping(value = "getManagementPageUnclearFindALL",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse getManagementPageUnclearFindALL(String batchName){
+
+        System.out.println(batchName);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<Batch> batchPages=batchService.getManagementPageUnclearFindALL(batchName,pageDTO);
+        return JsonResponse.success(batchPages);
+    }
+
+
+
+    @RequestMapping(value = "getConfirmPageALL",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse getConfirmPageALL(Long userId){
+
+        System.out.println(userId);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<Batch> batchPages=batchService.getConfirmPageALL(userId,pageDTO);
+        return JsonResponse.success(batchPages);
+    }
+
+
+    @RequestMapping(value = "getConfirmPageUnClearALL",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse getConfirmPageUnClearALL(String batchName){
+
+        System.out.println(batchName);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<Batch> batchPages=batchService.getConfirmPageUnClearALL(batchName,pageDTO);
+        return JsonResponse.success(batchPages);
+    }
+
+
+    @RequestMapping(value = "getBatchDetailsPageALL",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse getBatchDetailsPageALL(String batchName){
+
+        System.out.println(batchName);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<Batch> batchPages=batchService.getBatchDetailsPageALL(batchName,pageDTO);
+        return JsonResponse.success(batchPages);
+    }
+
+
+
+
+
+
+
 
 
 

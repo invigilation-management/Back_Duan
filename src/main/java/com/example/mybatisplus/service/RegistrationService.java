@@ -40,6 +40,5 @@ public interface RegistrationService extends IService<Registration> {
     Page<Registration> getAlreadyDisagreeALL(Long userId, PageDTO pageDTO);
 
 
-
-
+    Page<Registration> getWaitingUnclearALLByString(Long userId, String trueFacultyName, PageDTO pageDTO);
 }

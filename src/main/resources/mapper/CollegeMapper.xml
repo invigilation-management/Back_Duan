@@ -13,5 +13,8 @@
     <select id="selectAppointAndFeesPageALL" resultType="com.example.mybatisplus.model.domain.College">
         SELECT * FROM college
     </select>
+    <select id="selectRoleAndCollegeALLUnclearFind" resultType="com.example.mybatisplus.model.domain.College">
+        SELECT * FROM college
+    </select>
 
 </mapper>

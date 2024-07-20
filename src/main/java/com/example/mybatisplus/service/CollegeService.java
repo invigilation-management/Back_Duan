@@ -16,4 +16,6 @@ import com.example.mybatisplus.model.dto.PageDTO;
 public interface CollegeService extends IService<College> {
 
     Page<College> getRoleAndCollegeALL(Long userId, PageDTO pageDTO);
+
+    Page<College> getRoleAndCollegeALLUnclearFind(String collegeName, PageDTO pageDTO);
 }

@@ -90,6 +90,18 @@ public class CollegeController {
         return JsonResponse.success(registrationPages);
     }
 
+    @RequestMapping(value = "getRoleAndCollegeALLUnclearFind",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse getRoleAndCollegeALLUnclearFind(String collegeName){
+
+        System.out.println(collegeName);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<College> registrationPages=collegeService.getRoleAndCollegeALLUnclearFind(collegeName,pageDTO);
+        return JsonResponse.success(registrationPages);
+    }
+
+
 
 
 
