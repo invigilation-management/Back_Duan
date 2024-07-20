@@ -61,7 +61,6 @@
                 OR
                         (SELECT level FROM faculty WHERE faculty_id = (SELECT faculty_faculty_id FROM user WHERE user_id = #{userId})) = 5 AND r.state = 3
             )
-
     </select>
     <select id="getWaitingUnclearFindByWorkNum" resultMap="WaitingPage">
     -- 在这个地方实现上面selectWaitingPage待审批中使用工号的模糊查询
@@ -387,7 +386,21 @@
             registration.true_faculty_name LIKE CONCAT('%', #{name}, '%')
     </select>
     <select id="selectWaitingPageALL" resultMap="WaitingPage">
-        SELECT * FROM registration
+        SELECT
+            r.true_faculty_id AS true_faculty_id,
+            r.true_faculty_name AS true_faculty_name,
+            b.batch_name AS batch_Name,
+            r.target_campus AS target_campus
+        FROM
+            registration r
+                JOIN
+            batch b ON r.batch_batch_id = b.batch_id
+                JOIN
+            user u
+                JOIN
+            faculty f ON u.faculty_faculty_id = f.faculty_id
+        WHERE
+            u.user_id = #{userId} AND r.pass_or_not IS NULL AND  r.state = 4
     </select>
     <select id="selectAgreePageALL" resultMap="WaitingPage">
         SELECT * FROM registration
