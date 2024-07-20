@@ -32,4 +32,6 @@ public interface RegistrationMapper extends BaseMapper<Registration> {
     Page<Registration> getDisagreeUnclearFindByWorkNum(Page<Registration> registrationFindPage, Long userId, Long worknum);
 
     Page<Registration> getDisagreeUnclearFindByName(Page<Registration> registrationFindPage, Long userId, String name);
+
+    Page<Registration> selectWaitingPageALL(Page<Registration> registrationPage, Long userId);
 }

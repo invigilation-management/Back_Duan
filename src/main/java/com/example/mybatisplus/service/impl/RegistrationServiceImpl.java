@@ -98,4 +98,12 @@ public class RegistrationServiceImpl extends ServiceImpl<RegistrationMapper, Reg
         Page<Registration> registrationFindPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
         return registrationMapper.getDisagreeUnclearFindByName(registrationFindPage, userId,name);
     }
+
+    @Override
+    public Page<Registration> getWaitingToBeApprovalALL(Long userId, PageDTO pageDTO) {
+        // 创建分页对象
+        Page<Registration> registrationPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+
+        return registrationMapper.selectWaitingPageALL(registrationPage, userId);
+    }
 }

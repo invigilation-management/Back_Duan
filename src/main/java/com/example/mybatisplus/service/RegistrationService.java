@@ -32,4 +32,6 @@ public interface RegistrationService extends IService<Registration> {
     Page<Registration> getDisagreeUnclearFindByWorkNum(Long userId, PageDTO pageDTO, Long worknum);
 
     Page<Registration> getDisagreeUnclearFindByName(Long userId, PageDTO pageDTO, String name);
+
+    Page<Registration> getWaitingToBeApprovalALL(Long userId, PageDTO pageDTO);
 }
