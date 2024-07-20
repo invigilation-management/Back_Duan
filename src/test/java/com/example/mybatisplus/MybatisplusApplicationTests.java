@@ -48,7 +48,7 @@ class MybatisplusApplicationTests {
         //内置api
         College college = collegeMapper.selectById(1L);
 
-        for(int i=4;i<11;i++){
+        for(int i=11;i<21;i++){
             College college1= new College();
             college1.setCollegeId(i).setCollegeName("user"+i);
             int insert=collegeMapper.insert(college1);

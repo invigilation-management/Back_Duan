@@ -84,6 +84,18 @@ public class UserController {
     }
 
 
+    // 获取当前登录用户信息的接口
+    @RequestMapping(value = "me", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse getCurrentUserInfo() {
+        // 从Session中获取当前登录用户信息
+        User currentUser = SessionUtils.getCurrentUserInfo();
+        // 返回当前用户信息，包括userId等其他信息
+        return JsonResponse.success(currentUser);
+    }
+
+
+
 
     @GetMapping("login")
     @ResponseBody
