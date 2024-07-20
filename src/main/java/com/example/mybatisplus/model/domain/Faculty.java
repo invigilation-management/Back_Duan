@@ -11,7 +11,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author lxp
@@ -35,6 +35,7 @@ public class Faculty extends Model<Faculty> {
     private Integer level;
 
     private Integer collegeCollegeId;
+    private String avatar;
 
 
     @Override

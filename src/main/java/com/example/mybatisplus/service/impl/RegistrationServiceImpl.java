@@ -106,4 +106,12 @@ public class RegistrationServiceImpl extends ServiceImpl<RegistrationMapper, Reg
 
         return registrationMapper.selectWaitingPageALL(registrationPage, userId);
     }
+
+    @Override
+    public Page<Registration> getAlreadyAgreeALL(Long userId, PageDTO pageDTO) {
+        // 创建分页对象
+        Page<Registration> registrationPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+
+        return registrationMapper.selectAgreePageALL(registrationPage, userId);
+    }
 }

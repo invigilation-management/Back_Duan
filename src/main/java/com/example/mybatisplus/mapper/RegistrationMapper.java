@@ -34,4 +34,6 @@ public interface RegistrationMapper extends BaseMapper<Registration> {
     Page<Registration> getDisagreeUnclearFindByName(Page<Registration> registrationFindPage, Long userId, String name);
 
     Page<Registration> selectWaitingPageALL(Page<Registration> registrationPage, Long userId);
+
+    Page<Registration> selectAgreePageALL(Page<Registration> registrationPage, Long userId);
 }

@@ -387,7 +387,10 @@
             registration.true_faculty_name LIKE CONCAT('%', #{name}, '%')
     </select>
     <select id="selectWaitingPageALL" resultMap="WaitingPage">
-
+        SELECT * FROM registration
+    </select>
+    <select id="selectAgreePageALL" resultMap="WaitingPage">
+        SELECT * FROM registration
     </select>
 
 

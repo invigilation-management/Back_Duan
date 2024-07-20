@@ -196,6 +196,16 @@ public class RegistrationController {
     }
 
 
+    @RequestMapping(value = "getAlreadyAgreeALL",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse getAlreadyAgreeALL(Long userId){
+
+        System.out.println(userId);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<Registration> registrationPages=registrationService.getAlreadyAgreeALL(userId,pageDTO);
+        return JsonResponse.success(registrationPages);
+    }
 
 
 
