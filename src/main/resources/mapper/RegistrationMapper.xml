@@ -34,17 +34,29 @@
         </association>
     </resultMap>
     <insert id="afterApprovalAdd">
-        pass
+        INSERT INTO approval (approval_date, approval_faculty_id, approval_result, registration_registration_id)
+        SELECT NOW(), #{userId}, 1, registration.registration_id
+        FROM registration
+        JOIN batch ON registration.batch_batch_id = batch.batch_id
+        WHERE registration.true_faculty_id = #{trueFacultyId}
+        AND batch.batch_name = #{batchName}
+        AND registration.target_campus = #{targetCampus}
+        LIMIT 1
     </insert>
     <insert id="afterDisapprovalAdd">
-        pass
     </insert>
 
     <update id="afterApprovalUpdate">
-        pass
+        UPDATE registration
+            JOIN batch ON registration.batch_batch_id = batch.batch_id
+        SET registration.state = 5, registration.pass_or_not = 1
+        WHERE registration.true_faculty_id = #{trueFacultyId}
+            AND batch.batch_name = #{batchName}
+            AND registration.target_campus = #{targetCampus}
+
     </update>
     <update id="afterDisapprovalUpdate">
-        pass
+
     </update>
 
     <select id="selectWaitingPage" resultMap="WaitingPage">
