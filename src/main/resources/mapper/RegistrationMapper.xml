@@ -440,11 +440,55 @@
         WHERE
             u.user_id = #{userId} AND r.pass_or_not = 0 AND  r.state = 5
     </select>
-    <select id="getWaitingUnclearALLByString" resultType="com.example.mybatisplus.model.domain.Registration">
-        SELECT * FROM registration
+    <select id="getWaitingUnclearALLByString" resultMap="WaitingPage">
+        SELECT
+            registration.true_faculty_id AS true_faculty_id,
+            registration.true_faculty_name AS true_faculty_name,
+            registration.batch_Name AS batch_Name,
+            registration.target_campus AS target_campus
+        FROM
+            (SELECT
+                r.true_faculty_id AS true_faculty_id,
+                r.true_faculty_name AS true_faculty_name,
+                b.batch_name AS batch_Name,
+                r.target_campus AS target_campus
+            FROM
+                registration r
+                    JOIN
+                batch b ON r.batch_batch_id = b.batch_id
+                    JOIN
+                user u
+                    JOIN
+                faculty f ON u.faculty_faculty_id = f.faculty_id
+            WHERE
+                u.user_id = #{userId} AND r.pass_or_not IS NULL AND  r.state = 4) AS registration
+        WHERE
+            registration.true_faculty_name LIKE CONCAT('%', #{trueFacultyName}, '%')
     </select>
-    <select id="getWaitingUnclearALLWorknum" resultType="com.example.mybatisplus.model.domain.Registration">
-        SELECT * FROM registration
+    <select id="getWaitingUnclearALLWorknum" resultMap="WaitingPage">
+        SELECT
+            registration.true_faculty_id AS true_faculty_id,
+            registration.true_faculty_name AS true_faculty_name,
+            registration.batch_Name AS batch_Name,
+            registration.target_campus AS target_campus
+        FROM
+            (SELECT
+                 r.true_faculty_id AS true_faculty_id,
+                 r.true_faculty_name AS true_faculty_name,
+                 b.batch_name AS batch_Name,
+                 r.target_campus AS target_campus
+             FROM
+                 registration r
+                     JOIN
+                 batch b ON r.batch_batch_id = b.batch_id
+                     JOIN
+                 user u
+                     JOIN
+                 faculty f ON u.faculty_faculty_id = f.faculty_id
+             WHERE
+                 u.user_id = #{userId} AND r.pass_or_not IS NULL AND  r.state = 4) AS registration
+        WHERE
+                registration.true_faculty_id LIKE CONCAT('%', #{trueFacultyId}, '%')
     </select>
 
 
