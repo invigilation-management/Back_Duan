@@ -14,7 +14,7 @@
         SELECT * FROM college
     </select>
     <select id="selectRoleAndCollegeALLUnclearFind" resultType="com.example.mybatisplus.model.domain.College">
-        SELECT * FROM college
+        SELECT * FROM college WHERE college_name LIKE CONCAT('%', #{collegeName}, '%')
     </select>
 
 </mapper>

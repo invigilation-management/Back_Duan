@@ -23,9 +23,6 @@
     <select id="selectAppointAndFeesPageALL" resultMap="BaseResultMap">
         SELECT * FROM batch
     </select>
-
-
-
     <select id="selectManagePageALL" resultMap="BaseResultMap">
         SELECT * FROM batch
     </select>
@@ -33,13 +30,13 @@
         SELECT * FROM batch
     </select>
     <select id="selectBatchDetailsPageALL" resultMap="BaseResultMap">
-        SELECT * FROM batch
+        SELECT * FROM batch WHERE batch_name = #{batchName}
     </select>
     <select id="selectConfirmPageUnClearALL" resultMap="BaseResultMap">
-        SELECT * FROM  batch
+        SELECT * FROM  batch WHERE batch_name LIKE CONCAT('%', #{batchName}, '%')
     </select>
     <select id="selectManagementPageUnclearFindALL" resultMap="BaseResultMap">
-        SELECT * FROM  batch
+        SELECT * FROM  batch WHERE batch_name LIKE CONCAT('%', #{batchName}, '%')
     </select>
 
 </mapper>
