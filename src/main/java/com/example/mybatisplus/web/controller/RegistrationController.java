@@ -234,14 +234,16 @@ public class RegistrationController {
 
 
 
+    @RequestMapping(value = "getWaitingUnclearALLWorknum",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse getWaitingUnclearALLWorknum(Long userId,Long trueFacultyId){
 
+        System.out.println(trueFacultyId);
 
-
-
-
-
-
-
+        PageDTO pageDTO=new PageDTO();
+        Page<Registration> registrationPages=registrationService.getWaitingUnclearALLWorknum(userId,trueFacultyId,pageDTO);
+        return JsonResponse.success(registrationPages);
+    }
 
 
 }

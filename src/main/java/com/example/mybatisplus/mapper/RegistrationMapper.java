@@ -41,4 +41,6 @@ public interface RegistrationMapper extends BaseMapper<Registration> {
 
 
     Page<Registration> getWaitingUnclearALLByString(Page<Registration> registrationFindPage, Long userId, String trueFacultyName);
+
+    Page<Registration> getWaitingUnclearALLWorknum(Page<Registration> registrationFindPage, Long userId, Long trueFacultyId);
 }

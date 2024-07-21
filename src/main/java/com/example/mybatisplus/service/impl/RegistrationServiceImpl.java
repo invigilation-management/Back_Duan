@@ -124,5 +124,12 @@ public class RegistrationServiceImpl extends ServiceImpl<RegistrationMapper, Reg
         return registrationMapper.getWaitingUnclearALLByString(registrationFindPage, userId,trueFacultyName);
     }
 
+    @Override
+    public Page<Registration> getWaitingUnclearALLWorknum(Long userId, Long trueFacultyId, PageDTO pageDTO) {
+        // 创建分页对象
+        Page<Registration> registrationFindPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+        return registrationMapper.getWaitingUnclearALLWorknum(registrationFindPage, userId,trueFacultyId);
+    }
+
 
 }
