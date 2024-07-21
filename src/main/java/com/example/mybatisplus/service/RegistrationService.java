@@ -43,4 +43,8 @@ public interface RegistrationService extends IService<Registration> {
     Page<Registration> getWaitingUnclearALLByString(Long userId, String trueFacultyName, PageDTO pageDTO);
 
     Page<Registration> getWaitingUnclearALLWorknum(Long userId, Long trueFacultyId, PageDTO pageDTO);
+
+    Boolean afterApproval(Long userId, Long trueFacultyId, String batchName, String targetCampus);
+
+    Boolean afterDisapproval(Long userId, Long trueFacultyId, String batchName);
 }

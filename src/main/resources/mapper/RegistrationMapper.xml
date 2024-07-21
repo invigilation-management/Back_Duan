@@ -33,6 +33,19 @@
             <result property="batchName" column="batch_Name"/>
         </association>
     </resultMap>
+    <insert id="afterApprovalAdd">
+        pass
+    </insert>
+    <insert id="afterDisapprovalAdd">
+        pass
+    </insert>
+
+    <update id="afterApprovalUpdate">
+        pass
+    </update>
+    <update id="afterDisapprovalUpdate">
+        pass
+    </update>
 
     <select id="selectWaitingPage" resultMap="WaitingPage">
         SELECT

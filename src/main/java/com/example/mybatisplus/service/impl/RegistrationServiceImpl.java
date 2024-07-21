@@ -131,5 +131,19 @@ public class RegistrationServiceImpl extends ServiceImpl<RegistrationMapper, Reg
         return registrationMapper.getWaitingUnclearALLWorknum(registrationFindPage, userId,trueFacultyId);
     }
 
+    @Override
+    public Boolean afterApproval(Long userId, Long trueFacultyId, String batchName, String targetCampus) {
+        Boolean update=registrationMapper.afterApprovalUpdate( userId,  trueFacultyId,  batchName,  targetCampus);
+        Boolean add=registrationMapper.afterApprovalAdd( userId,  trueFacultyId,  batchName,  targetCampus);
+        return (update && add);
+    }
+
+    @Override
+    public Boolean afterDisapproval(Long userId, Long trueFacultyId, String batchName) {
+        Boolean update=registrationMapper.afterDisapprovalUpdate( userId,  trueFacultyId,  batchName);
+        Boolean add=registrationMapper.afterDisapprovalAdd( userId,  trueFacultyId,  batchName);
+        return (update && add);
+    }
+
 
 }

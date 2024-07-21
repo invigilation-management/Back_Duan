@@ -246,5 +246,31 @@ public class RegistrationController {
     }
 
 
+
+    @RequestMapping(value = "afterApproval",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse afterApproval(Long userId,Long trueFacultyId,String batchName,String targetCampus){
+
+        System.out.println(trueFacultyId);
+
+        Boolean Success=registrationService.afterApproval(userId,trueFacultyId,batchName,targetCampus);
+        return JsonResponse.success(Success);
+    }
+
+
+    @RequestMapping(value = "afterDisapproval",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse afterDisapproval(Long userId,Long trueFacultyId,String batchName){
+
+        System.out.println(trueFacultyId);
+
+        Boolean Success=registrationService.afterDisapproval(userId,trueFacultyId,batchName);
+        return JsonResponse.success(Success);
+    }
+
+
+
+
+
 }
 
