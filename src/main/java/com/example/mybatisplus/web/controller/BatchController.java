@@ -2,6 +2,7 @@ package com.example.mybatisplus.web.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.mybatisplus.model.domain.Registration;
+import com.example.mybatisplus.model.dto.BatchDTO;
 import com.example.mybatisplus.model.dto.PageDTO;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
@@ -152,9 +153,16 @@ public class BatchController {
     }
 
 
-
-
-
+    @RequestMapping(value = "addBatch",method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResponse<Boolean> addBatch(@RequestBody BatchDTO batchDTO) {
+        boolean isAdded = batchService.addBatch(batchDTO);
+        if (isAdded) {
+            return JsonResponse.success(true);
+        } else {
+            return JsonResponse.success(false, "Batch already exists");
+        }
+    }
 
 
 

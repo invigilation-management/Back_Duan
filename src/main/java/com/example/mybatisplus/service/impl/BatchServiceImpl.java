@@ -3,11 +3,13 @@ package com.example.mybatisplus.service.impl;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.mybatisplus.model.domain.Batch;
 import com.example.mybatisplus.mapper.BatchMapper;
+import com.example.mybatisplus.model.dto.BatchDTO;
 import com.example.mybatisplus.model.dto.PageDTO;
 import com.example.mybatisplus.service.BatchService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <p>
@@ -70,6 +72,23 @@ public class BatchServiceImpl extends ServiceImpl<BatchMapper, Batch> implements
         Page<Batch> registrationPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
 
         return batchMapper.selectManagementPageUnclearFindALL(registrationPage, batchName);
+    }
+
+
+    @Transactional
+    public boolean addBatch(BatchDTO batchDTO) {
+        // 检查是否已经存在该批次
+        int count = batchMapper.countByBatchName(batchDTO.getBatchName());
+        if (count > 0) {
+            return false;  // 批次已经存在
+        }
+
+        // 插入新的批次
+        batchMapper.insertBatch(batchDTO.getBatchName(), batchDTO.getBatchCreatedTime(),
+                batchDTO.getRegStartTime(), batchDTO.getRegEndTime(),
+                batchDTO.getBatchInfo(), batchDTO.getBatchStartTime(),
+                batchDTO.getBatchEndTime(), batchDTO.getBatchDuration());
+        return true;
     }
 
 }

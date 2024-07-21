@@ -17,7 +17,10 @@
         <result column="already_passed_num" property="alreadyPassedNum" />
         <result column="already_confirm_num" property="alreadyConfirmNum" />
     </resultMap>
-
+    <insert id="insertBatch">
+        INSERT INTO batch (batch_name, batch_created_time, reg_start_time, reg_end_time, batch_info, batch_start_time, batch_end_time, batch_duration)
+        VALUES (#{batchName}, #{batchCreatedTime}, #{regStartTime}, #{regEndTime}, #{batchInfo}, #{batchStartTime}, #{batchEndTime}, #{batchDuration})
+    </insert>
 
 
     <select id="selectAppointAndFeesPageALL" resultMap="BaseResultMap">
@@ -37,6 +40,9 @@
     </select>
     <select id="selectManagementPageUnclearFindALL" resultMap="BaseResultMap">
         SELECT * FROM  batch WHERE batch_name LIKE CONCAT('%', #{batchName}, '%')
+    </select>
+    <select id="countByBatchName" resultType="java.lang.Integer">
+        SELECT COUNT(1) FROM batch WHERE batch_name = #{batchName}
     </select>
 
 </mapper>

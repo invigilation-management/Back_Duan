@@ -102,15 +102,16 @@ public class CollegeController {
     }
 
 
-    @RequestMapping(value = "addRole",method = RequestMethod.POST)
+
+    @RequestMapping(value = "addCollege",method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse addRole(String collegeName){
-
-        System.out.println(collegeName);
-
-        PageDTO pageDTO=new PageDTO();
-        Page<College> registrationPages=collegeService.getRoleAndCollegeALLUnclearFind(collegeName,pageDTO);
-        return JsonResponse.success(registrationPages);
+    public JsonResponse<Boolean> addCollege(@RequestParam String collegeName, @RequestParam String type) {
+        boolean isAdded = collegeService.addCollege(collegeName, type);
+        if (isAdded) {
+            return JsonResponse.success(true);
+        } else {
+            return JsonResponse.success(false, "College already exists");
+        }
     }
 
 

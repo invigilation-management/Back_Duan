@@ -10,6 +10,9 @@
         <result column="num_people" property="numPeople" />
         <result column="create_time" property="createTime" />
     </resultMap>
+    <insert id="insertCollege">
+        INSERT INTO college (college_name, type,create_time) VALUES (#{collegeName}, #{type},NOW())
+    </insert>
     <select id="selectAppointAndFeesPageALL" resultType="com.example.mybatisplus.model.domain.College">
         SELECT * FROM college
     </select>
