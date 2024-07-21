@@ -102,6 +102,17 @@ public class CollegeController {
     }
 
 
+    @RequestMapping(value = "addRole",method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResponse addRole(String collegeName){
+
+        System.out.println(collegeName);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<College> registrationPages=collegeService.getRoleAndCollegeALLUnclearFind(collegeName,pageDTO);
+        return JsonResponse.success(registrationPages);
+    }
+
 
 
 
