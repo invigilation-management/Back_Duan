@@ -193,7 +193,7 @@
     </select>
     <select id="selectAgreePage" resultMap="WaitingPage">
         -- 实现已同意审批查询
-        SELECT
+        SELECT DISTINCT
             r.registration_id AS registration_id,
             r.true_faculty_name AS true_faculty_name,
             r.true_faculty_id AS true_faculty_id,
@@ -205,6 +205,8 @@
         FROM
             registration r
                 JOIN
+            approval a ON a.registration_registration_id = r.registration_id
+                JOIN
             user u
                 JOIN
             batch b ON r.batch_batch_id = b.batch_id
@@ -212,15 +214,9 @@
             faculty f ON u.faculty_faculty_id = f.faculty_id
         WHERE
             u.user_id = #{userId}
-          AND r.pass_or_not IS NULL
-          AND f.college_college_id = (SELECT college_college_id FROM faculty WHERE faculty_id = r.true_faculty_id)
-          AND (
-                        (SELECT level FROM faculty WHERE faculty_id = (SELECT faculty_faculty_id FROM user WHERE user_id = #{userId})) = 1 AND r.state = 2
-                OR
-                        (SELECT level FROM faculty WHERE faculty_id = (SELECT faculty_faculty_id FROM user WHERE user_id = #{userId})) = 4 AND r.state = 3
-                OR
-                        (SELECT level FROM faculty WHERE faculty_id = (SELECT faculty_faculty_id FROM user WHERE user_id = #{userId})) = 5 AND r.state = 4
-            )
+          AND f.faculty_id = #{userId}
+          AND a.approval_faculty_id = #{userId}
+          AND a.approval_result = 1
     </select>
     <select id="selectDissgreePage" resultMap="WaitingPage">
         -- 实现未同意审批查询
@@ -308,7 +304,7 @@
             registration.level AS level,
             registration.collegeCollegeId AS collegeCollegeId
         FROM
-            (SELECT
+            (SELECT DISTINCT
                  r.registration_id AS registration_id,
                  r.true_faculty_name AS true_faculty_name,
                  r.true_faculty_id AS true_faculty_id,
@@ -320,6 +316,8 @@
              FROM
                  registration r
                      JOIN
+                 approval a ON a.registration_registration_id = r.registration_id
+                     JOIN
                  user u
                      JOIN
                  batch b ON r.batch_batch_id = b.batch_id
@@ -327,15 +325,9 @@
                  faculty f ON u.faculty_faculty_id = f.faculty_id
              WHERE
                  u.user_id = #{userId}
-               AND r.pass_or_not IS NULL
-               AND f.college_college_id = (SELECT college_college_id FROM faculty WHERE faculty_id = r.true_faculty_id)
-               AND (
-                             (SELECT level FROM faculty WHERE faculty_id = (SELECT faculty_faculty_id FROM user WHERE user_id = #{userId})) = 1 AND r.state = 2
-                     OR
-                             (SELECT level FROM faculty WHERE faculty_id = (SELECT faculty_faculty_id FROM user WHERE user_id = #{userId})) = 4 AND r.state = 3
-                     OR
-                             (SELECT level FROM faculty WHERE faculty_id = (SELECT faculty_faculty_id FROM user WHERE user_id = #{userId})) = 5 AND r.state = 4
-                 )) AS registration
+               AND f.faculty_id = #{userId}
+               AND a.approval_faculty_id = #{userId}
+               AND a.approval_result = 1) AS registration
         WHERE
             registration.true_faculty_name LIKE CONCAT('%', #{name}, '%')
         OR OR registration.true_faculty_id LIKE CONCAT('%', #{name}, '%')
