@@ -10,5 +10,8 @@
         <result column="level" property="level" />
         <result column="college_college_id" property="collegeCollegeId" />
     </resultMap>
+    <select id="seeAllRoleOfTheCollege" resultType="com.example.mybatisplus.model.domain.Faculty">
+        SELECT * FROM faculty
+    </select>
 
 </mapper>

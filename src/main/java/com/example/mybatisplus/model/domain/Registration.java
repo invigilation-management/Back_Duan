@@ -66,6 +66,9 @@ public class Registration extends Model<Registration> {
 
     private Integer confirmOrNot;
 
+
+    private LocalDateTime createTime;
+
     @TableField(exist = false)
     private Batch batch;
 

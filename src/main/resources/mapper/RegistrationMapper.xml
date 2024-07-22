@@ -581,6 +581,9 @@
                 registration.true_faculty_name LIKE CONCAT('%', #{trueFacultyName}, '%')
            OR registration.true_faculty_id LIKE CONCAT('%', #{trueFacultyName}, '%')
     </select>
+    <select id="teachersSeeTheirRegistrations" resultType="com.example.mybatisplus.model.domain.Registration">
+        SELECT * FROM registration
+    </select>
 
 
 </mapper>

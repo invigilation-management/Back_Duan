@@ -1,11 +1,14 @@
 package com.example.mybatisplus.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.mybatisplus.mapper.CollegeMapper;
 import com.example.mybatisplus.model.domain.College;
 import com.example.mybatisplus.model.domain.Faculty;
 import com.example.mybatisplus.mapper.FacultyMapper;
+import com.example.mybatisplus.model.domain.Registration;
 import com.example.mybatisplus.model.dto.FacultyUpdateDTO;
+import com.example.mybatisplus.model.dto.PageDTO;
 import com.example.mybatisplus.service.FacultyService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +48,13 @@ public class FacultyServiceImpl extends ServiceImpl<FacultyMapper, Faculty> impl
         faculty.setCollegeCollegeId(college.getCollegeId());
 
         facultyMapper.updateById(faculty);
+    }
+
+    @Override
+    public Page<Faculty> seeAllRoleOfTheCollege(Long collegeId, PageDTO pageDTO) {
+        // 创建分页对象
+        Page<Faculty> registrationFindPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+        return facultyMapper.seeAllRoleOfTheCollege(registrationFindPage, collegeId);
     }
 
 }

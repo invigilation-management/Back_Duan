@@ -5,6 +5,7 @@ import com.example.mybatisplus.model.domain.Faculty;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.mybatisplus.model.domain.Registration;
 import com.example.mybatisplus.model.dto.FacultyUpdateDTO;
+import com.example.mybatisplus.model.dto.PageDTO;
 
 /**
  * <p>
@@ -17,4 +18,5 @@ import com.example.mybatisplus.model.dto.FacultyUpdateDTO;
 public interface FacultyService extends IService<Faculty> {
     public void updateFaculty(FacultyUpdateDTO facultyUpdateDTO);
 
+    Page<Faculty> seeAllRoleOfTheCollege(Long collegeId, PageDTO pageDTO);
 }

@@ -55,4 +55,6 @@ public interface RegistrationMapper extends BaseMapper<Registration> {
     Page<Registration> getAgreeUnclearALLByString(Page<Registration> registrationFindPage, Long userId, String trueFacultyName);
 
     Page<Registration> getDisagreeUnclearALLByString(Page<Registration> registrationFindPage, Long userId, String trueFacultyName);
+
+    Page<Registration> teachersSeeTheirRegistrations(Page<Registration> registrationFindPage, Long userId);
 }

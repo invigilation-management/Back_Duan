@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.mybatisplus.model.domain.Registration;
 import com.example.mybatisplus.model.domain.User;
 import com.example.mybatisplus.model.dto.FacultyUpdateDTO;
+import com.example.mybatisplus.model.dto.PageDTO;
 import com.example.mybatisplus.service.RegistrationService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
@@ -91,6 +92,17 @@ public class FacultyController {
     public JsonResponse updateFaculty(@RequestBody FacultyUpdateDTO facultyUpdateDTO) {
         facultyService.updateFaculty(facultyUpdateDTO);
         return JsonResponse.success("Faculty updated successfully");
+    }
+
+    @RequestMapping(value = "seeAllRoleOfTheCollege", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse seeAllRoleOfTheCollege(Long collegeId){
+
+        System.out.println(collegeId);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<Faculty> registrationPages=facultyService.seeAllRoleOfTheCollege(collegeId,pageDTO);
+        return JsonResponse.success(registrationPages);
     }
 
 

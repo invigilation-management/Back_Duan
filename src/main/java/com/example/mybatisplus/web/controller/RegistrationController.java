@@ -293,6 +293,21 @@ public class RegistrationController {
         return JsonResponse.success(registrationPages);
     }
 
+    @RequestMapping(value = "teachersSeeTheirRegistrations",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse teachersSeeTheirRegistrations(Long userId){
+
+        System.out.println(userId);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<Registration> registrationPages=registrationService.teachersSeeTheirRegistrations(userId,pageDTO);
+        return JsonResponse.success(registrationPages);
+    }
+
+
+
+
+
 
 
 

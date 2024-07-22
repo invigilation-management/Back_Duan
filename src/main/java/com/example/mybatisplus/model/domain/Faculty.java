@@ -43,6 +43,7 @@ public class Faculty extends Model<Faculty> {
     private String avatar;
 
 
+
     @Override
     protected Serializable pkVal() {
         return this.facultyId;
