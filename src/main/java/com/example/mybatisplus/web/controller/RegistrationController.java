@@ -271,6 +271,31 @@ public class RegistrationController {
 
 
 
+    @RequestMapping(value = "getAgreeUnclearALLByString",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse getAgreeUnclearALLByString(Long userId,String trueFacultyName){
+
+        System.out.println(trueFacultyName);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<Registration> registrationPages=registrationService.getAgreeUnclearALLByString(userId,trueFacultyName,pageDTO);
+        return JsonResponse.success(registrationPages);
+    }
+
+    @RequestMapping(value = "getDisagreeUnclearALLByString",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse getDisagreeUnclearALLByString(Long userId,String trueFacultyName){
+
+        System.out.println(trueFacultyName);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<Registration> registrationPages=registrationService.getDisagreeUnclearALLByString(userId,trueFacultyName,pageDTO);
+        return JsonResponse.success(registrationPages);
+    }
+
+
+
+
 
 }
 

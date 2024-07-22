@@ -515,6 +515,12 @@
         WHERE
                 registration.true_faculty_id LIKE CONCAT('%', #{trueFacultyId}, '%')
     </select>
+    <select id="getAgreeUnclearALLByString" resultType="com.example.mybatisplus.model.domain.Registration">
+        SELECT * FROM registration
+    </select>
+    <select id="getDisagreeUnclearALLByString" resultType="com.example.mybatisplus.model.domain.Registration">
+        SELECT * FROM registration
+    </select>
 
 
 </mapper>

@@ -145,5 +145,19 @@ public class RegistrationServiceImpl extends ServiceImpl<RegistrationMapper, Reg
         return (update && add);
     }
 
+    @Override
+    public Page<Registration> getAgreeUnclearALLByString(Long userId, String trueFacultyName, PageDTO pageDTO) {
+        // 创建分页对象
+        Page<Registration> registrationFindPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+        return registrationMapper.getAgreeUnclearALLByString(registrationFindPage, userId,trueFacultyName);
+    }
+
+    @Override
+    public Page<Registration> getDisagreeUnclearALLByString(Long userId, String trueFacultyName, PageDTO pageDTO) {
+        // 创建分页对象
+        Page<Registration> registrationFindPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+        return registrationMapper.getDisagreeUnclearALLByString(registrationFindPage, userId,trueFacultyName);
+    }
+
 
 }

@@ -51,4 +51,8 @@ public interface RegistrationMapper extends BaseMapper<Registration> {
     Boolean afterDisapprovalUpdate(Long userId, Long trueFacultyId, String batchName);
 
     Boolean afterDisapprovalAdd(Long userId, Long trueFacultyId, String batchName);
+
+    Page<Registration> getAgreeUnclearALLByString(Page<Registration> registrationFindPage, Long userId, String trueFacultyName);
+
+    Page<Registration> getDisagreeUnclearALLByString(Page<Registration> registrationFindPage, Long userId, String trueFacultyName);
 }
