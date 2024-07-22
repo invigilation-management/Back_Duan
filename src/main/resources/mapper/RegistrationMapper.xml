@@ -44,6 +44,13 @@
         LIMIT 1
     </insert>
     <insert id="afterDisapprovalAdd">
+        INSERT INTO approval (approval_date, approval_faculty_id, approval_result, registration_registration_id)
+        SELECT NOW(), #{userId}, 0, registration.registration_id
+        FROM registration
+                 JOIN batch ON registration.batch_batch_id = batch.batch_id
+        WHERE registration.true_faculty_id = #{trueFacultyId}
+          AND batch.batch_name = #{batchName}
+            LIMIT 1
     </insert>
 
     <update id="afterApprovalUpdate">
@@ -53,10 +60,13 @@
         WHERE registration.true_faculty_id = #{trueFacultyId}
             AND batch.batch_name = #{batchName}
             AND registration.target_campus = #{targetCampus}
-
     </update>
     <update id="afterDisapprovalUpdate">
-
+        UPDATE registration
+            JOIN batch ON registration.batch_batch_id = batch.batch_id
+            SET registration.state = 5, registration.pass_or_not = 0
+        WHERE registration.true_faculty_id = #{trueFacultyId}
+          AND batch.batch_name = #{batchName}
     </update>
 
     <select id="selectWaitingPage" resultMap="WaitingPage">
@@ -517,10 +527,56 @@
                 registration.true_faculty_id LIKE CONCAT('%', #{trueFacultyId}, '%')
     </select>
     <select id="getAgreeUnclearALLByString" resultType="com.example.mybatisplus.model.domain.Registration">
-        SELECT * FROM registration
+        SELECT
+            registration.true_faculty_id AS true_faculty_id,
+            registration.true_faculty_name AS true_faculty_name,
+            registration.batch_Name AS batch_Name,
+            registration.target_campus AS target_campus
+        FROM
+            (SELECT
+                 r.true_faculty_id AS true_faculty_id,
+                 r.true_faculty_name AS true_faculty_name,
+                 b.batch_name AS batch_Name,
+                 r.target_campus AS target_campus
+             FROM
+                 registration r
+                     JOIN
+                 batch b ON r.batch_batch_id = b.batch_id
+                     JOIN
+                 user u
+                     JOIN
+                 faculty f ON u.faculty_faculty_id = f.faculty_id
+             WHERE
+                 u.user_id = #{userId} AND r.pass_or_not = 1 AND  r.state = 5) AS registration
+        WHERE
+                registration.true_faculty_name LIKE CONCAT('%', #{trueFacultyName}, '%')
+           OR registration.true_faculty_id LIKE CONCAT('%', #{trueFacultyName}, '%')
     </select>
     <select id="getDisagreeUnclearALLByString" resultType="com.example.mybatisplus.model.domain.Registration">
-        SELECT * FROM registration
+        SELECT
+            registration.true_faculty_id AS true_faculty_id,
+            registration.true_faculty_name AS true_faculty_name,
+            registration.batch_Name AS batch_Name,
+            registration.target_campus AS target_campus
+        FROM
+            (SELECT
+                 r.true_faculty_id AS true_faculty_id,
+                 r.true_faculty_name AS true_faculty_name,
+                 b.batch_name AS batch_Name,
+                 r.target_campus AS target_campus
+             FROM
+                 registration r
+                     JOIN
+                 batch b ON r.batch_batch_id = b.batch_id
+                     JOIN
+                 user u
+                     JOIN
+                 faculty f ON u.faculty_faculty_id = f.faculty_id
+             WHERE
+                 u.user_id = #{userId} AND r.pass_or_not = 0 AND  r.state = 5) AS registration
+        WHERE
+                registration.true_faculty_name LIKE CONCAT('%', #{trueFacultyName}, '%')
+           OR registration.true_faculty_id LIKE CONCAT('%', #{trueFacultyName}, '%')
     </select>
 
 
