@@ -489,6 +489,7 @@
                 u.user_id = #{userId} AND r.pass_or_not IS NULL AND  r.state = 4) AS registration
         WHERE
             registration.true_faculty_name LIKE CONCAT('%', #{trueFacultyName}, '%')
+            OR registration.true_faculty_id LIKE CONCAT('%', #{trueFacultyName}, '%')
     </select>
     <select id="getWaitingUnclearALLWorknum" resultMap="WaitingPage">
         SELECT
