@@ -189,6 +189,7 @@
                  )) AS registration
         WHERE
             registration.true_faculty_name LIKE CONCAT('%', #{name}, '%')
+        OR OR registration.true_faculty_id LIKE CONCAT('%', #{name}, '%')
     </select>
     <select id="selectAgreePage" resultMap="WaitingPage">
         -- 实现已同意审批查询
@@ -337,6 +338,7 @@
                  )) AS registration
         WHERE
             registration.true_faculty_name LIKE CONCAT('%', #{name}, '%')
+        OR OR registration.true_faculty_id LIKE CONCAT('%', #{name}, '%')
     </select>
     <select id="getDisagreeUnclearFindByWorkNum" resultMap="WaitingPage">
         -- 在这个地方实现上面selectDisagreePage中使用工号的模糊查询
@@ -423,6 +425,7 @@
                  )) AS registration
         WHERE
             registration.true_faculty_name LIKE CONCAT('%', #{name}, '%')
+        OR registration.true_faculty_id LIKE CONCAT('%', #{name}, '%')
     </select>
     <select id="selectWaitingPageALL" resultMap="WaitingPage">
         SELECT
