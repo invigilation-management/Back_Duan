@@ -91,4 +91,12 @@ public class BatchServiceImpl extends ServiceImpl<BatchMapper, Batch> implements
         return true;
     }
 
+    @Override
+    public Page<Batch> getManageVice(String batchName, PageDTO pageDTO) {
+        // 创建分页对象
+        Page<Batch> registrationPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+
+        return batchMapper.getManageVice(registrationPage, batchName);
+    }
+
 }

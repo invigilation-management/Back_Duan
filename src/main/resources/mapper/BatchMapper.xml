@@ -44,5 +44,8 @@
     <select id="countByBatchName" resultType="java.lang.Integer">
         SELECT COUNT(1) FROM batch WHERE batch_name = #{batchName}
     </select>
+    <select id="getManageVice" resultType="com.example.mybatisplus.model.domain.Batch">
+        Select * From batch
+    </select>
 
 </mapper>

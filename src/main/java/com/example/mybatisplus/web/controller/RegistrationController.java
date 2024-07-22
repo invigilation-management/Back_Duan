@@ -12,8 +12,6 @@ import com.example.mybatisplus.common.JsonResponse;
 import com.example.mybatisplus.service.RegistrationService;
 import com.example.mybatisplus.model.domain.Registration;
 
-import javax.servlet.http.HttpSession;
-
 
 /**
  *
@@ -306,7 +304,37 @@ public class RegistrationController {
 
 
 
+    @RequestMapping(value = "newRegister",method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResponse<Boolean> register(@RequestBody Registration registration) {
+        boolean success = registrationService.registerNew(registration);
+        if (!success) {
+            return JsonResponse.failure("已经报名过");
+        }
+        return JsonResponse.success(true);
+    }
 
+
+    @RequestMapping(value = "afterApprovalOffice",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse afterApprovalOffice(Long userId,Long trueFacultyId,String batchName,String targetCampus){
+
+        System.out.println(trueFacultyId);
+
+        Boolean Success=registrationService.afterApprovalOffice(userId,trueFacultyId,batchName,targetCampus);
+        return JsonResponse.success(Success);
+    }
+
+
+    @RequestMapping(value = "afterDisapprovalOffice",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse afterApprovalOffice(Long userId,Long trueFacultyId,String batchName){
+
+        System.out.println(trueFacultyId);
+
+        Boolean Success=registrationService.afterDisapprovalOffice(userId,trueFacultyId,batchName);
+        return JsonResponse.success(Success);
+    }
 
 
 

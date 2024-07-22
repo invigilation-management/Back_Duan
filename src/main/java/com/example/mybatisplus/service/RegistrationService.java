@@ -53,4 +53,11 @@ public interface RegistrationService extends IService<Registration> {
     Page<Registration> getDisagreeUnclearALLByString(Long userId, String trueFacultyName, PageDTO pageDTO);
 
     Page<Registration> teachersSeeTheirRegistrations(Long userId, PageDTO pageDTO);
+
+
+    boolean registerNew(Registration registration);
+
+    Boolean afterApprovalOffice(Long userId, Long trueFacultyId, String batchName, String targetCampus);
+
+    Boolean afterDisapprovalOffice(Long userId, Long trueFacultyId, String batchName);
 }

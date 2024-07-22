@@ -27,4 +27,6 @@ public interface BatchService extends IService<Batch> {
 
     Page<Batch> getManagementPageUnclearFindALL(String batchName, PageDTO pageDTO);
     boolean addBatch(BatchDTO batchDTO);
+
+    Page<Batch> getManageVice(String batchName, PageDTO pageDTO);
 }

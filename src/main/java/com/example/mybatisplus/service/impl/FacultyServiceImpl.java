@@ -57,4 +57,18 @@ public class FacultyServiceImpl extends ServiceImpl<FacultyMapper, Faculty> impl
         return facultyMapper.seeAllRoleOfTheCollege(registrationFindPage, collegeId);
     }
 
+    @Override
+    public Page<Faculty> getInfomationConfirmVice(String batchName, PageDTO pageDTO) {
+        // 创建分页对象
+        Page<Faculty> registrationFindPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+        return facultyMapper.getInfomationConfirmVice(registrationFindPage, batchName);
+    }
+
+    @Override
+    public Page<Faculty> seeDetailsOfOffice(Long userId, Long trueFacultyId, PageDTO pageDTO) {
+        // 创建分页对象
+        Page<Faculty> registrationFindPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+        return facultyMapper.seeDetailsOfOffice(registrationFindPage,userId, trueFacultyId);
+    }
+
 }

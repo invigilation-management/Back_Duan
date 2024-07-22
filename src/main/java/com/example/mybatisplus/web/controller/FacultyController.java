@@ -106,6 +106,27 @@ public class FacultyController {
     }
 
 
+    @RequestMapping(value = "getInfomationConfirmVice", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse getInfomationConfirmVice(String batchName){
+
+        System.out.println(batchName);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<Faculty> registrationPages=facultyService.getInfomationConfirmVice(batchName,pageDTO);
+        return JsonResponse.success(registrationPages);
+    }
+
+    @RequestMapping(value = "seeDetailsOfOffice", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse seeDetailsOfOffice(Long userId,Long trueFacultyId){
+
+        System.out.println(trueFacultyId);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<Faculty> registrationPages=facultyService.seeDetailsOfOffice(userId,trueFacultyId,pageDTO);
+        return JsonResponse.success(registrationPages);
+    }
 
 
 }

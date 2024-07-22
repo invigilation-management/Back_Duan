@@ -1,6 +1,5 @@
 package com.example.mybatisplus.mapper;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.mybatisplus.model.domain.Registration;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -57,4 +56,17 @@ public interface RegistrationMapper extends BaseMapper<Registration> {
     Page<Registration> getDisagreeUnclearALLByString(Page<Registration> registrationFindPage, Long userId, String trueFacultyName);
 
     Page<Registration> teachersSeeTheirRegistrations(Page<Registration> registrationFindPage, Long userId);
+
+
+    int countByTrueFacultyId(Integer trueFacultyId);
+
+    void insertRegistration(Registration registration);
+
+    Boolean afterApprovalOfficeUpdate(Long userId, Long trueFacultyId, String batchName, String targetCampus);
+
+    Boolean afterApprovalOfficeAdd(Long userId, Long trueFacultyId, String batchName, String targetCampus);
+
+    Boolean afterDisapprovalOfficeUpdate(Long userId, Long trueFacultyId, String batchName);
+
+    Boolean afterDisapprovalOfficeAdd(Long userId, Long trueFacultyId, String batchName);
 }

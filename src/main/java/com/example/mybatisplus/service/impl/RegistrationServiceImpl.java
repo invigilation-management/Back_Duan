@@ -9,6 +9,7 @@ import com.example.mybatisplus.service.RegistrationService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <p>
@@ -164,6 +165,30 @@ public class RegistrationServiceImpl extends ServiceImpl<RegistrationMapper, Reg
         // 创建分页对象
         Page<Registration> registrationFindPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
         return registrationMapper.teachersSeeTheirRegistrations(registrationFindPage, userId);
+    }
+
+    @Transactional
+    public boolean registerNew(Registration registration) {
+        int count = registrationMapper.countByTrueFacultyId(registration.getTrueFacultyId());
+        if (count > 0) {
+            return false;  // 已经报名过
+        }
+        registrationMapper.insertRegistration(registration);
+        return true;
+    }
+
+    @Override
+    public Boolean afterApprovalOffice(Long userId, Long trueFacultyId, String batchName, String targetCampus) {
+        Boolean update=registrationMapper.afterApprovalOfficeUpdate( userId,  trueFacultyId,  batchName,  targetCampus);
+        Boolean add=registrationMapper.afterApprovalOfficeAdd( userId,  trueFacultyId,  batchName,  targetCampus);
+        return (update && add);
+    }
+
+    @Override
+    public Boolean afterDisapprovalOffice(Long userId, Long trueFacultyId, String batchName) {
+        Boolean update=registrationMapper.afterDisapprovalOfficeUpdate( userId,  trueFacultyId,  batchName);
+        Boolean add=registrationMapper.afterDisapprovalOfficeAdd( userId,  trueFacultyId,  batchName);
+        return (update && add);
     }
 
 

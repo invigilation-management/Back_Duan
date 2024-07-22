@@ -19,4 +19,8 @@ public interface FacultyService extends IService<Faculty> {
     public void updateFaculty(FacultyUpdateDTO facultyUpdateDTO);
 
     Page<Faculty> seeAllRoleOfTheCollege(Long collegeId, PageDTO pageDTO);
+
+    Page<Faculty> getInfomationConfirmVice(String batchName, PageDTO pageDTO);
+
+    Page<Faculty> seeDetailsOfOffice(Long userId, Long trueFacultyId, PageDTO pageDTO);
 }

@@ -167,6 +167,17 @@ public class BatchController {
 
 
 
+    @RequestMapping(value = "getManageVice",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse getManageVice(String batchName){
+
+        System.out.println(batchName);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<Batch> batchPages=batchService.getManageVice(batchName,pageDTO);
+        return JsonResponse.success(batchPages);
+    }
+
 
 
 

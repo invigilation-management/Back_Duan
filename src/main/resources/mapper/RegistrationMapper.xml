@@ -52,6 +52,10 @@
           AND batch.batch_name = #{batchName}
             LIMIT 1
     </insert>
+    <insert id="insertRegistration"></insert>
+    <insert id="afterApprovalOfficeAdd"></insert>
+    <insert id="afterDisapprovalOfficeAdd"></insert>
+
 
     <update id="afterApprovalUpdate">
         UPDATE registration
@@ -68,6 +72,8 @@
         WHERE registration.true_faculty_id = #{trueFacultyId}
           AND batch.batch_name = #{batchName}
     </update>
+    <update id="afterApprovalOfficeUpdate"></update>
+    <update id="afterDisapprovalOfficeUpdate"></update>
 
     <select id="selectWaitingPage" resultMap="WaitingPage">
         SELECT
@@ -584,6 +590,7 @@
     <select id="teachersSeeTheirRegistrations" resultType="com.example.mybatisplus.model.domain.Registration">
         SELECT * FROM registration
     </select>
+    <select id="countByTrueFacultyId" resultType="java.lang.Integer"></select>
 
 
 </mapper>

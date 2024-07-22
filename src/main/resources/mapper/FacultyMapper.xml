@@ -13,5 +13,11 @@
     <select id="seeAllRoleOfTheCollege" resultType="com.example.mybatisplus.model.domain.Faculty">
         SELECT * FROM faculty
     </select>
+    <select id="getInfomationConfirmVice" resultType="com.example.mybatisplus.model.domain.Faculty">
+        SELECT * FROM faculty
+    </select>
+    <select id="seeDetailsOfOffice" resultType="com.example.mybatisplus.model.domain.Faculty">
+        SELECT * FROM faculty
+    </select>
 
 </mapper>
