@@ -129,5 +129,16 @@ public class FacultyController {
     }
 
 
+    @RequestMapping(value = "findBeforePost", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse findBeforePost(String batchName){
+
+        System.out.println(batchName);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<Faculty> registrationPages=facultyService.findBeforePost(pageDTO,batchName);
+        return JsonResponse.success(registrationPages);
+    }
+
 }
 

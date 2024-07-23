@@ -614,6 +614,9 @@
     </select>
     <select id="countByTrueFacultyId" resultType="java.lang.Integer"></select>
     <select id="seeDetailsOfOffice" resultType="com.example.mybatisplus.model.domain.Registration"></select>
+    <select id="JianKaoXiangXiMingDan" resultType="com.example.mybatisplus.model.domain.Registration">
+        SELECT * FROM registration
+    </select>
 
 
 </mapper>

@@ -71,4 +71,6 @@ public interface RegistrationMapper extends BaseMapper<Registration> {
     Boolean afterDisapprovalOfficeAdd(Long userId, Long trueFacultyId, String batchName);
 
     Page<Registration> seeDetailsOfOffice(Page<Registration> registrationFindPage, Long userId, Long trueFacultyId, String batchName);
+
+    Page<Registration> JianKaoXiangXiMingDan(Page<Registration> registrationFindPage, Long userId, String batchName);
 }

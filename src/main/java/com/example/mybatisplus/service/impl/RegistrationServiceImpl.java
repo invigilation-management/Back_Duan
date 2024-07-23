@@ -208,5 +208,12 @@ public class RegistrationServiceImpl extends ServiceImpl<RegistrationMapper, Reg
         return (update && add);
     }
 
+    @Override
+    public Page<Registration> JianKaoXiangXiMingDan(Long userId, String batchName, PageDTO pageDTO) {
+        // 创建分页对象
+        Page<Registration> registrationFindPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+        return registrationMapper.JianKaoXiangXiMingDan(registrationFindPage, userId,batchName);
+    }
+
 
 }

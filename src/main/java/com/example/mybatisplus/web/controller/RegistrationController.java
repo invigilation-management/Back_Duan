@@ -337,6 +337,18 @@ public class RegistrationController {
     }
 
 
+    @RequestMapping(value = "JianKaoXiangXiMingDan",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse JianKaoXiangXiMingDan(Long userId,String batchName){
+
+        System.out.println(userId);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<Registration> registrationPages=registrationService.JianKaoXiangXiMingDan(userId,batchName,pageDTO);
+        return JsonResponse.success(registrationPages);
+    }
+
+
 
 
 

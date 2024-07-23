@@ -60,4 +60,6 @@ public interface RegistrationService extends IService<Registration> {
     Boolean afterApprovalOffice(Long userId, Long trueFacultyId, String batchName, String targetCampus);
 
     Boolean afterDisapprovalOffice(Long userId, Long trueFacultyId, String batchName);
+
+    Page<Registration> JianKaoXiangXiMingDan(Long userId, String batchName, PageDTO pageDTO);
 }

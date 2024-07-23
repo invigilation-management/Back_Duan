@@ -74,4 +74,11 @@ public class FacultyServiceImpl extends ServiceImpl<FacultyMapper, Faculty> impl
         return registrationMapper.seeDetailsOfOffice(registrationFindPage,userId, trueFacultyId,batchName);
     }
 
+    @Override
+    public Page<Faculty> findBeforePost(PageDTO pageDTO, String batchName) {
+        // 创建分页对象
+        Page<Faculty> registrationFindPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+        return facultyMapper.findBeforePost(registrationFindPage, batchName);
+    }
+
 }
