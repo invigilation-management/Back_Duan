@@ -33,6 +33,17 @@
             <result property="batchName" column="batch_Name"/>
         </association>
     </resultMap>
+
+    <select id="selectCountByBatchNameAndTargetCampus" resultType="java.lang.Integer">
+        SELECT COUNT(*) AS total_registrations
+        FROM registration r
+                 JOIN batch b ON r.batch_batch_id = b.batch_id
+        WHERE r.target_campus = #{targetCampus} AND
+            b.batch_name = #{batchName} AND
+            r.pass_or_not = 1;
+
+    </select>
+
     <insert id="afterApprovalAdd">
         INSERT INTO approval (approval_date, approval_faculty_id, approval_result, registration_registration_id)
         SELECT NOW(), #{userId}, 1, registration.registration_id
@@ -40,7 +51,6 @@
         JOIN batch ON registration.batch_batch_id = batch.batch_id
         WHERE registration.true_faculty_id = #{trueFacultyId}
         AND batch.batch_name = #{batchName}
-        AND registration.target_campus = #{targetCampus}
         LIMIT 1
     </insert>
     <insert id="afterDisapprovalAdd">
@@ -76,10 +86,9 @@
     <update id="afterApprovalUpdate">
         UPDATE registration
             JOIN batch ON registration.batch_batch_id = batch.batch_id
-        SET registration.state = 5, registration.pass_or_not = 1
+        SET registration.state = 5, registration.pass_or_not = 1, registration.target_campus = #{targetCampus}
         WHERE registration.true_faculty_id = #{trueFacultyId}
             AND batch.batch_name = #{batchName}
-            AND registration.target_campus = #{targetCampus}
     </update>
     <update id="afterDisapprovalUpdate">
         UPDATE registration
@@ -613,7 +622,25 @@
         SELECT * FROM registration
     </select>
     <select id="countByTrueFacultyId" resultType="java.lang.Integer"></select>
-    <select id="seeDetailsOfOffice" resultType="com.example.mybatisplus.model.domain.Registration"></select>
+    <select id="seeDetailsOfOffice" resultType="com.example.mybatisplus.model.domain.Registration">
+        SELECT
+            r.true_faculty_name AS true_faculty_name,
+            r.college AS college_name,
+            r.gender AS gender,
+            r.true_faculty_id AS true_faculty_id,
+            r.edu_qualification AS edu_qualification,
+            r.tele AS tele,
+            r.tele_backup AS tele_backup,
+            r.avatar AS avatar,
+            r.target_campus AS target_campus
+        FROM
+            registration r
+                JOIN
+            batch b ON r.batch_batch_id = b.batch_id
+        WHERE
+            r.true_faculty_id = #{trueFacultyId} AND
+            b.batch_name = #{batchName}
+    </select>
     <select id="JianKaoXiangXiMingDan" resultType="com.example.mybatisplus.model.domain.Registration">
         SELECT * FROM registration
     </select>

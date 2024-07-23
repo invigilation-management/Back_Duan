@@ -42,6 +42,4 @@ public interface BatchMapper extends BaseMapper<Batch> {
                      @Param("expectNum") int expectNum);
 
     Page<Batch> getManageVice(Page<Batch> registrationPage, String batchName);
-
-    Integer selectCountByBatchNameAndTargetCampus(String batchName, String targetCampus);
 }

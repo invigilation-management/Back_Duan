@@ -45,7 +45,7 @@ public interface RegistrationMapper extends BaseMapper<Registration> {
 
     Boolean afterApprovalUpdate(Long userId, Long trueFacultyId, String batchName, String targetCampus);
 
-    Boolean afterApprovalAdd(Long userId, Long trueFacultyId, String batchName, String targetCampus);
+    Boolean afterApprovalAdd(Long userId, Long trueFacultyId, String batchName);
 
     Boolean afterDisapprovalUpdate(Long userId, Long trueFacultyId, String batchName);
 
@@ -72,5 +72,5 @@ public interface RegistrationMapper extends BaseMapper<Registration> {
 
     Page<Registration> seeDetailsOfOffice(Page<Registration> registrationFindPage, Long userId, Long trueFacultyId, String batchName);
 
-    Page<Registration> JianKaoXiangXiMingDan(Page<Registration> registrationFindPage, Long userId, String batchName);
+    Integer selectCountByBatchNameAndTargetCampus(String batchName, String targetCampus);
 }

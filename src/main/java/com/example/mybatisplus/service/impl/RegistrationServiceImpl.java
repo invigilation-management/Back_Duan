@@ -138,19 +138,19 @@ public class RegistrationServiceImpl extends ServiceImpl<RegistrationMapper, Reg
 
     @Override
     public Boolean afterApproval(Long userId, Long trueFacultyId, String batchName, String targetCampus) {
-        Integer count=batchMapper.selectCountByBatchNameAndTargetCampus(batchName,targetCampus);
-        if (count<10){
+        Integer count=registrationMapper.selectCountByBatchNameAndTargetCampus(batchName,targetCampus);
+        if (count < 10){
             Boolean update=registrationMapper.afterApprovalUpdate( userId,  trueFacultyId,  batchName,  targetCampus);
-            Boolean add=registrationMapper.afterApprovalAdd( userId,  trueFacultyId,  batchName,  targetCampus);
+            Boolean add=registrationMapper.afterApprovalAdd( userId,  trueFacultyId,  batchName);
             return (update && add);
         } else {
-            if (targetCampus=="兴庆校区"){
+            if (targetCampus.equals("兴庆校区")){
                 Boolean update=registrationMapper.afterApprovalUpdate( userId,  trueFacultyId,  batchName,  "创新港");
-                Boolean add=registrationMapper.afterApprovalAdd( userId,  trueFacultyId,  batchName,  "创新港");
+                Boolean add=registrationMapper.afterApprovalAdd( userId,  trueFacultyId,  batchName);
                 return (update && add);
             }else{
                 Boolean update=registrationMapper.afterApprovalUpdate( userId,  trueFacultyId,  batchName,  "兴庆校区");
-                Boolean add=registrationMapper.afterApprovalAdd( userId,  trueFacultyId,  batchName,  "兴庆校区");
+                Boolean add=registrationMapper.afterApprovalAdd( userId,  trueFacultyId,  batchName);
                 return (update && add);
             }
         }

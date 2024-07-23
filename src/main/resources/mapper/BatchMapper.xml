@@ -47,8 +47,6 @@
     <select id="getManageVice" resultType="com.example.mybatisplus.model.domain.Batch">
         Select * From batch
     </select>
-    <select id="selectCountByBatchNameAndTargetCampus" resultType="java.lang.Integer">
 
-    </select>
 
 </mapper>
