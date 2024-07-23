@@ -46,6 +46,22 @@
         </association>
     </resultMap>
 
+    <resultMap id="WaitingPageWithBatch" type="com.example.mybatisplus.model.domain.Registration">
+        <id property="registrationId" column="registration_id"/>
+        <result property="trueFacultyName" column="true_faculty_name"/>
+        <result property="gender" column="gender" />
+        <result property="college" column="college" />
+        <result property="trueFacultyId" column="true_faculty_id"/>
+        <result property="tele" column="tele"/>
+        <result property="classroom" column="classroom"/>
+        <result property="passOrNot"  column="pass_or_not"/>
+        <association property="batch" javaType="com.example.mybatisplus.model.domain.Batch">
+            <result property="batchDuration" column="batch_duration"/>
+            <result property="batchStartTime" column="batch_start_time"/>
+            <result property="batchEndTime" column="batch_end_time"/>
+
+        </association>
+    </resultMap>
 
     <select id="selectCountByBatchNameAndTargetCampus" resultType="java.lang.Integer">
         SELECT COUNT(*) AS total_registrations
@@ -688,14 +704,18 @@
         GROUP BY
             r.registration_id
     </select>
-    <select id="planVice" resultType="com.example.mybatisplus.model.domain.Registration">
+    <select id="planVice" resultMap="WaitingPageWithBatch">
         SELECT
             r.true_faculty_name AS true_faculty_name,
             r.gender AS gender,
             r.true_faculty_id AS true_faculty_id,
             r.college AS college,
-            r.tele AS tele
+            r.tele AS tele,
             r.pass_or_not AS pass_or_not,
+            r.classroom AS classroom,
+            b.batch_duration AS batch_duration,
+            b.batch_start_time AS batch_start_time,
+            b.batch_end_time AS batch_end_time
         FROM
             registration r
                 JOIN
@@ -705,10 +725,39 @@
         AND r.confirm_or_not = 1
     </select>
     <select id="infoConfirmVice" resultType="com.example.mybatisplus.model.domain.Registration">
-        SELECT * FROM registration
+        SELECT
+            r.true_faculty_name AS true_faculty_name,
+            r.gender AS gender,
+            r.true_faculty_id AS true_faculty_id,
+            r.college AS college,
+            r.tele AS tele,
+            r.confirm_or_not AS confirm_or_not
+        FROM
+            registration r
+                JOIN
+            batch b ON r.batch_batch_id = b.batch_id
+        WHERE
+            b.batch_name = #{batchName}
+          AND r.pass_or_not = 1
     </select>
     <select id="feesVice" resultType="com.example.mybatisplus.model.domain.Registration">
-        SELECT * FROM registration
+        SELECT
+            r.true_faculty_name AS true_faculty_name,
+            r.gender AS gender,
+            r.true_faculty_id AS true_faculty_id,
+            r.college AS college,
+            r.tele AS tele,
+            r.amount AS amount,
+            b.batch_duration AS batch_duration,
+            b.batch_start_time AS batch_start_time,
+            b.batch_end_time AS batch_end_time
+        FROM
+            registration r
+                JOIN
+            batch b ON r.batch_batch_id = b.batch_id
+        WHERE
+            b.batch_name = #{batchName}
+          AND r.confirm_or_not = 1
     </select>
 
 
