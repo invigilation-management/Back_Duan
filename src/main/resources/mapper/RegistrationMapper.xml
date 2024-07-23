@@ -59,7 +59,16 @@
             <result property="batchDuration" column="batch_duration"/>
             <result property="batchStartTime" column="batch_start_time"/>
             <result property="batchEndTime" column="batch_end_time"/>
+        </association>
+    </resultMap>
 
+    <resultMap id="TeachersBatchDetail" type="com.example.mybatisplus.model.domain.Registration">
+        <id property="registrationId" column="registration_id"/>
+        <result property="confirmOrNot"  column="confirm_or_not"/>
+        <association property="batch" javaType="com.example.mybatisplus.model.domain.Batch">
+            <result property="batchName" column="batch_name"/>
+            <result property="regStartTime" column="reg_start_time"/>
+            <result property="regEndTime" column="reg_end_time"/>
         </association>
     </resultMap>
 
@@ -647,8 +656,18 @@
                 registration.true_faculty_name LIKE CONCAT('%', #{trueFacultyName}, '%')
            OR registration.true_faculty_id LIKE CONCAT('%', #{trueFacultyName}, '%')
     </select>
-    <select id="teachersSeeTheirRegistrations" resultType="com.example.mybatisplus.model.domain.Registration">
-        SELECT * FROM registration
+    <select id="teachersSeeTheirRegistrations" resultMap="TeachersBatchDetail">
+        SELECT
+            b.batch_name AS batch_name,
+            b.reg_start_time AS reg_start_time,
+            b.reg_end_time AS reg_end_time,
+            r.confirm_or_not AS confirm_or_not
+        FROM
+            registration r
+                JOIN
+            batch b ON r.batch_batch_id = b.batch_id
+        WHERE
+            r.true_faculty_id = #{userId}
     </select>
     <select id="countByTrueFacultyId" resultType="java.lang.Integer"></select>
     <select id="seeDetailsOfOffice" resultType="com.example.mybatisplus.model.domain.Registration">
