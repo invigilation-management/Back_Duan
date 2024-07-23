@@ -38,7 +38,10 @@ public interface BatchMapper extends BaseMapper<Batch> {
                      @Param("batchInfo") String batchInfo,
                      @Param("batchStartTime") String batchStartTime,
                      @Param("batchEndTime") String batchEndTime,
-                     @Param("batchDuration") int batchDuration);
+                     @Param("batchDuration") int batchDuration,
+                     @Param("expectNum") int expectNum);
 
     Page<Batch> getManageVice(Page<Batch> registrationPage, String batchName);
+
+    Integer selectCountByBatchNameAndTargetCampus(String batchName, String targetCampus);
 }

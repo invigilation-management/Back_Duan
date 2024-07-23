@@ -87,7 +87,7 @@ public class BatchServiceImpl extends ServiceImpl<BatchMapper, Batch> implements
         batchMapper.insertBatch(batchDTO.getBatchName(), batchDTO.getBatchCreatedTime(),
                 batchDTO.getRegStartTime(), batchDTO.getRegEndTime(),
                 batchDTO.getBatchInfo(), batchDTO.getBatchStartTime(),
-                batchDTO.getBatchEndTime(), batchDTO.getBatchDuration());
+                batchDTO.getBatchEndTime(), batchDTO.getBatchDuration(),batchDTO.getExpectNum());
         return true;
     }
 

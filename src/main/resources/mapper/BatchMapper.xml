@@ -18,8 +18,8 @@
         <result column="already_confirm_num" property="alreadyConfirmNum" />
     </resultMap>
     <insert id="insertBatch">
-        INSERT INTO batch (batch_name, batch_created_time, reg_start_time, reg_end_time, batch_info, batch_start_time, batch_end_time, batch_duration)
-        VALUES (#{batchName}, #{batchCreatedTime}, #{regStartTime}, #{regEndTime}, #{batchInfo}, #{batchStartTime}, #{batchEndTime}, #{batchDuration})
+        INSERT INTO batch (batch_name, batch_created_time, reg_start_time, reg_end_time, batch_info, batch_start_time, batch_end_time, batch_duration,expect_num)
+        VALUES (#{batchName}, #{batchCreatedTime}, #{regStartTime}, #{regEndTime}, #{batchInfo}, #{batchStartTime}, #{batchEndTime}, #{batchDuration},#{expectNum})
     </insert>
 
 
@@ -46,6 +46,9 @@
     </select>
     <select id="getManageVice" resultType="com.example.mybatisplus.model.domain.Batch">
         Select * From batch
+    </select>
+    <select id="selectCountByBatchNameAndTargetCampus" resultType="java.lang.Integer">
+        
     </select>
 
 </mapper>

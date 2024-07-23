@@ -8,6 +8,7 @@ public class BatchDTO {
     private String batchStartTime;
     private String batchEndTime;
     private int batchDuration;
+    private int expectNum;
 
     // Getters and setters
     public String getBatchName() {
@@ -72,6 +73,15 @@ public class BatchDTO {
 
     public void setBatchDuration(int batchDuration) {
         this.batchDuration = batchDuration;
+    }
+
+
+    public int getExpectNum() {
+        return expectNum;
+    }
+
+    public void setExpectNum(int expectNum) {
+        this.expectNum = expectNum;
     }
 }
 

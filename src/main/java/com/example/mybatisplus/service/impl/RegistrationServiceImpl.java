@@ -1,6 +1,7 @@
 package com.example.mybatisplus.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.mybatisplus.mapper.BatchMapper;
 import com.example.mybatisplus.mapper.UserMapper;
 import com.example.mybatisplus.model.domain.Registration;
 import com.example.mybatisplus.mapper.RegistrationMapper;
@@ -27,6 +28,9 @@ public class RegistrationServiceImpl extends ServiceImpl<RegistrationMapper, Reg
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private BatchMapper batchMapper;
 
     @Override
     public Page<Registration> getWaitingToBeApproval(Long userId, PageDTO pageDTO) {
@@ -134,9 +138,22 @@ public class RegistrationServiceImpl extends ServiceImpl<RegistrationMapper, Reg
 
     @Override
     public Boolean afterApproval(Long userId, Long trueFacultyId, String batchName, String targetCampus) {
-        Boolean update=registrationMapper.afterApprovalUpdate( userId,  trueFacultyId,  batchName,  targetCampus);
-        Boolean add=registrationMapper.afterApprovalAdd( userId,  trueFacultyId,  batchName,  targetCampus);
-        return (update && add);
+        Integer count=batchMapper.selectCountByBatchNameAndTargetCampus(batchName,targetCampus);
+        if (count<10){
+            Boolean update=registrationMapper.afterApprovalUpdate( userId,  trueFacultyId,  batchName,  targetCampus);
+            Boolean add=registrationMapper.afterApprovalAdd( userId,  trueFacultyId,  batchName,  targetCampus);
+            return (update && add);
+        } else {
+            if (targetCampus=="兴庆校区"){
+                Boolean update=registrationMapper.afterApprovalUpdate( userId,  trueFacultyId,  batchName,  "创新港");
+                Boolean add=registrationMapper.afterApprovalAdd( userId,  trueFacultyId,  batchName,  "创新港");
+                return (update && add);
+            }else{
+                Boolean update=registrationMapper.afterApprovalUpdate( userId,  trueFacultyId,  batchName,  "兴庆校区");
+                Boolean add=registrationMapper.afterApprovalAdd( userId,  trueFacultyId,  batchName,  "兴庆校区");
+                return (update && add);
+            }
+        }
     }
 
     @Override
