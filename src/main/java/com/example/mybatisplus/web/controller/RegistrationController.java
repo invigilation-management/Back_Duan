@@ -81,11 +81,13 @@ public class RegistrationController {
 
     @RequestMapping(value = "getWaitingToBeApproval",method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse getWaitingToBeApproval(Long userId){
+    public JsonResponse getWaitingToBeApproval(Long userId,Integer pageSize,Integer pageNo){
 
         System.out.println(userId);
 
         PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
         Page<Registration> registrationPages=registrationService.getWaitingToBeApproval(userId,pageDTO);
         return JsonResponse.success(registrationPages);
     }
@@ -93,20 +95,24 @@ public class RegistrationController {
 
     @RequestMapping(value = "getWaitingUnclearFindByWorkNum")
     @ResponseBody
-    public JsonResponse getWaitingUnclearFindByWorkNum(Long userId,Long worknum){
+    public JsonResponse getWaitingUnclearFindByWorkNum(Long userId,Long worknum,Integer pageSize,Integer pageNo){
         System.out.println(userId);
 
         PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
         Page<Registration> registrationFindPages=registrationService.getWaitingUnclearFindByWorkNum(userId,pageDTO,worknum);
         return JsonResponse.success(registrationFindPages);
     }
 
     @RequestMapping(value = "getWaitingUnclearFindByName")
     @ResponseBody
-    public JsonResponse getWaitingUnclearFindByName(Long userId,String name){
+    public JsonResponse getWaitingUnclearFindByName(Long userId,String name,Integer pageSize,Integer pageNo){
         System.out.println(userId);
 
         PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
         Page<Registration> registrationFindPages=registrationService.getWaitingUnclearFindByName(userId,pageDTO,name);
         return JsonResponse.success(registrationFindPages);
     }
@@ -115,21 +121,25 @@ public class RegistrationController {
 
     @RequestMapping(value = "getAlreadyAgree",method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse getAlreadyAgree(Long userId){
+    public JsonResponse getAlreadyAgree(Long userId,Integer pageSize,Integer pageNo){
 
         System.out.println(userId);
 
         PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
         Page<Registration> registrationPages=registrationService.getAlreadyAgree(userId,pageDTO);
         return JsonResponse.success(registrationPages);
     }
 
     @RequestMapping(value = "getAgreeUnclearFindByWorkNum")
     @ResponseBody
-    public JsonResponse getAgreeUnclearFindByWorkNum(Long userId,Long worknum){
+    public JsonResponse getAgreeUnclearFindByWorkNum(Long userId,Long worknum,Integer pageSize,Integer pageNo){
         System.out.println(userId);
 
         PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
         Page<Registration> registrationFindPages=registrationService.getAgreeUnclearFindByWorkNum(userId,pageDTO,worknum);
         return JsonResponse.success(registrationFindPages);
     }
@@ -138,10 +148,12 @@ public class RegistrationController {
 
     @RequestMapping(value = "getAgreeUnclearFindByName")
     @ResponseBody
-    public JsonResponse getAgreeUnclearFindByName(Long userId,String name){
+    public JsonResponse getAgreeUnclearFindByName(Long userId,String name,Integer pageSize,Integer pageNo){
         System.out.println(userId);
 
         PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
         Page<Registration> registrationFindPages=registrationService.getAgreeUnclearFindByName(userId,pageDTO,name);
         return JsonResponse.success(registrationFindPages);
     }
@@ -150,11 +162,13 @@ public class RegistrationController {
 
     @RequestMapping(value = "getAlreadyDisagree",method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse getAlreadyDisagree(Long userId){
+    public JsonResponse getAlreadyDisagree(Long userId,Integer pageSize,Integer pageNo){
 
         System.out.println(userId);
 
         PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
         Page<Registration> registrationPages=registrationService.getAlreadyDisagree(userId,pageDTO);
         return JsonResponse.success(registrationPages);
     }
@@ -162,20 +176,24 @@ public class RegistrationController {
 
     @RequestMapping(value = "getDisagreeUnclearFindByWorkNum")
     @ResponseBody
-    public JsonResponse getDisagreeUnclearFindByWorkNum(Long userId,Long worknum){
+    public JsonResponse getDisagreeUnclearFindByWorkNum(Long userId,Long worknum,Integer pageSize,Integer pageNo){
         System.out.println(userId);
 
         PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
         Page<Registration> registrationFindPages=registrationService.getDisagreeUnclearFindByWorkNum(userId,pageDTO,worknum);
         return JsonResponse.success(registrationFindPages);
     }
 
     @RequestMapping(value = "getDisagreeUnclearFindByName")
     @ResponseBody
-    public JsonResponse getDisagreeUnclearFindByName(Long userId,String name){
+    public JsonResponse getDisagreeUnclearFindByName(Long userId,String name,Integer pageSize,Integer pageNo){
         System.out.println(userId);
 
         PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
         Page<Registration> registrationFindPages=registrationService.getDisagreeUnclearFindByName(userId,pageDTO,name);
         return JsonResponse.success(registrationFindPages);
     }
@@ -184,11 +202,13 @@ public class RegistrationController {
 
     @RequestMapping(value = "getWaitingToBeApprovalALL",method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse getWaitingToBeApprovalALL(Long userId){
+    public JsonResponse getWaitingToBeApprovalALL(Long userId,Integer pageSize,Integer pageNo){
 
         System.out.println(userId);
 
         PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
         Page<Registration> registrationPages=registrationService.getWaitingToBeApprovalALL(userId,pageDTO);
         return JsonResponse.success(registrationPages);
     }
@@ -196,11 +216,13 @@ public class RegistrationController {
 
     @RequestMapping(value = "getAlreadyAgreeALL",method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse getAlreadyAgreeALL(Long userId){
+    public JsonResponse getAlreadyAgreeALL(Long userId,Integer pageSize,Integer pageNo){
 
         System.out.println(userId);
 
         PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
         Page<Registration> registrationPages=registrationService.getAlreadyAgreeALL(userId,pageDTO);
         return JsonResponse.success(registrationPages);
     }
@@ -208,11 +230,13 @@ public class RegistrationController {
 
     @RequestMapping(value = "getAlreadyDisagreeALL",method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse getAlreadyDisagreeALL(Long userId){
+    public JsonResponse getAlreadyDisagreeALL(Long userId,Integer pageSize,Integer pageNo){
 
         System.out.println(userId);
 
         PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
         Page<Registration> registrationPages=registrationService.getAlreadyDisagreeALL(userId,pageDTO);
         return JsonResponse.success(registrationPages);
     }
@@ -221,11 +245,13 @@ public class RegistrationController {
 
     @RequestMapping(value = "getWaitingUnclearALLByString",method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse getWaitingUnclearALLByString(Long userId,String trueFacultyName){
+    public JsonResponse getWaitingUnclearALLByString(Long userId,String trueFacultyName,Integer pageSize,Integer pageNo){
 
         System.out.println(trueFacultyName);
 
         PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
         Page<Registration> registrationPages=registrationService.getWaitingUnclearALLByString(userId,trueFacultyName,pageDTO);
         return JsonResponse.success(registrationPages);
     }
@@ -234,11 +260,13 @@ public class RegistrationController {
 
     @RequestMapping(value = "getWaitingUnclearALLWorknum",method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse getWaitingUnclearALLWorknum(Long userId,Long trueFacultyId){
+    public JsonResponse getWaitingUnclearALLWorknum(Long userId,Long trueFacultyId,Integer pageSize,Integer pageNo){
 
         System.out.println(trueFacultyId);
 
         PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
         Page<Registration> registrationPages=registrationService.getWaitingUnclearALLWorknum(userId,trueFacultyId,pageDTO);
         return JsonResponse.success(registrationPages);
     }
@@ -271,33 +299,39 @@ public class RegistrationController {
 
     @RequestMapping(value = "getAgreeUnclearALLByString",method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse getAgreeUnclearALLByString(Long userId,String trueFacultyName){
+    public JsonResponse getAgreeUnclearALLByString(Long userId,String trueFacultyName,Integer pageSize,Integer pageNo){
 
         System.out.println(trueFacultyName);
 
         PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
         Page<Registration> registrationPages=registrationService.getAgreeUnclearALLByString(userId,trueFacultyName,pageDTO);
         return JsonResponse.success(registrationPages);
     }
 
     @RequestMapping(value = "getDisagreeUnclearALLByString",method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse getDisagreeUnclearALLByString(Long userId,String trueFacultyName){
+    public JsonResponse getDisagreeUnclearALLByString(Long userId,String trueFacultyName,Integer pageSize,Integer pageNo){
 
         System.out.println(trueFacultyName);
 
         PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
         Page<Registration> registrationPages=registrationService.getDisagreeUnclearALLByString(userId,trueFacultyName,pageDTO);
         return JsonResponse.success(registrationPages);
     }
 
     @RequestMapping(value = "teachersSeeTheirRegistrations",method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse teachersSeeTheirRegistrations(Long userId){
+    public JsonResponse teachersSeeTheirRegistrations(Long userId,Integer pageSize,Integer pageNo){
 
         System.out.println(userId);
 
         PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
         Page<Registration> registrationPages=registrationService.teachersSeeTheirRegistrations(userId,pageDTO);
         return JsonResponse.success(registrationPages);
     }
@@ -339,11 +373,13 @@ public class RegistrationController {
 
     @RequestMapping(value = "JianKaoXiangXiMingDan",method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse JianKaoXiangXiMingDan(Long userId,String batchName){
+    public JsonResponse JianKaoXiangXiMingDan(Long userId,String batchName,Integer pageSize,Integer pageNo){
 
         System.out.println(userId);
 
         PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
         Page<Registration> registrationPages=registrationService.JianKaoXiangXiMingDan(userId,batchName,pageDTO);
         return JsonResponse.success(registrationPages);
     }
@@ -353,11 +389,13 @@ public class RegistrationController {
 
     @RequestMapping(value = "ManageVice",method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse ManageVice(String batchName){
+    public JsonResponse ManageVice(String batchName,Integer pageSize,Integer pageNo){
 
         System.out.println(batchName);
 
         PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
         Page<Registration> registrationPages=registrationService.ManageVice(batchName,pageDTO);
         return JsonResponse.success(registrationPages);
     }
@@ -365,11 +403,13 @@ public class RegistrationController {
 
     @RequestMapping(value = "planVice",method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse planVice(String batchName){
+    public JsonResponse planVice(String batchName,Integer pageSize,Integer pageNo){
 
         System.out.println(batchName);
 
         PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
         Page<Registration> registrationPages=registrationService.planVice(batchName,pageDTO);
         return JsonResponse.success(registrationPages);
     }
@@ -377,11 +417,13 @@ public class RegistrationController {
 
     @RequestMapping(value = "infoConfirmVice",method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse infoConfirmVice(String batchName){
+    public JsonResponse infoConfirmVice(String batchName,Integer pageSize,Integer pageNo){
 
         System.out.println(batchName);
 
         PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
         Page<Registration> registrationPages=registrationService.infoConfirmVice(batchName,pageDTO);
         return JsonResponse.success(registrationPages);
     }
@@ -389,11 +431,13 @@ public class RegistrationController {
 
     @RequestMapping(value = "feesVice",method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse feesVice(String batchName){
+    public JsonResponse feesVice(String batchName,Integer pageSize,Integer pageNo){
 
         System.out.println(batchName);
 
         PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
         Page<Registration> registrationPages=registrationService.feesVice(batchName,pageDTO);
         return JsonResponse.success(registrationPages);
     }

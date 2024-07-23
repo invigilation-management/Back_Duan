@@ -81,22 +81,26 @@ public class CollegeController {
 
     @RequestMapping(value = "getRoleAndCollegeALL",method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse getRoleAndCollegeALL(Long userId){
+    public JsonResponse getRoleAndCollegeALL(Long userId,Integer pageSize,Integer pageNo){
 
         System.out.println(userId);
 
         PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
         Page<College> registrationPages=collegeService.getRoleAndCollegeALL(userId,pageDTO);
         return JsonResponse.success(registrationPages);
     }
 
     @RequestMapping(value = "getRoleAndCollegeALLUnclearFind",method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse getRoleAndCollegeALLUnclearFind(String collegeName){
+    public JsonResponse getRoleAndCollegeALLUnclearFind(String collegeName,Integer pageSize,Integer pageNo){
 
         System.out.println(collegeName);
 
         PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
         Page<College> registrationPages=collegeService.getRoleAndCollegeALLUnclearFind(collegeName,pageDTO);
         return JsonResponse.success(registrationPages);
     }

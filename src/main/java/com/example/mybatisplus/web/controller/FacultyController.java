@@ -96,11 +96,13 @@ public class FacultyController {
 
     @RequestMapping(value = "seeAllRoleOfTheCollege", method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse seeAllRoleOfTheCollege(Long collegeId){
+    public JsonResponse seeAllRoleOfTheCollege(Long collegeId,Integer pageSize,Integer pageNo){
 
         System.out.println(collegeId);
 
         PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
         Page<Faculty> registrationPages=facultyService.seeAllRoleOfTheCollege(collegeId,pageDTO);
         return JsonResponse.success(registrationPages);
     }
@@ -108,22 +110,26 @@ public class FacultyController {
 
     @RequestMapping(value = "getInfomationConfirmVice", method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse getInfomationConfirmVice(String batchName){
+    public JsonResponse getInfomationConfirmVice(String batchName,Integer pageSize,Integer pageNo){
 
         System.out.println(batchName);
 
         PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
         Page<Faculty> registrationPages=facultyService.getInfomationConfirmVice(batchName,pageDTO);
         return JsonResponse.success(registrationPages);
     }
 
     @RequestMapping(value = "seeDetailsOfOffice", method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse seeDetailsOfOffice(Long userId,Long trueFacultyId,String batchName){
+    public JsonResponse seeDetailsOfOffice(Long userId,Long trueFacultyId,String batchName,Integer pageSize,Integer pageNo){
 
         System.out.println(trueFacultyId);
 
         PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
         Page<Registration> registrationPages=facultyService.seeDetailsOfOffice(userId,trueFacultyId,pageDTO,batchName);
         return JsonResponse.success(registrationPages);
     }

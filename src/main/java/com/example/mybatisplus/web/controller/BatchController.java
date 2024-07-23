@@ -83,11 +83,13 @@ public class BatchController {
 
     @RequestMapping(value = "getAppointAndFeesPageALL",method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse getAppointAndFeesPageALL(Long userId){
+    public JsonResponse getAppointAndFeesPageALL(Long userId,Integer pageSize,Integer pageNo){
 
         System.out.println(userId);
 
         PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
         Page<Batch> registrationPages=batchService.getAppointAndFeesPageALL(userId,pageDTO);
         return JsonResponse.success(registrationPages);
     }
@@ -95,11 +97,13 @@ public class BatchController {
 
     @RequestMapping(value = "getManagementPageALL",method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse getManagementPage(Long userId){
+    public JsonResponse getManagementPage(Long userId,Integer pageSize,Integer pageNo){
 
         System.out.println(userId);
 
         PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
         Page<Batch> batchPages=batchService.getManagementPageALL(userId,pageDTO);
         return JsonResponse.success(batchPages);
     }
@@ -119,11 +123,13 @@ public class BatchController {
 
     @RequestMapping(value = "getConfirmPageALL",method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse getConfirmPageALL(Long userId){
+    public JsonResponse getConfirmPageALL(Long userId,Integer pageSize,Integer pageNo){
 
         System.out.println(userId);
 
         PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
         Page<Batch> batchPages=batchService.getConfirmPageALL(userId,pageDTO);
         return JsonResponse.success(batchPages);
     }
@@ -143,11 +149,13 @@ public class BatchController {
 
     @RequestMapping(value = "getBatchDetailsPageALL",method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse getBatchDetailsPageALL(String batchName){
+    public JsonResponse getBatchDetailsPageALL(String batchName,Integer pageSize,Integer pageNo){
 
         System.out.println(batchName);
 
         PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
         Page<Batch> batchPages=batchService.getBatchDetailsPageALL(batchName,pageDTO);
         return JsonResponse.success(batchPages);
     }
@@ -169,11 +177,13 @@ public class BatchController {
 
     @RequestMapping(value = "getManageVice",method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse getManageVice(String batchName){
+    public JsonResponse getManageVice(String batchName,Integer pageSize,Integer pageNo){
 
         System.out.println(batchName);
 
         PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
         Page<Batch> batchPages=batchService.getManageVice(batchName,pageDTO);
         return JsonResponse.success(batchPages);
     }
