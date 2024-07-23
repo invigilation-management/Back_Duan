@@ -119,12 +119,12 @@ public class FacultyController {
 
     @RequestMapping(value = "seeDetailsOfOffice", method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse seeDetailsOfOffice(Long userId,Long trueFacultyId){
+    public JsonResponse seeDetailsOfOffice(Long userId,Long trueFacultyId,String batchName){
 
         System.out.println(trueFacultyId);
 
         PageDTO pageDTO=new PageDTO();
-        Page<Registration> registrationPages=facultyService.seeDetailsOfOffice(userId,trueFacultyId,pageDTO);
+        Page<Registration> registrationPages=facultyService.seeDetailsOfOffice(userId,trueFacultyId,pageDTO,batchName);
         return JsonResponse.success(registrationPages);
     }
 

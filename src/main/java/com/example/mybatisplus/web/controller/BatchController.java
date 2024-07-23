@@ -158,7 +158,7 @@ public class BatchController {
     public JsonResponse<Boolean> addBatch(@RequestBody BatchDTO batchDTO) {
         boolean isAdded = batchService.addBatch(batchDTO);
         if (isAdded) {
-            return JsonResponse.success(true);
+            return JsonResponse.success(true,"添加成功");
         } else {
             return JsonResponse.success(false, "Batch already exists");
         }

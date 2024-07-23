@@ -68,10 +68,10 @@ public class FacultyServiceImpl extends ServiceImpl<FacultyMapper, Faculty> impl
     }
 
     @Override
-    public Page<Registration> seeDetailsOfOffice(Long userId, Long trueFacultyId, PageDTO pageDTO) {
+    public Page<Registration> seeDetailsOfOffice(Long userId, Long trueFacultyId, PageDTO pageDTO, String batchName) {
         // 创建分页对象
         Page<Registration> registrationFindPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
-        return registrationMapper.seeDetailsOfOffice(registrationFindPage,userId, trueFacultyId);
+        return registrationMapper.seeDetailsOfOffice(registrationFindPage,userId, trueFacultyId,batchName);
     }
 
 }
