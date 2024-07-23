@@ -72,7 +72,8 @@ public class Registration extends Model<Registration> {
     @TableField(exist = false)
     private Batch batch;
 
-
+    @TableField(exist = false)
+    private Approval approval;
 
     @Override
     protected Serializable pkVal() {

@@ -34,6 +34,19 @@
         </association>
     </resultMap>
 
+    <resultMap id="WaitingPageWithApproval" type="com.example.mybatisplus.model.domain.Registration">
+        <id property="registrationId" column="registration_id"/>
+        <result property="trueFacultyName" column="true_faculty_name"/>
+        <result property="gender" column="gender" />
+        <result property="college" column="college" />
+        <result property="trueFacultyId" column="true_faculty_id"/>
+        <result property="passOrNot"  column="pass_or_not"/>
+        <association property="approval" javaType="com.example.mybatisplus.model.domain.Approval">
+            <result property="approvalDate" column="approval_date"/>
+        </association>
+    </resultMap>
+
+
     <select id="selectCountByBatchNameAndTargetCampus" resultType="java.lang.Integer">
         SELECT COUNT(*) AS total_registrations
         FROM registration r
@@ -644,7 +657,7 @@
     <select id="JianKaoXiangXiMingDan" resultType="com.example.mybatisplus.model.domain.Registration">
         SELECT
             r.true_faculty_name AS true_faculty_name,
-            r.college AS college_name,
+            r.college AS college,
             r.true_faculty_id AS true_faculty_id,
             r.tele AS tele,
             r.faculty_faculty_id AS faculty_faculty_id
@@ -656,11 +669,40 @@
             b.batch_name = #{batchName}
         AND r.pass_or_not = 1
     </select>
-    <select id="ManageVice" resultType="com.example.mybatisplus.model.domain.Registration">
-        SELECT * FROM registration
+    <select id="ManageVice" resultMap="WaitingPageWithApproval">
+        SELECT
+            r.true_faculty_name AS true_faculty_name,
+            r.gender AS gender,
+            r.true_faculty_id AS true_faculty_id,
+            r.college AS college,
+            r.pass_or_not AS pass_or_not,
+            MAX(a.approval_date) AS approval_date
+        FROM
+            registration r
+                JOIN
+            batch b ON r.batch_batch_id = b.batch_id
+                LEFT JOIN
+            approval a ON r.registration_id = a.registration_registration_id
+        WHERE
+            b.batch_name = #{batchName}
+        GROUP BY
+            r.registration_id
     </select>
     <select id="planVice" resultType="com.example.mybatisplus.model.domain.Registration">
-        SELECT * FROM registration
+        SELECT
+            r.true_faculty_name AS true_faculty_name,
+            r.gender AS gender,
+            r.true_faculty_id AS true_faculty_id,
+            r.college AS college,
+            r.tele AS tele
+            r.pass_or_not AS pass_or_not,
+        FROM
+            registration r
+                JOIN
+            batch b ON r.batch_batch_id = b.batch_id
+        WHERE
+            b.batch_name = #{batchName}
+        AND r.confirm_or_not = 1
     </select>
     <select id="infoConfirmVice" resultType="com.example.mybatisplus.model.domain.Registration">
         SELECT * FROM registration
