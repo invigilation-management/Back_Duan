@@ -1,6 +1,7 @@
 package com.example.mybatisplus.mapper;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.mybatisplus.model.domain.Faculty;
 import com.example.mybatisplus.model.domain.Registration;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
@@ -69,4 +70,6 @@ public interface RegistrationMapper extends BaseMapper<Registration> {
     Boolean afterDisapprovalOfficeUpdate(Long userId, Long trueFacultyId, String batchName);
 
     Boolean afterDisapprovalOfficeAdd(Long userId, Long trueFacultyId, String batchName);
+
+    Page<Registration> seeDetailsOfOffice(Page<Registration> registrationFindPage, Long userId, Long trueFacultyId);
 }

@@ -583,6 +583,7 @@
         SELECT * FROM registration
     </select>
     <select id="countByTrueFacultyId" resultType="java.lang.Integer"></select>
+    <select id="seeDetailsOfOffice" resultType="com.example.mybatisplus.model.domain.Registration"></select>
 
 
 </mapper>

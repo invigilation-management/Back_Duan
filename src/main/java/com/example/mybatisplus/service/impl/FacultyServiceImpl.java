@@ -3,6 +3,7 @@ package com.example.mybatisplus.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.mybatisplus.mapper.CollegeMapper;
+import com.example.mybatisplus.mapper.RegistrationMapper;
 import com.example.mybatisplus.model.domain.College;
 import com.example.mybatisplus.model.domain.Faculty;
 import com.example.mybatisplus.mapper.FacultyMapper;
@@ -30,6 +31,8 @@ public class FacultyServiceImpl extends ServiceImpl<FacultyMapper, Faculty> impl
 
     @Autowired
     private CollegeMapper collegeMapper;
+    @Autowired
+    private RegistrationMapper registrationMapper;
 
 
 
@@ -65,10 +68,10 @@ public class FacultyServiceImpl extends ServiceImpl<FacultyMapper, Faculty> impl
     }
 
     @Override
-    public Page<Faculty> seeDetailsOfOffice(Long userId, Long trueFacultyId, PageDTO pageDTO) {
+    public Page<Registration> seeDetailsOfOffice(Long userId, Long trueFacultyId, PageDTO pageDTO) {
         // 创建分页对象
-        Page<Faculty> registrationFindPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
-        return facultyMapper.seeDetailsOfOffice(registrationFindPage,userId, trueFacultyId);
+        Page<Registration> registrationFindPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+        return registrationMapper.seeDetailsOfOffice(registrationFindPage,userId, trueFacultyId);
     }
 
 }

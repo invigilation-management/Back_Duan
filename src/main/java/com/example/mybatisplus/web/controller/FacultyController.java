@@ -124,7 +124,7 @@ public class FacultyController {
         System.out.println(trueFacultyId);
 
         PageDTO pageDTO=new PageDTO();
-        Page<Faculty> registrationPages=facultyService.seeDetailsOfOffice(userId,trueFacultyId,pageDTO);
+        Page<Registration> registrationPages=facultyService.seeDetailsOfOffice(userId,trueFacultyId,pageDTO);
         return JsonResponse.success(registrationPages);
     }
 
