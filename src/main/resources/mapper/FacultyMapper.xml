@@ -20,7 +20,7 @@
     </resultMap>
 
     <select id="seeAllRoleOfTheCollege" resultType="com.example.mybatisplus.model.domain.Faculty">
-        SELECT * FROM faculty
+        SELECT * FROM faculty WHERE college_college_id = #{collegeId}
     </select>
     <select id="getInfomationConfirmVice" resultType="com.example.mybatisplus.model.domain.Faculty">
         SELECT * FROM faculty
