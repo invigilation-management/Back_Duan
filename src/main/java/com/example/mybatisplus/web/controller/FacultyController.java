@@ -91,7 +91,7 @@ public class FacultyController {
     @ResponseBody
     public JsonResponse updateFaculty(@RequestBody FacultyUpdateDTO facultyUpdateDTO) {
         facultyService.updateFaculty(facultyUpdateDTO);
-        return JsonResponse.success("Faculty updated successfully");
+        return JsonResponse.success(true);
     }
 
     @RequestMapping(value = "seeAllRoleOfTheCollege", method = RequestMethod.GET)
