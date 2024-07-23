@@ -18,5 +18,4 @@ public interface FacultyMapper extends BaseMapper<Faculty> {
 
     Page<Faculty> getInfomationConfirmVice(Page<Faculty> registrationFindPage, String batchName);
 
-    Page<Faculty> seeDetailsOfOffice(Page<Faculty> registrationFindPage, Long userId, Long trueFacultyId);
 }

@@ -53,8 +53,24 @@
             LIMIT 1
     </insert>
     <insert id="insertRegistration"></insert>
-    <insert id="afterApprovalOfficeAdd"></insert>
-    <insert id="afterDisapprovalOfficeAdd"></insert>
+    <insert id="afterApprovalOfficeAdd">
+        INSERT INTO approval (approval_date, approval_faculty_id, approval_result, registration_registration_id)
+        SELECT NOW(), #{userId}, 1, registration.registration_id
+        FROM registration
+                 JOIN batch ON registration.batch_batch_id = batch.batch_id
+        WHERE registration.true_faculty_id = #{trueFacultyId}
+          AND batch.batch_name = #{batchName}
+            LIMIT 1
+    </insert>
+    <insert id="afterDisapprovalOfficeAdd">
+        INSERT INTO approval (approval_date, approval_faculty_id, approval_result, registration_registration_id)
+        SELECT NOW(), #{userId}, 0, registration.registration_id
+        FROM registration
+                 JOIN batch ON registration.batch_batch_id = batch.batch_id
+        WHERE registration.true_faculty_id = #{trueFacultyId}
+          AND batch.batch_name = #{batchName}
+            LIMIT 1
+    </insert>
 
 
     <update id="afterApprovalUpdate">
@@ -72,8 +88,22 @@
         WHERE registration.true_faculty_id = #{trueFacultyId}
           AND batch.batch_name = #{batchName}
     </update>
-    <update id="afterApprovalOfficeUpdate"></update>
-    <update id="afterDisapprovalOfficeUpdate"></update>
+    <update id="afterApprovalOfficeUpdate">
+        UPDATE registration
+            JOIN batch ON registration.batch_batch_id = batch.batch_id
+            SET registration.state = registration.state + 1
+        WHERE registration.true_faculty_id = #{trueFacultyId}
+          AND batch.batch_name = #{batchName}
+          AND registration.target_campus = #{targetCampus}
+    </update>
+
+    <update id="afterDisapprovalOfficeUpdate">
+        UPDATE registration
+            JOIN batch ON registration.batch_batch_id = batch.batch_id
+            SET registration.state = registration.state + 1, registration.pass_or_not = 0
+        WHERE registration.true_faculty_id = #{trueFacultyId}
+          AND batch.batch_name = #{batchName}
+    </update>
 
     <select id="selectWaitingPage" resultMap="WaitingPage">
         SELECT
