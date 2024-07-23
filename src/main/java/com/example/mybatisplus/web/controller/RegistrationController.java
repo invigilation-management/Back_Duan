@@ -351,6 +351,52 @@ public class RegistrationController {
 
 
 
+    @RequestMapping(value = "ManageVice",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse ManageVice(String batchName){
+
+        System.out.println(batchName);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<Registration> registrationPages=registrationService.ManageVice(batchName,pageDTO);
+        return JsonResponse.success(registrationPages);
+    }
+
+
+    @RequestMapping(value = "planVice",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse planVice(String batchName){
+
+        System.out.println(batchName);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<Registration> registrationPages=registrationService.planVice(batchName,pageDTO);
+        return JsonResponse.success(registrationPages);
+    }
+
+
+    @RequestMapping(value = "infoConfirmVice",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse infoConfirmVice(String batchName){
+
+        System.out.println(batchName);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<Registration> registrationPages=registrationService.infoConfirmVice(batchName,pageDTO);
+        return JsonResponse.success(registrationPages);
+    }
+
+
+    @RequestMapping(value = "feesVice",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse feesVice(String batchName){
+
+        System.out.println(batchName);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<Registration> registrationPages=registrationService.feesVice(batchName,pageDTO);
+        return JsonResponse.success(registrationPages);
+    }
 
 }
 

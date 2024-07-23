@@ -24,5 +24,5 @@ public interface FacultyService extends IService<Faculty> {
 
     Page<Registration> seeDetailsOfOffice(Long userId, Long trueFacultyId, PageDTO pageDTO, String batchName);
 
-    Page<Faculty> findBeforePost(PageDTO pageDTO, String trueFacultyName);
+    Page<Faculty> findBeforePost(PageDTO pageDTO, String batchName);
 }

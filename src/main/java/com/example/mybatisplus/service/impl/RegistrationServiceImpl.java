@@ -215,5 +215,32 @@ public class RegistrationServiceImpl extends ServiceImpl<RegistrationMapper, Reg
         return registrationMapper.JianKaoXiangXiMingDan(registrationFindPage, userId,batchName);
     }
 
+    @Override
+    public Page<Registration> ManageVice(String batchName, PageDTO pageDTO) {
+        // 创建分页对象
+        Page<Registration> registrationFindPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+        return registrationMapper.ManageVice(registrationFindPage,batchName);
+    }
+
+    @Override
+    public Page<Registration> planVice(String batchName, PageDTO pageDTO) {
+        // 创建分页对象
+        Page<Registration> registrationFindPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+        return registrationMapper.planVice(registrationFindPage,batchName);
+    }
+
+    @Override
+    public Page<Registration> infoConfirmVice(String batchName, PageDTO pageDTO) {
+        // 创建分页对象
+        Page<Registration> registrationFindPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+        return registrationMapper.infoConfirmVice(registrationFindPage,batchName);
+    }
+
+    @Override
+    public Page<Registration> feesVice(String batchName, PageDTO pageDTO) {
+        // 创建分页对象
+        Page<Registration> registrationFindPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+        return registrationMapper.feesVice(registrationFindPage,batchName);
+    }
 
 }

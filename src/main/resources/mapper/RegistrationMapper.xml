@@ -656,6 +656,18 @@
             b.batch_name = #{batchName}
         AND r.pass_or_not = 1
     </select>
+    <select id="ManageVice" resultType="com.example.mybatisplus.model.domain.Registration">
+        SELECT * FROM registration
+    </select>
+    <select id="planVice" resultType="com.example.mybatisplus.model.domain.Registration">
+        SELECT * FROM registration
+    </select>
+    <select id="infoConfirmVice" resultType="com.example.mybatisplus.model.domain.Registration">
+        SELECT * FROM registration
+    </select>
+    <select id="feesVice" resultType="com.example.mybatisplus.model.domain.Registration">
+        SELECT * FROM registration
+    </select>
 
 
 </mapper>

@@ -62,4 +62,12 @@ public interface RegistrationService extends IService<Registration> {
     Boolean afterDisapprovalOffice(Long userId, Long trueFacultyId, String batchName);
 
     Page<Registration> JianKaoXiangXiMingDan(Long userId, String batchName, PageDTO pageDTO);
+
+    Page<Registration> ManageVice(String batchName, PageDTO pageDTO);
+
+    Page<Registration> planVice(String batchName, PageDTO pageDTO);
+
+    Page<Registration> infoConfirmVice(String batchName, PageDTO pageDTO);
+
+    Page<Registration> feesVice(String batchName, PageDTO pageDTO);
 }

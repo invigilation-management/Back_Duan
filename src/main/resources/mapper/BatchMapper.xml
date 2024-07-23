@@ -19,7 +19,7 @@
     </resultMap>
     <insert id="insertBatch">
         INSERT INTO batch (batch_name, batch_created_time, reg_start_time, reg_end_time, batch_info, batch_start_time, batch_end_time, batch_duration,expect_num)
-        VALUES (#{batchName}, #{batchCreatedTime}, #{regStartTime}, #{regEndTime}, #{batchInfo}, #{batchStartTime}, #{batchEndTime}, #{batchDuration},#{expectNum})
+        VALUES (#{batchName}, NOW(), #{regStartTime}, #{regEndTime}, #{batchInfo}, #{batchStartTime}, #{batchEndTime}, #{batchDuration},#{expectNum})
     </insert>
 
 
