@@ -58,7 +58,7 @@ public interface RegistrationMapper extends BaseMapper<Registration> {
     Page<Registration> teachersSeeTheirRegistrations(Page<Registration> registrationFindPage, Long userId);
 
 
-    int countByTrueFacultyId(Integer trueFacultyId);
+    int countByTrueFacultyId(Integer trueFacultyId, Integer batchBatchId);
 
     void insertRegistration(Registration registration);
 
