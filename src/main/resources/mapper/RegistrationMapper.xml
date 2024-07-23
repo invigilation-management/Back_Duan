@@ -234,7 +234,7 @@
                  )) AS registration
         WHERE
             registration.true_faculty_name LIKE CONCAT('%', #{name}, '%')
-        OR OR registration.true_faculty_id LIKE CONCAT('%', #{name}, '%')
+        OR registration.true_faculty_id LIKE CONCAT('%', #{name}, '%')
     </select>
     <select id="selectAgreePage" resultMap="WaitingPage">
         -- 实现已同意审批查询
@@ -642,7 +642,19 @@
             b.batch_name = #{batchName}
     </select>
     <select id="JianKaoXiangXiMingDan" resultType="com.example.mybatisplus.model.domain.Registration">
-        SELECT * FROM registration
+        SELECT
+            r.true_faculty_name AS true_faculty_name,
+            r.college AS college_name,
+            r.true_faculty_id AS true_faculty_id,
+            r.tele AS tele,
+            r.faculty_faculty_id AS faculty_faculty_id
+        FROM
+            registration r
+                JOIN
+            batch b ON r.batch_batch_id = b.batch_id
+        WHERE
+            b.batch_name = #{batchName}
+        AND r.pass_or_not = 1
     </select>
 
 

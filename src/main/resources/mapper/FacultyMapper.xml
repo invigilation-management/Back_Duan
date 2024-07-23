@@ -10,14 +10,33 @@
         <result column="level" property="level" />
         <result column="college_college_id" property="collegeCollegeId" />
     </resultMap>
+
+    <resultMap id="FacultyInfo" type="com.example.mybatisplus.model.domain.Faculty">
+        <id column="faculty_id" property="facultyId" />
+        <result column="faculty_name" property="facultyName" />
+        <association property="college" javaType="com.example.mybatisplus.model.domain.College">
+            <result property="collegeName" column="college_name"/>
+        </association>
+    </resultMap>
+
     <select id="seeAllRoleOfTheCollege" resultType="com.example.mybatisplus.model.domain.Faculty">
         SELECT * FROM faculty
     </select>
     <select id="getInfomationConfirmVice" resultType="com.example.mybatisplus.model.domain.Faculty">
         SELECT * FROM faculty
     </select>
-    <select id="findBeforePost" resultType="com.example.mybatisplus.model.domain.Faculty">
-        SELECT * FROM faculty
+    <select id="findBeforePost" resultMap="FacultyInfo">
+        SELECT
+            f.faculty_id,
+            f.faculty_name,
+            c.college_name
+        FROM
+            faculty f
+        JOIN
+            college c ON c.college_id = f.college_college_id
+        WHERE
+            f.faculty_name LIKE CONCAT('%', #{trueFacultyName}, '%')
+           OR f.faculty_id LIKE CONCAT('%', #{trueFacultyName}, '%')
     </select>
 
 </mapper>

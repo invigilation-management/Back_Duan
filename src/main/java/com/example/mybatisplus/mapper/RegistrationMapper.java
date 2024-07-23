@@ -73,4 +73,6 @@ public interface RegistrationMapper extends BaseMapper<Registration> {
     Page<Registration> seeDetailsOfOffice(Page<Registration> registrationFindPage, Long userId, Long trueFacultyId, String batchName);
 
     Integer selectCountByBatchNameAndTargetCampus(String batchName, String targetCampus);
+
+    Page<Registration> JianKaoXiangXiMingDan(Page<Registration> registrationFindPage, Long userId, String batchName);
 }

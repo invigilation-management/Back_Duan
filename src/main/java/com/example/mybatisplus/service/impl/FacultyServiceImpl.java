@@ -75,10 +75,10 @@ public class FacultyServiceImpl extends ServiceImpl<FacultyMapper, Faculty> impl
     }
 
     @Override
-    public Page<Faculty> findBeforePost(PageDTO pageDTO, String batchName) {
+    public Page<Faculty> findBeforePost(PageDTO pageDTO, String trueFacultyName) {
         // 创建分页对象
         Page<Faculty> registrationFindPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
-        return facultyMapper.findBeforePost(registrationFindPage, batchName);
+        return facultyMapper.findBeforePost(registrationFindPage, trueFacultyName);
     }
 
 }
