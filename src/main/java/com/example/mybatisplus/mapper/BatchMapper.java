@@ -42,4 +42,8 @@ public interface BatchMapper extends BaseMapper<Batch> {
                      @Param("expectNum") int expectNum);
 
     Page<Batch> getManageVice(Page<Batch> registrationPage, String batchName);
+
+    Page<Batch> findUnclearBatchDetails(Page<Batch> registrationPage, Integer userId, String batchName, String trueFacultyName);
+
+    Page<Batch> teacherSeeBatch(Page<Batch> registrationPage, String batchName);
 }

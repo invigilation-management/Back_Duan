@@ -110,11 +110,13 @@ public class BatchController {
 
     @RequestMapping(value = "getManagementPageUnclearFindALL",method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse getManagementPageUnclearFindALL(String batchName){
+    public JsonResponse getManagementPageUnclearFindALL(String batchName,Integer pageSize,Integer pageNo){
 
         System.out.println(batchName);
 
         PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
         Page<Batch> batchPages=batchService.getManagementPageUnclearFindALL(batchName,pageDTO);
         return JsonResponse.success(batchPages);
     }
@@ -137,11 +139,13 @@ public class BatchController {
 
     @RequestMapping(value = "getConfirmPageUnClearALL",method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse getConfirmPageUnClearALL(String batchName){
+    public JsonResponse getConfirmPageUnClearALL(String batchName,Integer pageSize,Integer pageNo){
 
         System.out.println(batchName);
 
         PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
         Page<Batch> batchPages=batchService.getConfirmPageUnClearALL(batchName,pageDTO);
         return JsonResponse.success(batchPages);
     }
@@ -189,6 +193,30 @@ public class BatchController {
     }
 
 
+    @RequestMapping(value = "findUnclearBatchDetails",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse findUnclearBatchDetails(Integer userId,String batchName,String trueFacultyName,Integer pageSize,Integer pageNo){
+
+        System.out.println(batchName);
+
+        PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
+        Page<Batch> batchPages=batchService.findUnclearBatchDetails(userId,batchName,trueFacultyName,pageDTO);
+        return JsonResponse.success(batchPages);
+    }
+
+
+    @RequestMapping(value = "teacherSeeBatch",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse teacherSeeBatch(String batchName){
+
+        System.out.println(batchName);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<Batch> batchPages=batchService.teacherSeeBatch(batchName,pageDTO);
+        return JsonResponse.success(batchPages);
+    }
 
 
 
