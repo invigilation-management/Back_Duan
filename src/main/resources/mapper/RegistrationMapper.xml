@@ -708,7 +708,7 @@
     <select id="seeDetailsOfOffice" resultType="com.example.mybatisplus.model.domain.Registration">
         SELECT
             r.true_faculty_name AS true_faculty_name,
-            r.college AS college_name,
+            r.college AS college,
             r.gender AS gender,
             r.true_faculty_id AS true_faculty_id,
             r.edu_qualification AS edu_qualification,
