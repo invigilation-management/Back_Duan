@@ -55,6 +55,7 @@
         <result property="tele" column="tele"/>
         <result property="classroom" column="classroom"/>
         <result property="passOrNot"  column="pass_or_not"/>
+        <result property="amount" column="amount"/>
         <association property="batch" javaType="com.example.mybatisplus.model.domain.Batch">
             <result property="batchDuration" column="batch_duration"/>
             <result property="batchStartTime" column="batch_start_time"/>
@@ -795,7 +796,7 @@
             b.batch_name = #{batchName}
           AND r.pass_or_not = 1
     </select>
-    <select id="feesVice" resultType="com.example.mybatisplus.model.domain.Registration">
+    <select id="feesVice" resultMap="WaitingPageWithBatch">
         SELECT
             r.true_faculty_name AS true_faculty_name,
             r.gender AS gender,
