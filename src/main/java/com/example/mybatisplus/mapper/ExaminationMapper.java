@@ -1,5 +1,6 @@
 package com.example.mybatisplus.mapper;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.mybatisplus.model.domain.Examination;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
@@ -13,4 +14,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface ExaminationMapper extends BaseMapper<Examination> {
 
+    Page<Examination> teacherSeeBatch(Page<Examination> registrationPage, String batchName);
 }

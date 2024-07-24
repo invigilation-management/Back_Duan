@@ -1,5 +1,8 @@
 package com.example.mybatisplus.web.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.mybatisplus.model.domain.Batch;
+import com.example.mybatisplus.model.dto.PageDTO;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
 import org.slf4j.Logger;
@@ -73,6 +76,20 @@ public class ExaminationController {
     public JsonResponse create(Examination  examination) throws Exception {
         examinationService.save(examination);
         return JsonResponse.success(null);
+    }
+
+
+    @RequestMapping(value = "teacherSeeBatch",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse teacherSeeBatch(String batchName,Integer pageSize,Integer pageNo){
+
+        System.out.println(batchName);
+
+        PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
+        Page<Examination> batchPages=examinationService.teacherSeeBatch(batchName,pageDTO);
+        return JsonResponse.success(batchPages);
     }
 }
 

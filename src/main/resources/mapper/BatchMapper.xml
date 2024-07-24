@@ -48,7 +48,7 @@
         Select * From batch
     </select>
     <select id="findUnclearBatchDetails" resultType="com.example.mybatisplus.model.domain.Batch"></select>
-    <select id="teacherSeeBatch" resultType="com.example.mybatisplus.model.domain.Batch"></select>
+
 
 
 </mapper>

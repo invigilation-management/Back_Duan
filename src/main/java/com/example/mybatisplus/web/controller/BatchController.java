@@ -205,18 +205,7 @@ public class BatchController {
     }
 
 
-    @RequestMapping(value = "teacherSeeBatch",method = RequestMethod.GET)
-    @ResponseBody
-    public JsonResponse teacherSeeBatch(String batchName,Integer pageSize,Integer pageNo){
 
-        System.out.println(batchName);
-
-        PageDTO pageDTO=new PageDTO();
-        pageDTO.setPageNo(pageNo);
-        pageDTO.setPageSize(pageSize);
-        Page<Batch> batchPages=batchService.teacherSeeBatch(batchName,pageDTO);
-        return JsonResponse.success(batchPages);
-    }
 
 
 

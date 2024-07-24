@@ -32,5 +32,4 @@ public interface BatchService extends IService<Batch> {
 
     Page<Batch> findUnclearBatchDetails(Integer userId, String batchName, String trueFacultyName, PageDTO pageDTO);
 
-    Page<Batch> teacherSeeBatch(String batchName, PageDTO pageDTO);
 }

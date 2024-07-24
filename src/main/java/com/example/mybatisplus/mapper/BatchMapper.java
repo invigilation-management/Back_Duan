@@ -45,5 +45,5 @@ public interface BatchMapper extends BaseMapper<Batch> {
 
     Page<Batch> findUnclearBatchDetails(Page<Batch> registrationPage, Integer userId, String batchName, String trueFacultyName);
 
-    Page<Batch> teacherSeeBatch(Page<Batch> registrationPage, String batchName);
+
 }

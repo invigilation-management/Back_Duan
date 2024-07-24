@@ -107,12 +107,6 @@ public class BatchServiceImpl extends ServiceImpl<BatchMapper, Batch> implements
         return batchMapper.findUnclearBatchDetails(registrationPage,userId, batchName,trueFacultyName);
     }
 
-    @Override
-    public Page<Batch> teacherSeeBatch(String batchName, PageDTO pageDTO) {
-        // 创建分页对象
-        Page<Batch> registrationPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
 
-        return batchMapper.teacherSeeBatch(registrationPage, batchName);
-    }
 
 }
