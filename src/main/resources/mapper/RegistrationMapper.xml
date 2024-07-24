@@ -55,6 +55,7 @@
         <result property="tele" column="tele"/>
         <result property="classroom" column="classroom"/>
         <result property="passOrNot"  column="pass_or_not"/>
+        <result property="amount" column="amount"/>
         <association property="batch" javaType="com.example.mybatisplus.model.domain.Batch">
             <result property="batchDuration" column="batch_duration"/>
             <result property="batchStartTime" column="batch_start_time"/>
