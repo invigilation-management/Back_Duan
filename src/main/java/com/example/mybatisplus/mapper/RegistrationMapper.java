@@ -85,4 +85,6 @@ public interface RegistrationMapper extends BaseMapper<Registration> {
     Page<Registration> infoConfirmVice(Page<Registration> registrationFindPage, String batchName);
 
     Page<Registration> feesVice(Page<Registration> registrationFindPage, String batchName);
+
+    Page<Registration> teachersSeeTheirRegistrationsFind(Page<Registration> registrationFindPage, Long userId, String batchName);
 }

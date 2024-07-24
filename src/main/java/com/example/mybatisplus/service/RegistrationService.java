@@ -70,4 +70,6 @@ public interface RegistrationService extends IService<Registration> {
     Page<Registration> infoConfirmVice(String batchName, PageDTO pageDTO);
 
     Page<Registration> feesVice(String batchName, PageDTO pageDTO);
+
+    Page<Registration> teachersSeeTheirRegistrationsFind(Long userId, String batchName, PageDTO pageDTO);
 }

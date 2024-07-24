@@ -813,6 +813,8 @@
             b.batch_name = #{batchName}
           AND r.confirm_or_not = 1
     </select>
+    <select id="teachersSeeTheirRegistrationsFind"
+            resultType="com.example.mybatisplus.model.domain.Registration"></select>
 
 
 </mapper>

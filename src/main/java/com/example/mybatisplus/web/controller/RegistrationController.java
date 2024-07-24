@@ -337,6 +337,20 @@ public class RegistrationController {
     }
 
 
+    @RequestMapping(value = "teachersSeeTheirRegistrationsFind",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse teachersSeeTheirRegistrationsFind(Long userId,String batchName,Integer pageSize,Integer pageNo){
+
+        System.out.println(userId);
+
+        PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
+        Page<Registration> registrationPages=registrationService.teachersSeeTheirRegistrationsFind(userId,batchName,pageDTO);
+        return JsonResponse.success(registrationPages);
+    }
+
+
 
     @RequestMapping(value = "newRegister",method = RequestMethod.POST)
     @ResponseBody
