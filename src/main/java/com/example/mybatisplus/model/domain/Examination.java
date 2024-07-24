@@ -1,5 +1,6 @@
 package com.example.mybatisplus.model.domain;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import java.time.LocalDateTime;
@@ -12,7 +13,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author lxp
@@ -39,7 +40,8 @@ public class Examination extends Model<Examination> {
 
     private Integer batchBatchId;
 
-
+    @TableField(exist = false)
+    private Batch batch;
     @Override
     protected Serializable pkVal() {
         return this.examId;

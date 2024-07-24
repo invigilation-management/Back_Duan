@@ -12,4 +12,26 @@
         <result column="batch_batch_id" property="batchBatchId" />
     </resultMap>
 
+    <resultMap id="temptPage" type="com.example.mybatisplus.model.domain.Examination">
+        <id column="exam_id" property="examId" />
+        <result column="exam_subject" property="examSubject" />
+        <result column="exam_campus" property="examCampus" />
+        <result column="exam_classroom" property="examClassroom" />
+        <result column="exam_time" property="examTime" />
+        <result column="batch_batch_id" property="batchBatchId" />
+        <association property="batch" javaType="com.example.mybatisplus.model.domain.Batch">
+            <result property="batchName" column="batch_Name"/>
+            <result column="batch_start_time" property="batchStartTime" />
+            <result column="batch_end_time" property="batchEndTime" />
+            <result column="batch_info" property="batchInfo" />
+        </association>
+    </resultMap>
+
+    <select id="teacherSeeBatch" resultMap="temptPage">
+        SELECT b.*, e.exam_subject, e.exam_duration_hours, e.exam_time, e.exam_classroom
+        FROM examination e
+                 JOIN batch b ON b.batch_id = e.batch_batch_id
+        WHERE b.batch_name = #{batchName}
+    </select>
+
 </mapper>
