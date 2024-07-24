@@ -25,4 +25,10 @@ public interface FacultyService extends IService<Faculty> {
     Page<Registration> seeDetailsOfOffice(Long userId, Long trueFacultyId, PageDTO pageDTO, String batchName);
 
     Page<Faculty> findBeforePost(PageDTO pageDTO, String batchName);
+
+    Page<Faculty> collegeIdFind1(PageDTO pageDTO, Integer collegeId, String facultyName);
+
+    Page<Faculty> collegeIdFind2(PageDTO pageDTO, Integer collegeId, Integer level);
+
+    Page<Faculty> historyCard(PageDTO pageDTO, String trueFacultyName, String batchName);
 }

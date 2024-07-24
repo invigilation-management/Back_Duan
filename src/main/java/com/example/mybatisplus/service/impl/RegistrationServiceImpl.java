@@ -255,4 +255,32 @@ public class RegistrationServiceImpl extends ServiceImpl<RegistrationMapper, Reg
         return registrationMapper.teachersSeeTheirRegistrationsFind(registrationFindPage,userId,batchName);
     }
 
+    @Override
+    public Page<Registration> ManageViceSearch(String batchName, String facultyName, PageDTO pageDTO) {
+        // 创建分页对象
+        Page<Registration> registrationFindPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+        return registrationMapper.ManageViceSearch(registrationFindPage,facultyName,batchName);
+    }
+
+    @Override
+    public Page<Registration> PlanViceSearch(String batchName, String facultyName, PageDTO pageDTO) {
+        // 创建分页对象
+        Page<Registration> registrationFindPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+        return registrationMapper.PlanViceSearch(registrationFindPage,facultyName,batchName);
+    }
+
+    @Override
+    public Page<Registration> NotationViceSearch(String batchName, String facultyName, PageDTO pageDTO) {
+        // 创建分页对象
+        Page<Registration> registrationFindPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+        return registrationMapper.NotationViceSearch(registrationFindPage,facultyName,batchName);
+    }
+
+    @Override
+    public Page<Registration> FeesViceSearch(String batchName, String facultyName, PageDTO pageDTO) {
+        // 创建分页对象
+        Page<Registration> registrationFindPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+        return registrationMapper.FeesViceSearch(registrationFindPage,facultyName,batchName);
+    }
+
 }

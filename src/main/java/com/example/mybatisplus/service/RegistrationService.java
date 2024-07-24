@@ -72,4 +72,12 @@ public interface RegistrationService extends IService<Registration> {
     Page<Registration> feesVice(String batchName, PageDTO pageDTO);
 
     Page<Registration> teachersSeeTheirRegistrationsFind(Long userId, String batchName, PageDTO pageDTO);
+
+    Page<Registration> ManageViceSearch(String batchName, String facultyName, PageDTO pageDTO);
+
+    Page<Registration> PlanViceSearch(String batchName, String facultyName, PageDTO pageDTO);
+
+    Page<Registration> NotationViceSearch(String batchName, String facultyName, PageDTO pageDTO);
+
+    Page<Registration> FeesViceSearch(String batchName, String facultyName, PageDTO pageDTO);
 }

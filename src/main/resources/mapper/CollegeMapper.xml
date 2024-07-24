@@ -20,4 +20,5 @@
         SELECT * FROM college WHERE college_name LIKE CONCAT('%', #{collegeName}, '%')
     </select>
 
+
 </mapper>

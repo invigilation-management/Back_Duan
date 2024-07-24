@@ -21,4 +21,5 @@ public interface CollegeMapper extends BaseMapper<College> {
 
 
     void insertCollege(@Param("collegeName") String collegeName, @Param("type") String type);
+
 }

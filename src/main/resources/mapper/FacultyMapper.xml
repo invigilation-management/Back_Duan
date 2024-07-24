@@ -38,5 +38,14 @@
             f.faculty_name LIKE CONCAT('%', #{trueFacultyName}, '%')
            OR f.faculty_id LIKE CONCAT('%', #{trueFacultyName}, '%')
     </select>
+    <select id="collegeIdFind1" resultType="com.example.mybatisplus.model.domain.Faculty">
+        SELECT * FROM faculty
+    </select>
+    <select id="collegeIdFind2" resultType="com.example.mybatisplus.model.domain.Faculty">
+        SELECT * FROM faculty
+    </select>
+    <select id="historyCard" resultType="com.example.mybatisplus.model.domain.Faculty">
+        SELECT * FROM faculty
+    </select>
 
 </mapper>

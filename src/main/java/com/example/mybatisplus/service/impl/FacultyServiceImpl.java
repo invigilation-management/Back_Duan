@@ -81,4 +81,25 @@ public class FacultyServiceImpl extends ServiceImpl<FacultyMapper, Faculty> impl
         return facultyMapper.findBeforePost(registrationFindPage, trueFacultyName);
     }
 
+    @Override
+    public Page<Faculty> collegeIdFind1(PageDTO pageDTO, Integer collegeId, String facultyName) {
+        // 创建分页对象
+        Page<Faculty> registrationFindPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+        return facultyMapper.collegeIdFind1(registrationFindPage, collegeId,facultyName );
+    }
+
+    @Override
+    public Page<Faculty> collegeIdFind2(PageDTO pageDTO, Integer collegeId, Integer level) {
+        // 创建分页对象
+        Page<Faculty> registrationFindPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+        return facultyMapper.collegeIdFind2(registrationFindPage, collegeId,level );
+    }
+
+    @Override
+    public Page<Faculty> historyCard(PageDTO pageDTO, String trueFacultyName, String batchName) {
+        // 创建分页对象
+        Page<Faculty> registrationFindPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+        return facultyMapper.historyCard(registrationFindPage, trueFacultyName,batchName );
+    }
+
 }

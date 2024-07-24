@@ -56,6 +56,8 @@ public class CollegeServiceImpl extends ServiceImpl<CollegeMapper, College> impl
         return true;
     }
 
+
+
     private void insertCollege(String collegeName, String type) {
         collegeMapper.insertCollege(collegeName, type);
     }

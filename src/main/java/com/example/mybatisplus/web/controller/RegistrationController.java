@@ -456,5 +456,64 @@ public class RegistrationController {
         return JsonResponse.success(registrationPages);
     }
 
+
+
+    @RequestMapping(value = "ManageViceSearch",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse ManageViceSearch(String batchName,String facultyName,Integer pageSize,Integer pageNo){
+
+        System.out.println(batchName);
+
+        PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
+        Page<Registration> registrationPages=registrationService.ManageViceSearch(batchName,facultyName,pageDTO);
+        return JsonResponse.success(registrationPages);
+    }
+
+
+
+    @RequestMapping(value = "PlanViceSearch",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse PlanViceSearch(String batchName,String facultyName,Integer pageSize,Integer pageNo){
+
+        System.out.println(batchName);
+
+        PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
+        Page<Registration> registrationPages=registrationService.PlanViceSearch(batchName,facultyName,pageDTO);
+        return JsonResponse.success(registrationPages);
+    }
+
+
+
+    @RequestMapping(value = "NotationViceSearch",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse NotationViceSearch(String batchName,String facultyName,Integer pageSize,Integer pageNo){
+
+        System.out.println(batchName);
+
+        PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
+        Page<Registration> registrationPages=registrationService.NotationViceSearch(batchName,facultyName,pageDTO);
+        return JsonResponse.success(registrationPages);
+    }
+
+
+    @RequestMapping(value = "FeesViceSearch",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse FeesViceSearch(String batchName,String facultyName,Integer pageSize,Integer pageNo){
+
+        System.out.println(batchName);
+
+        PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
+        Page<Registration> registrationPages=registrationService.FeesViceSearch(batchName,facultyName,pageDTO);
+        return JsonResponse.success(registrationPages);
+    }
+
 }
 

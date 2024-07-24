@@ -19,4 +19,10 @@ public interface FacultyMapper extends BaseMapper<Faculty> {
     Page<Faculty> getInfomationConfirmVice(Page<Faculty> registrationFindPage, String batchName);
 
     Page<Faculty> findBeforePost(Page<Faculty> registrationFindPage, String trueFacultyName);
+
+    Page<Faculty> collegeIdFind1(Page<Faculty> registrationFindPage, Integer collegeId, String facultyName);
+
+    Page<Faculty> collegeIdFind2(Page<Faculty> registrationFindPage, Integer collegeId, Integer level);
+
+    Page<Faculty> historyCard(Page<Faculty> registrationFindPage, String trueFacultyName, String batchName);
 }

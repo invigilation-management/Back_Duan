@@ -144,5 +144,44 @@ public class FacultyController {
         return JsonResponse.success(registrationPages);
     }
 
+
+
+    @RequestMapping(value = "collegeIdFind1", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse collegeIdFind1(Integer collegeId,String facultyName,Integer pageSize,Integer pageNo){
+
+        System.out.println(facultyName);
+
+        PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
+        Page<Faculty> registrationPages=facultyService.collegeIdFind1(pageDTO,collegeId,facultyName);
+        return JsonResponse.success(registrationPages);
+    }
+
+    @RequestMapping(value = "collegeIdFind2", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse collegeIdFind2(Integer collegeId,Integer level,Integer pageSize,Integer pageNo){
+
+        System.out.println(level);
+
+        PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
+        Page<Faculty> registrationPages=facultyService.collegeIdFind2(pageDTO,collegeId,level);
+        return JsonResponse.success(registrationPages);
+    }
+
+    @RequestMapping(value = "historyCard", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse historyCard(String trueFacultyName,String batchName){
+
+        System.out.println(trueFacultyName);
+
+        PageDTO pageDTO=new PageDTO();
+        Page<Faculty> registrationPages=facultyService.historyCard(pageDTO,trueFacultyName,batchName);
+        return JsonResponse.success(registrationPages);
+    }
+
 }
 

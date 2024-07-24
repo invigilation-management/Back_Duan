@@ -20,4 +20,5 @@ public interface CollegeService extends IService<College> {
     Page<College> getRoleAndCollegeALLUnclearFind(String collegeName, PageDTO pageDTO);
 
     boolean addCollege(String collegeName, String type);
+
 }
