@@ -138,18 +138,22 @@ public class RegistrationServiceImpl extends ServiceImpl<RegistrationMapper, Reg
 
     @Override
     public Boolean afterApproval(Long userId, Long trueFacultyId, String batchName, String targetCampus) {
-        Integer count=registrationMapper.selectCountByBatchNameAndTargetCampus(batchName,targetCampus);
-        if (count < 10){
-            Boolean update=registrationMapper.afterApprovalUpdate( userId,  trueFacultyId,  batchName,  targetCampus);
+        Integer count=registrationMapper.selectCountByBatchNameAndTargetCampus(batchName, targetCampus);
+        Integer totalNumInTargetCampus = batchMapper.searchTotalNumByBatchNameAndTargetCampus(batchName, targetCampus);
+        if (count < totalNumInTargetCampus){
+            String classroom = batchMapper.searchAvailableClassroom(batchName, targetCampus);
+            Boolean update=registrationMapper.afterApprovalUpdate( userId,  trueFacultyId,  batchName,  targetCampus, classroom);
             Boolean add=registrationMapper.afterApprovalAdd( userId,  trueFacultyId,  batchName);
             return (update && add);
         } else {
             if (targetCampus.equals("兴庆校区")){
-                Boolean update=registrationMapper.afterApprovalUpdate( userId,  trueFacultyId,  batchName,  "创新港");
+                String classroom = batchMapper.searchAvailableClassroom(batchName, "创新港");
+                Boolean update=registrationMapper.afterApprovalUpdate( userId,  trueFacultyId,  batchName,  "创新港", classroom);
                 Boolean add=registrationMapper.afterApprovalAdd( userId,  trueFacultyId,  batchName);
                 return (update && add);
             }else{
-                Boolean update=registrationMapper.afterApprovalUpdate( userId,  trueFacultyId,  batchName,  "兴庆校区");
+                String classroom = batchMapper.searchAvailableClassroom(batchName, "兴庆校区");
+                Boolean update=registrationMapper.afterApprovalUpdate( userId,  trueFacultyId,  batchName,  "兴庆校区", classroom);
                 Boolean add=registrationMapper.afterApprovalAdd( userId,  trueFacultyId,  batchName);
                 return (update && add);
             }

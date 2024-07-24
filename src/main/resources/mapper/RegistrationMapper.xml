@@ -154,7 +154,7 @@
     <update id="afterApprovalUpdate">
         UPDATE registration
             JOIN batch ON registration.batch_batch_id = batch.batch_id
-        SET registration.state = 5, registration.pass_or_not = 1, registration.target_campus = #{targetCampus}
+        SET registration.state = 5, registration.pass_or_not = 1, registration.target_campus = #{targetCampus}, classroom = #{classroom}
         WHERE registration.true_faculty_id = #{trueFacultyId}
             AND batch.batch_name = #{batchName}
     </update>
