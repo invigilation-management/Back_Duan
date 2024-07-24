@@ -715,7 +715,8 @@
             r.tele AS tele,
             r.tele_backup AS tele_backup,
             r.avatar AS avatar,
-            r.target_campus AS target_campus
+            r.target_campus AS target_campus,
+            r.birthday AS birthday
         FROM
             registration r
                 JOIN
