@@ -153,13 +153,11 @@ public class BatchController {
 
     @RequestMapping(value = "getBatchDetailsPageALL",method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse getBatchDetailsPageALL(String batchName,Integer pageSize,Integer pageNo){
+    public JsonResponse getBatchDetailsPageALL(String batchName){
 
         System.out.println(batchName);
 
         PageDTO pageDTO=new PageDTO();
-        pageDTO.setPageNo(pageNo);
-        pageDTO.setPageSize(pageSize);
         Page<Batch> batchPages=batchService.getBatchDetailsPageALL(batchName,pageDTO);
         return JsonResponse.success(batchPages);
     }
