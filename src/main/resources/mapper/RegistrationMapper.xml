@@ -102,7 +102,6 @@
     </insert>
     <insert id="insertRegistration" useGeneratedKeys="true" keyProperty="registrationId" keyColumn="registration_id">
         INSERT INTO registration (
---             registration_id,
             faculty_faculty_id,
             batch_batch_id,
             gender,
@@ -117,7 +116,6 @@
             target_campus,
             create_time
         ) VALUES (
---                      #{registration.registrationId}
                      #{registration.facultyFacultyId},
                      #{registration.batchBatchId},
                      #{registration.gender},
