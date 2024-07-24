@@ -795,7 +795,7 @@
             b.batch_name = #{batchName}
           AND r.pass_or_not = 1
     </select>
-    <select id="feesVice" resultType="com.example.mybatisplus.model.domain.Registration">
+    <select id="feesVice" resultMap="WaitingPageWithBatch">
         SELECT
             r.true_faculty_name AS true_faculty_name,
             r.gender AS gender,
