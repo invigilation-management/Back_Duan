@@ -17,6 +17,25 @@
         <result column="already_passed_num" property="alreadyPassedNum" />
         <result column="already_confirm_num" property="alreadyConfirmNum" />
     </resultMap>
+
+    <resultMap id="TemptPage" type="com.example.mybatisplus.model.domain.Batch">
+        <id column="batch_id" property="batchId" />
+        <result column="batch_name" property="batchName" />
+        <result column="batch_start_time" property="batchStartTime" />
+        <result column="batch_end_time" property="batchEndTime" />
+        <result column="reg_start_time" property="regStartTime" />
+        <result column="reg_end_time" property="regEndTime" />
+        <result column="batch_info" property="batchInfo" />
+        <result column="batch_created_time" property="batchCreatedTime" />
+        <result column="batch_duration" property="batchDuration" />
+        <association property="examination" javaType="com.example.mybatisplus.model.domain.Examination">
+            <result column="exam_subject" property="examSubject" />
+            <result column="exam_campus" property="examCampus" />
+            <result column="exam_classroom" property="examClassroom" />
+            <result column="exam_time" property="examTime" />
+        </association>
+    </resultMap>
+
     <insert id="insertBatch">
         INSERT INTO batch (batch_name, batch_created_time, reg_start_time, reg_end_time, batch_info, batch_start_time, batch_end_time, batch_duration,expect_num)
         VALUES (#{batchName}, NOW(), #{regStartTime}, #{regEndTime}, #{batchInfo}, #{batchStartTime}, #{batchEndTime}, #{batchDuration},#{expectNum})
@@ -47,8 +66,15 @@
     <select id="getManageVice" resultType="com.example.mybatisplus.model.domain.Batch">
         Select * From batch
     </select>
-    <select id="findUnclearBatchDetails" resultType="com.example.mybatisplus.model.domain.Batch"></select>
-    <select id="teacherSeeBatch" resultType="com.example.mybatisplus.model.domain.Batch"></select>
+    <select id="findUnclearBatchDetails" resultType="com.example.mybatisplus.model.domain.Batch">
+
+    </select>
+    <select id="teacherSeeBatch" resultMap="TemptPage">
+        SELECT b.*, e.exam_subject, e.exam_duration_hours, e.exam_time, e.exam_classroom
+        FROM examination e
+            JOIN batch b ON b.batch_id = e.batch_batch_id
+        WHERE b.batch_name = #{batchName}
+    </select>
 
 
 </mapper>
