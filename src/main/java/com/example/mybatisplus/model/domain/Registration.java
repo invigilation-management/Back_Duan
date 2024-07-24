@@ -1,5 +1,6 @@
 package com.example.mybatisplus.model.domain;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
@@ -27,7 +28,7 @@ public class Registration extends Model<Registration> {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId("registration_id")
+    @TableId(value = "registration_id", type = IdType.AUTO)
     private Integer registrationId;
 
     private Integer facultyFacultyId;

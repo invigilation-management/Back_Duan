@@ -186,10 +186,11 @@ public class RegistrationServiceImpl extends ServiceImpl<RegistrationMapper, Reg
 
     @Transactional
     public boolean registerNew(Registration registration) {
-        int count = registrationMapper.countByTrueFacultyId(registration.getTrueFacultyId());
+        int count = registrationMapper.countByTrueFacultyId(registration.getTrueFacultyId(), registration.getBatchBatchId());
         if (count > 0) {
             return false;  // 已经报名过
         }
+        System.out.println(registration);
         registrationMapper.insertRegistration(registration);
         return true;
     }

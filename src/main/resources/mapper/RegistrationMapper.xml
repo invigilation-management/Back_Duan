@@ -100,7 +100,37 @@
           AND batch.batch_name = #{batchName}
             LIMIT 1
     </insert>
-    <insert id="insertRegistration"></insert>
+    <insert id="insertRegistration" useGeneratedKeys="true" keyProperty="registrationId" keyColumn="registration_id">
+        INSERT INTO registration (
+            faculty_faculty_id,
+            batch_batch_id,
+            gender,
+            true_faculty_id,
+            college,
+            true_faculty_name,
+            edu_qualification,
+            tele,
+            tele_backup,
+            birthday,
+            avatar,
+            target_campus,
+            create_time
+        ) VALUES (
+                     #{registration.facultyFacultyId},
+                     #{registration.batchBatchId},
+                     #{registration.gender},
+                     #{registration.trueFacultyId},
+                     #{registration.college},
+                     #{registration.trueFacultyName},
+                     #{registration.eduQualification},
+                     #{registration.tele},
+                     #{registration.teleBackup},
+                     #{registration.birthday, jdbcType=TIMESTAMP},
+                     #{registration.avatar},
+                     #{registration.targetCampus},
+                    NOW()
+                 )
+    </insert>
     <insert id="afterApprovalOfficeAdd">
         INSERT INTO approval (approval_date, approval_faculty_id, approval_result, registration_registration_id)
         SELECT NOW(), #{userId}, 1, registration.registration_id
@@ -669,7 +699,12 @@
         WHERE
             r.true_faculty_id = #{userId}
     </select>
-    <select id="countByTrueFacultyId" resultType="java.lang.Integer"></select>
+    <select id="countByTrueFacultyId" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM registration
+        WHERE true_faculty_id = #{trueFacultyId}
+          AND batch_batch_id = #{batchBatchId}
+    </select>
     <select id="seeDetailsOfOffice" resultType="com.example.mybatisplus.model.domain.Registration">
         SELECT
             r.true_faculty_name AS true_faculty_name,
