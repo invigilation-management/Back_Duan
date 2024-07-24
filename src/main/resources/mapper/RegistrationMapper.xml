@@ -814,7 +814,20 @@
           AND r.confirm_or_not = 1
     </select>
     <select id="teachersSeeTheirRegistrationsFind"
-            resultType="com.example.mybatisplus.model.domain.Registration"></select>
+            resultMap="TeachersBatchDetail">
+        SELECT
+            b.batch_name AS batch_name,
+            b.reg_start_time AS reg_start_time,
+            b.reg_end_time AS reg_end_time,
+            r.confirm_or_not AS confirm_or_not
+        FROM
+            registration r
+                JOIN
+            batch b ON r.batch_batch_id = b.batch_id
+        WHERE
+            r.true_faculty_id = #{userId}
+        AND b.batch_name LIKE CONCAT('%', #{batchName}, '%')
+    </select>
 
 
 </mapper>
