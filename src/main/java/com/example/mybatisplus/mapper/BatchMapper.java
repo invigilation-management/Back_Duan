@@ -46,4 +46,7 @@ public interface BatchMapper extends BaseMapper<Batch> {
     Page<Batch> findUnclearBatchDetails(Page<Batch> registrationPage, Integer userId, String batchName, String trueFacultyName);
 
 
+    String searchAvailableClassroom(String batchName, String targetCampus);
+
+    Integer searchTotalNumByBatchNameAndTargetCampus(String batchName, String targetCampus);
 }

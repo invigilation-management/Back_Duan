@@ -48,7 +48,27 @@
         Select * From batch
     </select>
     <select id="findUnclearBatchDetails" resultType="com.example.mybatisplus.model.domain.Batch"></select>
-
+    <select id="searchAvailableClassroom" resultType="java.lang.String">
+        SELECT e.exam_classroom
+        FROM batch b
+        JOIN examination e ON b.batch_id = e.batch_batch_id
+        LEFT JOIN (
+        SELECT classroom, COUNT(*) AS count
+        FROM registration
+        GROUP BY classroom
+        ) r ON e.exam_classroom = r.classroom
+        WHERE b.batch_name = "研究生考试1" AND e.exam_campus = "兴庆校区"
+        GROUP BY e.exam_classroom
+        HAVING (COALESCE(MAX(r.count), 0) &lt; 2)
+        ORDER BY e.exam_classroom
+        LIMIT 1;
+    </select>
+    <select id="searchTotalNumByBatchNameAndTargetCampus" resultType="java.lang.Integer">
+        SELECT COUNT(DISTINCT e.exam_classroom) AS classroom_count
+        FROM batch b
+                 JOIN examination e ON b.batch_id = e.batch_batch_id
+        WHERE b.batch_name = #{batchName} AND e.exam_campus = #{targetCampus}
+    </select>
 
 
 </mapper>

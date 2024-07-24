@@ -634,7 +634,7 @@
         WHERE
                 registration.true_faculty_id LIKE CONCAT('%', #{trueFacultyId}, '%')
     </select>
-    <select id="getAgreeUnclearALLByString" resultType="com.example.mybatisplus.model.domain.Registration">
+    <select id="getAgreeUnclearALLByString" resultMap="WaitingPage">
         SELECT
             registration.true_faculty_id AS true_faculty_id,
             registration.true_faculty_name AS true_faculty_name,
@@ -660,7 +660,7 @@
                 registration.true_faculty_name LIKE CONCAT('%', #{trueFacultyName}, '%')
            OR registration.true_faculty_id LIKE CONCAT('%', #{trueFacultyName}, '%')
     </select>
-    <select id="getDisagreeUnclearALLByString" resultType="com.example.mybatisplus.model.domain.Registration">
+    <select id="getDisagreeUnclearALLByString" resultMap="WaitingPage">
         SELECT
             registration.true_faculty_id AS true_faculty_id,
             registration.true_faculty_name AS true_faculty_name,
