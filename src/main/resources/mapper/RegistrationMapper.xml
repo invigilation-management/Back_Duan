@@ -830,17 +830,102 @@
             r.true_faculty_id = #{userId}
         AND b.batch_name LIKE CONCAT('%', #{batchName}, '%')
     </select>
-    <select id="ManageViceSearch" resultType="com.example.mybatisplus.model.domain.Registration">
-        SELECT * FROM registration
+    <select id="ManageViceSearch" resultMap="WaitingPageWithApproval">
+        SELECT
+            r.true_faculty_name AS true_faculty_name,
+            r.gender AS gender,
+            r.true_faculty_id AS true_faculty_id,
+            r.college AS college,
+            r.pass_or_not AS pass_or_not,
+            MAX(a.approval_date) AS approval_date
+        FROM
+            registration r
+                JOIN
+            batch b ON r.batch_batch_id = b.batch_id
+                LEFT JOIN
+            approval a ON r.registration_id = a.registration_registration_id
+        WHERE
+            b.batch_name = #{batchName}
+            AND
+            (r.true_faculty_name LIKE CONCAT('%', #{facultyName}, '%')
+            OR
+             r.true_faculty_id LIKE CONCAT('%', #{facultyName}, '%'))
+        GROUP BY
+            r.registration_id
     </select>
-    <select id="PlanViceSearch" resultType="com.example.mybatisplus.model.domain.Registration">
-        SELECT * FROM registration
+    <select id="PlanViceSearch" resultMap="WaitingPageWithBatch">
+        SELECT
+            r.true_faculty_name AS true_faculty_name,
+            r.gender AS gender,
+            r.true_faculty_id AS true_faculty_id,
+            r.college AS college,
+            r.tele AS tele,
+            r.pass_or_not AS pass_or_not,
+            r.classroom AS classroom,
+            b.batch_duration AS batch_duration,
+            b.batch_start_time AS batch_start_time,
+            b.batch_end_time AS batch_end_time
+        FROM
+            registration r
+                JOIN
+            batch b ON r.batch_batch_id = b.batch_id
+        WHERE
+            b.batch_name = #{batchName}
+            AND r.confirm_or_not = 1
+            AND
+            (
+            r.true_faculty_name LIKE CONCAT('%', #{facultyName}, '%')
+            OR
+            r.true_faculty_id LIKE CONCAT('%', #{facultyName}, '%')
+            )
+
     </select>
     <select id="NotationViceSearch" resultType="com.example.mybatisplus.model.domain.Registration">
-        SELECT * FROM registration
+        SELECT
+            r.true_faculty_name AS true_faculty_name,
+            r.gender AS gender,
+            r.true_faculty_id AS true_faculty_id,
+            r.college AS college,
+            r.tele AS tele,
+            r.confirm_or_not AS confirm_or_not
+        FROM
+            registration r
+                JOIN
+            batch b ON r.batch_batch_id = b.batch_id
+        WHERE
+            b.batch_name = #{batchName}
+          AND r.pass_or_not = 1
+          AND
+            (
+            r.true_faculty_name LIKE CONCAT('%', #{facultyName}, '%')
+           OR
+            r.true_faculty_id LIKE CONCAT('%', #{facultyName}, '%')
+            )
     </select>
-    <select id="FeesViceSearch" resultType="com.example.mybatisplus.model.domain.Registration">
-        SELECT * FROM registration
+    <select id="FeesViceSearch" resultMap="WaitingPageWithBatch">
+        SELECT
+            r.true_faculty_name AS true_faculty_name,
+            r.gender AS gender,
+            r.true_faculty_id AS true_faculty_id,
+            r.college AS college,
+            r.tele AS tele,
+            r.amount AS amount,
+            b.batch_duration AS batch_duration,
+            b.batch_start_time AS batch_start_time,
+            b.batch_end_time AS batch_end_time
+        FROM
+            registration r
+                JOIN
+            batch b ON r.batch_batch_id = b.batch_id
+        WHERE
+            b.batch_name = #{batchName}
+          AND r.confirm_or_not = 1
+          AND
+            (
+                        r.true_faculty_name LIKE CONCAT('%', #{facultyName}, '%')
+                    OR
+                        r.true_faculty_id LIKE CONCAT('%', #{facultyName}, '%')
+                )
     </select>
 
 
