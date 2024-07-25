@@ -57,6 +57,7 @@
         <result property="passOrNot"  column="pass_or_not"/>
         <result property="amount" column="amount"/>
         <association property="batch" javaType="com.example.mybatisplus.model.domain.Batch">
+            <result property="batchName" column="batch_name"/>
             <result property="batchDuration" column="batch_duration"/>
             <result property="batchStartTime" column="batch_start_time"/>
             <result property="batchEndTime" column="batch_end_time"/>
@@ -928,7 +929,18 @@
                         r.true_faculty_id LIKE CONCAT('%', #{facultyName}, '%')
                 )
     </select>
-    <select id="nothing" resultType="com.example.mybatisplus.model.domain.Registration"></select>
+    <select id="nothing" resultMap="WaitingPageWithBatch">
+        SELECT
+            b.batch_name,
+            r.pass_or_not
+        FROM registration r
+                 JOIN faculty f ON r.true_faculty_id = f.faculty_id
+                 JOIN user u ON f.faculty_id = u.faculty_faculty_id
+                 JOIN batch b ON r.batch_batch_id = b.batch_id
+        WHERE u.user_id = #{userId}
+          AND r.pass_or_not = 1
+          AND r.confirm_or_not IS NULL
+    </select>
 
 
 </mapper>
