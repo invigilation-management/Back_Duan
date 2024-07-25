@@ -95,4 +95,8 @@ public interface RegistrationMapper extends BaseMapper<Registration> {
     Page<Registration> NotationViceSearch(Page<Registration> registrationFindPage, String facultyName, String batchName);
 
     Page<Registration> FeesViceSearch(Page<Registration> registrationFindPage, String facultyName, String batchName);
+
+    Page<Registration> nothing(Page<Registration> registrationFindPage, Integer userId);
+
+    Boolean print(Long userId, String batchName);
 }

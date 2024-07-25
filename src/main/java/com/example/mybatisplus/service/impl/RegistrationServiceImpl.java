@@ -283,4 +283,17 @@ public class RegistrationServiceImpl extends ServiceImpl<RegistrationMapper, Reg
         return registrationMapper.FeesViceSearch(registrationFindPage,facultyName,batchName);
     }
 
+    @Override
+    public Page<Registration> nothing(Integer userId, PageDTO pageDTO) {
+        // 创建分页对象
+        Page<Registration> registrationFindPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+        return registrationMapper.nothing(registrationFindPage,userId);
+    }
+
+    @Override
+    public Boolean print(Long userId, String batchName) {
+        Boolean update=registrationMapper.print( userId,  batchName);
+        return update;
+    }
+
 }

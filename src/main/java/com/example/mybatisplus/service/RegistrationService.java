@@ -80,4 +80,8 @@ public interface RegistrationService extends IService<Registration> {
     Page<Registration> NotationViceSearch(String batchName, String facultyName, PageDTO pageDTO);
 
     Page<Registration> FeesViceSearch(String batchName, String facultyName, PageDTO pageDTO);
+
+    Page<Registration> nothing(Integer userId, PageDTO pageDTO);
+
+    Boolean print(Long userId, String batchName);
 }

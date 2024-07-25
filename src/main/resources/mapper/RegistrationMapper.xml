@@ -182,6 +182,7 @@
         WHERE registration.true_faculty_id = #{trueFacultyId}
           AND batch.batch_name = #{batchName}
     </update>
+    <update id="print"></update>
 
     <select id="selectWaitingPage" resultMap="WaitingPage">
         SELECT
@@ -842,6 +843,7 @@
     <select id="FeesViceSearch" resultType="com.example.mybatisplus.model.domain.Registration">
         SELECT * FROM registration
     </select>
+    <select id="nothing" resultType="com.example.mybatisplus.model.domain.Registration"></select>
 
 
 </mapper>

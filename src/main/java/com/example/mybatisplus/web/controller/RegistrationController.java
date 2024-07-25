@@ -515,5 +515,31 @@ public class RegistrationController {
         return JsonResponse.success(registrationPages);
     }
 
+    @RequestMapping(value = "nothing",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse nothing(Integer userId,Integer pageSize,Integer pageNo){
+
+        System.out.println(userId);
+
+        PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
+        Page<Registration> registrationPages=registrationService.nothing(userId,pageDTO);
+        return JsonResponse.success(registrationPages);
+    }
+
+
+    @RequestMapping(value = "print",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse print(Long userId,String batchName){
+
+        System.out.println(userId);
+
+        Boolean Success=registrationService.print(userId,batchName);
+        return JsonResponse.success(Success);
+    }
+
+
+
 }
 
