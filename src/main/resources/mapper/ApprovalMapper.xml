@@ -11,5 +11,6 @@
         <result column="approval_result" property="approvalResult" />
         <result column="registration_registration_id" property="registrationRegistrationId" />
     </resultMap>
+    <select id="historyCard" resultType="com.example.mybatisplus.model.domain.Approval"></select>
 
 </mapper>

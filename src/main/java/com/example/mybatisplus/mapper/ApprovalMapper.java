@@ -1,5 +1,6 @@
 package com.example.mybatisplus.mapper;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.mybatisplus.model.domain.Approval;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
@@ -13,4 +14,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface ApprovalMapper extends BaseMapper<Approval> {
 
+    Page<Approval> historyCard(Page<Approval> registrationFindPage, String trueFacultyName, String batchName);
 }
