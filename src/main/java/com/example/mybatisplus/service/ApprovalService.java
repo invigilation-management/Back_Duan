@@ -15,5 +15,5 @@ import com.example.mybatisplus.model.dto.PageDTO;
  */
 public interface ApprovalService extends IService<Approval> {
 
-    Page<Approval> historyCard(PageDTO pageDTO, String trueFacultyName, String batchName);
+    Page<Approval> historyCard(PageDTO pageDTO, Integer trueFacultyId, String batchName);
 }

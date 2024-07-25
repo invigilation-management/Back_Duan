@@ -83,12 +83,12 @@ public class ApprovalController {
 
     @RequestMapping(value = "historyCard", method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse historyCard(String trueFacultyName,String batchName){
+    public JsonResponse historyCard(Integer trueFacultyId,String batchName){
 
-        System.out.println(trueFacultyName);
+        System.out.println(trueFacultyId);
 
         PageDTO pageDTO=new PageDTO();
-        Page<Approval> registrationPages=approvalService.historyCard(pageDTO,trueFacultyName,batchName);
+        Page<Approval> registrationPages=approvalService.historyCard(pageDTO,trueFacultyId,batchName);
         return JsonResponse.success(registrationPages);
     }
 }

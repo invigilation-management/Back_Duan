@@ -11,6 +11,40 @@
         <result column="approval_result" property="approvalResult" />
         <result column="registration_registration_id" property="registrationRegistrationId" />
     </resultMap>
-    <select id="historyCard" resultType="com.example.mybatisplus.model.domain.Approval"></select>
+
+    <resultMap id="PageWithF" type="com.example.mybatisplus.model.domain.Approval">
+        <id column="approval_id" property="approvalId" />
+        <result column="approval_date" property="approvalDate" />
+        <result column="approval_faculty_id" property="approvalFacultyId" />
+        <result column="approvalcol" property="approvalcol" />
+        <result column="approval_result" property="approvalResult" />
+        <result column="registration_registration_id" property="registrationRegistrationId" />
+        <association property="faculty" javaType="com.example.mybatisplus.model.domain.Faculty">
+            <id column="faculty_id" property="facultyId" />
+            <result column="faculty_name" property="facultyName" />
+            <result column="tele" property="tele" />
+            <result column="level" property="level" />
+            <result column="college_college_id" property="collegeCollegeId" />
+        </association>
+        <association property="registration" javaType="com.example.mybatisplus.model.domain.Registration">
+            <result column="state" property="state" />
+        </association>
+    </resultMap>
+
+    <select id="historyCard" resultMap="PageWithF">
+        SELECT
+            a.approval_date AS approval_date,
+            f.faculty_name AS faculty_name,
+            f.faculty_id AS faculty_id,
+            f.level AS level,
+            COALESCE(a.approval_result, '未审批') AS approval_result,
+            r.state AS state
+        FROM approval a
+                 LEFT JOIN faculty f ON a.approval_faculty_id = f.faculty_id
+                 JOIN registration r ON a.registration_registration_id = r.registration_id
+                 JOIN batch b ON r.batch_batch_id = b.batch_id
+        WHERE r.true_faculty_id = #{trueFacultyId}
+          AND b.batch_name = #{batchName}
+    </select>
 
 </mapper>

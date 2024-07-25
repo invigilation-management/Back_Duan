@@ -24,9 +24,9 @@ public class ApprovalServiceImpl extends ServiceImpl<ApprovalMapper, Approval> i
     private ApprovalMapper approvalMapper;
 
     @Override
-    public Page<Approval> historyCard(PageDTO pageDTO, String trueFacultyName, String batchName) {
+    public Page<Approval> historyCard(PageDTO pageDTO, Integer trueFacultyId, String batchName) {
         // 创建分页对象
         Page<Approval> registrationFindPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
-        return approvalMapper.historyCard(registrationFindPage, trueFacultyName,batchName );
+        return approvalMapper.historyCard(registrationFindPage, trueFacultyId,batchName );
     }
 }

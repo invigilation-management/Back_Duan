@@ -14,5 +14,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface ApprovalMapper extends BaseMapper<Approval> {
 
-    Page<Approval> historyCard(Page<Approval> registrationFindPage, String trueFacultyName, String batchName);
+    Page<Approval> historyCard(Page<Approval> registrationFindPage, Integer trueFacultyId, String batchName);
 }
