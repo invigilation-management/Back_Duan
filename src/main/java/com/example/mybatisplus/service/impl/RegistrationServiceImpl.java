@@ -141,6 +141,7 @@ public class RegistrationServiceImpl extends ServiceImpl<RegistrationMapper, Reg
     public Boolean afterApproval(Long userId, Long trueFacultyId, String batchName, String targetCampus) {
         Integer count=registrationMapper.selectCountByBatchNameAndTargetCampus(batchName, targetCampus);
         Integer totalNumInTargetCampus = batchMapper.searchTotalNumByBatchNameAndTargetCampus(batchName, targetCampus);
+        Boolean updateBatch = batchMapper.updateAfterAdmission(batchName);
         if (count < totalNumInTargetCampus){
             String classroom = batchMapper.searchAvailableClassroom(batchName, targetCampus);
             Boolean update=registrationMapper.afterApprovalUpdate( userId,  trueFacultyId,  batchName,  targetCampus, classroom);
@@ -294,7 +295,8 @@ public class RegistrationServiceImpl extends ServiceImpl<RegistrationMapper, Reg
     @Override
     public Boolean print(Long userId, String batchName) {
         Boolean update=registrationMapper.print( userId,  batchName);
-        return update;
+        Boolean updateBatch = batchMapper.updateAfterConfirm(batchName);
+        return update && updateBatch;
     }
 
     @Override

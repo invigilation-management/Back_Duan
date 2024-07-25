@@ -49,4 +49,8 @@ public interface BatchMapper extends BaseMapper<Batch> {
     String searchAvailableClassroom(String batchName, String targetCampus);
 
     Integer searchTotalNumByBatchNameAndTargetCampus(String batchName, String targetCampus);
+
+    Boolean updateAfterConfirm(String batchName);
+
+    Boolean updateAfterAdmission(String batchName);
 }
