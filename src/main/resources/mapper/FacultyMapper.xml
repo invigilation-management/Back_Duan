@@ -39,7 +39,11 @@
            OR f.faculty_id LIKE CONCAT('%', #{trueFacultyName}, '%')
     </select>
     <select id="collegeIdFind1" resultType="com.example.mybatisplus.model.domain.Faculty">
-        SELECT * FROM faculty
+        SELECT * FROM faculty WHERE
+            college_college_id = #{collegeId}
+        AND
+            (faculty_name LIKE CONCAT('%', #{facultyName}, '%')
+        OR faculty_id LIKE CONCAT('%', #{facultyName}, '%'))
     </select>
     <select id="collegeIdFind2" resultType="com.example.mybatisplus.model.domain.Faculty">
         SELECT * FROM faculty
