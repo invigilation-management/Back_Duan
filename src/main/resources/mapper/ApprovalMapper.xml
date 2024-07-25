@@ -25,6 +25,7 @@
             <result column="tele" property="tele" />
             <result column="level" property="level" />
             <result column="college_college_id" property="collegeCollegeId" />
+            <result column="avatar" property="avatar"/>
         </association>
         <association property="registration" javaType="com.example.mybatisplus.model.domain.Registration">
             <result column="state" property="state" />
