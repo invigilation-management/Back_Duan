@@ -952,7 +952,21 @@
           AND r.confirm_or_not IS NULL
     </select>
     <select id="findUnclearBatchDetails" resultType="com.example.mybatisplus.model.domain.Registration">
-
+        SELECT
+            r.true_faculty_name AS true_faculty_name,
+            r.college AS college,
+            r.true_faculty_id AS true_faculty_id,
+            r.tele AS tele,
+            r.faculty_faculty_id AS faculty_faculty_id
+        FROM
+            registration r
+                JOIN
+            batch b ON r.batch_batch_id = b.batch_id
+        WHERE
+            b.batch_name = #{batchName}
+          AND r.pass_or_not = 1
+          AND (r.true_faculty_name LIKE CONCAT('%', #{trueFacultyName}, '%')
+           OR r.true_faculty_id LIKE CONCAT('%', #{trueFacultyName}, '%'))
     </select>
 
 
