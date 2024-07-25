@@ -29,6 +29,7 @@
         </association>
         <association property="registration" javaType="com.example.mybatisplus.model.domain.Registration">
             <result column="state" property="state" />
+            <result column="college" property="college"/>
         </association>
     </resultMap>
 
@@ -40,7 +41,8 @@
             f.level AS level,
             f.avatar AS avatar,
             COALESCE(a.approval_result, '未审批') AS approval_result,
-            r.state AS state
+            r.state AS state,
+            r.college AS college
         FROM approval a
                  LEFT JOIN faculty f ON a.approval_faculty_id = f.faculty_id
                  JOIN registration r ON a.registration_registration_id = r.registration_id
