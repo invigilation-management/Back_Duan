@@ -35,6 +35,8 @@ public class Registration extends Model<Registration> {
 
     private Integer batchBatchId;
 
+    private String batchBatchName;
+
     private Integer compensationCompensationId;
 
     private Integer state;

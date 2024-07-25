@@ -101,7 +101,7 @@
           AND batch.batch_name = #{batchName}
             LIMIT 1
     </insert>
-    <insert id="insertRegistration" useGeneratedKeys="true" keyProperty="registrationId" keyColumn="registration_id">
+    <insert id="insertRegistration" useGeneratedKeys="true" keyProperty="registrationId" keyColumn="registration_id" parameterType="map">
         INSERT INTO registration (
             faculty_faculty_id,
             batch_batch_id,
@@ -117,18 +117,18 @@
             target_campus,
             create_time
         ) VALUES (
-                     #{registration.facultyFacultyId},
-                     #{registration.batchBatchId},
-                     #{registration.gender},
-                     #{registration.trueFacultyId},
-                     #{registration.college},
-                     #{registration.trueFacultyName},
-                     #{registration.eduQualification},
-                     #{registration.tele},
-                     #{registration.teleBackup},
-                     #{registration.birthday, jdbcType=TIMESTAMP},
-                     #{registration.avatar},
-                     #{registration.targetCampus},
+                     #{facultyFacultyId},
+                     (SELECT batch_id FROM batch WHERE batch_name = #{batchBatchName} LIMIT 1),
+                     #{gender},
+                     #{trueFacultyId},
+                     #{college},
+                     #{trueFacultyName},
+                     #{eduQualification},
+                     #{tele},
+                     #{teleBackup},
+                     #{birthday, jdbcType=TIMESTAMP},
+                     #{avatar},
+                     #{targetCampus},
                     NOW()
                  )
     </insert>
