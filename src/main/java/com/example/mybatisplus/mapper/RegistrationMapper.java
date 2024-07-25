@@ -61,7 +61,7 @@ public interface RegistrationMapper extends BaseMapper<Registration> {
 
     int countByTrueFacultyId(Integer trueFacultyId, Integer batchBatchId);
 
-    void insertRegistration(@Param("registration") Registration registration);
+    void insertRegistration(Registration registration);
 //    void insertRegistration(Registration registration);
 
     Boolean afterApprovalOfficeUpdate(Long userId, Long trueFacultyId, String batchName, String targetCampus);
