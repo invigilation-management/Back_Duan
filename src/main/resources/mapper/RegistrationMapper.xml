@@ -183,7 +183,17 @@
         WHERE registration.true_faculty_id = #{trueFacultyId}
           AND batch.batch_name = #{batchName}
     </update>
-    <update id="print"></update>
+    <update id="print">
+        UPDATE registration r
+            JOIN batch b ON r.batch_batch_id = b.batch_id
+            JOIN faculty f ON r.true_faculty_id = f.faculty_id
+            JOIN user u ON f.faculty_id = u.faculty_faculty_id
+            SET
+                r.confirm_or_not = 1,
+                r.amount = 200 * b.batch_duration
+        WHERE u.user_id = #{userId}
+          AND b.batch_name = #{batchName}
+    </update>
 
     <select id="selectWaitingPage" resultMap="WaitingPage">
         SELECT
