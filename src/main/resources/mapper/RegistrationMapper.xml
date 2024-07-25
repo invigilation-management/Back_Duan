@@ -951,6 +951,9 @@
           AND r.pass_or_not = 1
           AND r.confirm_or_not IS NULL
     </select>
+    <select id="findUnclearBatchDetails" resultType="com.example.mybatisplus.model.domain.Registration">
+        
+    </select>
 
 
 </mapper>

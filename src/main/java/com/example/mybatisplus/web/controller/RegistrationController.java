@@ -1,6 +1,8 @@
 package com.example.mybatisplus.web.controller;
 
+import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.mybatisplus.model.domain.Batch;
 import com.example.mybatisplus.model.dto.PageDTO;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
@@ -537,6 +539,19 @@ public class RegistrationController {
 
         Boolean Success=registrationService.print(userId,batchName);
         return JsonResponse.success(Success);
+    }
+
+    @RequestMapping(value = "findUnclearBatchDetails",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse findUnclearBatchDetails(Integer userId,String batchName,String trueFacultyName,Integer pageSize,Integer pageNo){
+
+        System.out.println(batchName);
+
+        PageDTO pageDTO=new PageDTO();
+        pageDTO.setPageNo(pageNo);
+        pageDTO.setPageSize(pageSize);
+        Page<Registration> batchPages=registrationService.findUnclearBatchDetails(userId,batchName,trueFacultyName,pageDTO);
+        return JsonResponse.success(batchPages);
     }
 
 

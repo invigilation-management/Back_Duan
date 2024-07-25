@@ -3,6 +3,7 @@ package com.example.mybatisplus.service.impl;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.mybatisplus.mapper.BatchMapper;
 import com.example.mybatisplus.mapper.UserMapper;
+import com.example.mybatisplus.model.domain.Batch;
 import com.example.mybatisplus.model.domain.Registration;
 import com.example.mybatisplus.mapper.RegistrationMapper;
 import com.example.mybatisplus.model.dto.PageDTO;
@@ -294,6 +295,14 @@ public class RegistrationServiceImpl extends ServiceImpl<RegistrationMapper, Reg
     public Boolean print(Long userId, String batchName) {
         Boolean update=registrationMapper.print( userId,  batchName);
         return update;
+    }
+
+    @Override
+    public Page<Registration> findUnclearBatchDetails(Integer userId, String batchName, String trueFacultyName, PageDTO pageDTO) {
+        // 创建分页对象
+        Page<Registration> registrationPage = new Page<>(pageDTO.getPageNo(), pageDTO.getPageSize());
+
+        return registrationMapper.findUnclearBatchDetails(registrationPage,userId, batchName,trueFacultyName);
     }
 
 }

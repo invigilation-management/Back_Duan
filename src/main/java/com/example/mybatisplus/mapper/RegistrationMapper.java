@@ -99,4 +99,6 @@ public interface RegistrationMapper extends BaseMapper<Registration> {
     Page<Registration> nothing(Page<Registration> registrationFindPage, Integer userId);
 
     Boolean print(Long userId, String batchName);
+
+    Page<Registration> findUnclearBatchDetails(Page<Registration> registrationPage, Integer userId, String batchName, String trueFacultyName);
 }

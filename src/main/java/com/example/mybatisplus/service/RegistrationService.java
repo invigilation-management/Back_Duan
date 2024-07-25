@@ -84,4 +84,6 @@ public interface RegistrationService extends IService<Registration> {
     Page<Registration> nothing(Integer userId, PageDTO pageDTO);
 
     Boolean print(Long userId, String batchName);
+
+    Page<Registration> findUnclearBatchDetails(Integer userId, String batchName, String trueFacultyName, PageDTO pageDTO);
 }
