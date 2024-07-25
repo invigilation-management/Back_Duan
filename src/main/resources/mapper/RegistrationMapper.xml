@@ -118,7 +118,7 @@
             create_time
         ) VALUES (
                      #{facultyFacultyId},
-                     (SELECT batch_id FROM batch WHERE batch_name = #{batchBatchName} LIMIT 1),
+                     (SELECT batch_id AS batch_batch_id FROM batch WHERE batch_name = #{batchBatchName} LIMIT 1),
                      #{gender},
                      #{trueFacultyId},
                      #{college},
