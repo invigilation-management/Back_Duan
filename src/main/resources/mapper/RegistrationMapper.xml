@@ -747,11 +747,14 @@
             r.faculty_faculty_id AS faculty_faculty_id
         FROM
             registration r
-                JOIN
-            batch b ON r.batch_batch_id = b.batch_id
+                JOIN batch b ON r.batch_batch_id = b.batch_id
+                JOIN user u
+                JOIN faculty f ON u.faculty_faculty_id = f.faculty_id
         WHERE
             b.batch_name = #{batchName}
-        AND r.pass_or_not = 1
+          AND r.pass_or_not = 1
+          AND u.user_id = #{userId}
+          AND f.college_college_id = (SELECT college_college_id FROM faculty WHERE faculty_id = r.true_faculty_id)
     </select>
     <select id="ManageVice" resultMap="WaitingPageWithApproval">
         SELECT
@@ -960,11 +963,14 @@
             r.faculty_faculty_id AS faculty_faculty_id
         FROM
             registration r
-                JOIN
-            batch b ON r.batch_batch_id = b.batch_id
+                JOIN batch b ON r.batch_batch_id = b.batch_id
+                JOIN user u
+                JOIN faculty f ON u.faculty_faculty_id = f.faculty_id
         WHERE
             b.batch_name = #{batchName}
           AND r.pass_or_not = 1
+          AND u.user_id = #{userId}
+          AND f.college_college_id = (SELECT college_college_id FROM faculty WHERE faculty_id = r.true_faculty_id)
           AND (r.true_faculty_name LIKE CONCAT('%', #{trueFacultyName}, '%')
            OR r.true_faculty_id LIKE CONCAT('%', #{trueFacultyName}, '%'))
     </select>
