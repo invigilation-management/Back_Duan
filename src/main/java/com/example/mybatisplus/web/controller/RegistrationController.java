@@ -205,9 +205,7 @@ public class RegistrationController {
     @RequestMapping(value = "getWaitingToBeApprovalALL",method = RequestMethod.GET)
     @ResponseBody
     public JsonResponse getWaitingToBeApprovalALL(Long userId,Integer pageSize,Integer pageNo){
-
         System.out.println(userId);
-
         PageDTO pageDTO=new PageDTO();
         pageDTO.setPageNo(pageNo);
         pageDTO.setPageSize(pageSize);
